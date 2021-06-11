@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+	<link rel="stylesheet" href="/styles/register.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <title>Cadastro</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+	<main>
+	<div class="card-profile">
+
+		<form method="post" action="register/save">
+			<label for='nome'>Nome Completo</label>
+			<input type="text" name='nome' />
+
+			<label for='username'>Login</label>
+			<input type="text" name='username' />
+
+			<label for='pass'>Senha</label>
+			<input type="password" name='pass' />
+
+			<label for='sigplayLogin'>Login no Sigplay</label>
+			<input type="text" name='sigplayLogin' />
+
+			<label for='sigplayPass'>Senha no Sigplay</label>
+			<input type="password" name='sigplayPass' />
+
+			<label for='sigplayPass'>Nível de acesso</label><br/>
+			<select name='nivel'>
+				<option value="1">Operador</option>
+				<option value="2">Vendedor</option>
+				<option value="3">Supervisor</option>
+				<option value="4">Gerente</option>
+				<option value="5">Master</option>
+			</select>
+
+			<input type="submit" value="Salvar" style='cursor: pointer;'>
+		</form>
+
+  </div>
+  </main>
+  <div class="attribution">. 
+    Desenvolvido por <a href="https://github.com/shymarrai" target='__blank'>Bruno Gomes</a>.
+  </div>
+</body>
+</html>
