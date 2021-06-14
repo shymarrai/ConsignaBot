@@ -1,18 +1,22 @@
 const express = require('express');
 const bot = require('../controllers/BotSearch');
-require('dotenv').config()
-const app = express();
+const User = require('../model/Users')
+const router = express.Router();
+const auth = require('../controllers/AuthController')
 
-app.use('/consigna_bot', async (req,res) => {
 
-  await bot().then((value) => {
+router.get('/', auth ,async (req,res) => {
+  const selectedUser = await User.findOne({id: req.user.id})
+
+
+  bot().then((value) => {
     console.log(value)
-    return res.send('bot')
+    res.send(`bot`)
   })
   .catch((error) => console.log("ERRO"));
 
-    res.send({
-      "1 Video" : ""
-    })
+  return res.send(`Bem Vindo, ${selectedUser.name}`)
 
 })
+
+module.exports = router
