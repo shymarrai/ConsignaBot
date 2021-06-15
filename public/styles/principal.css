@@ -52,6 +52,9 @@ input[type="submit"] {
   border-radius: 5px;
   background-color: #1e7eb5;
 }
+input[type="submit"]:hover {
+  background-color: #208ac7;
+}
 .large {
   grid-column: 1 / span 3;
 }

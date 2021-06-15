@@ -2,7 +2,7 @@ span {
   color: #fff;
 }
 header {
-  width: 100vw;
+  width: 98.7vw;
   height: 10vh;
   background-color: #1e7eb5;
   display: flex;
@@ -13,18 +13,18 @@ header {
 button {
   border: none;
   padding: 0.5rem;
+
   height: 2rem;
   background-color: #fff;
   font-weight: bold;
   border-radius: 6px;
   cursor: pointer;
-  transition: all 1s;
 }
 .findCpf {
   display: flex;
 }
 button:hover {
-  background-color: #ccc;
+  background-color: #eee;
 }
 input[type="text"] {
   height: 4vh;
