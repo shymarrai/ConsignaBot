@@ -23,7 +23,9 @@ input[type="password"] {
   padding-left: 0.5rem;
   outline: none;
 }
-input {
+input,
+textarea,
+button {
   font-family: "Nunito", sans-serif;
 }
 input:-webkit-input-placeholder,

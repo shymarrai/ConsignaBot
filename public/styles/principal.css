@@ -4,17 +4,62 @@
   font-family: "Nunito", sans-serif;
 }
 body {
-  background-color: #fff;
+  background-color: #eee;
+}
+label {
+  display: block;
 }
 main {
-  width: 80vw;
+  width: 70vw;
   height: 100%;
-  background-color: beige;
+  background-color: #fff;
   margin: 0 auto;
 }
+textarea {
+  display: block;
+  border: 2px solid #666;
+  width: 90%;
+  height: 100%;
+  resize: none;
+  padding: 0.2rem;
+  position: relative;
+}
+label[for="anexo"],
+input[type="submit"] {
+  padding: 5px 5px;
+  width: 100px;
+  background-color: #ddd;
+  color: #333;
+  border-radius: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+  margin-top: 3rem;
+  cursor: pointer;
+  border: none;
+}
+
+label[for="anexo"]:hover {
+  background-color: #ccc;
+}
+input[type="file"] {
+  display: none;
+}
+input[type="submit"] {
+  margin: 0 auto;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #1e7eb5;
+}
+.large {
+  grid-column: 1 / span 3;
+}
 form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 1.5rem 3rem;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  background-color: aliceblue;
 }
