@@ -20,7 +20,7 @@ const UserController = {
     try{
       
       const savedUser = await user.save()
-      res.send(`User saved ${savedUser}`)
+      res.redirect("/")
     }catch(error){
       res.send(error)
     }
@@ -40,7 +40,7 @@ const UserController = {
     const token = jwt.sign({_id: selectedUser.id}, process.env.TOKEN_SECRET)
 
     res.header("Access-Control", token)
-    res.send(`Usuário Logado! Bem vindo, ${selectedUser.name}`)
+    return res.render("principal",{user : selectedUser})
     //return res.redirect('/consigna_bot')
   }
 

@@ -4,18 +4,50 @@
   font-family: "Kumbh Sans", sans-serif;
 }
 body {
-  background: URL("./images/bg-pattern-top.svg") no-repeat,
-    URL("./images/bg-pattern-bottom.svg") no-repeat rgb(25, 161, 173);
+  background: URL("/images/bg-pattern-top.svg") no-repeat,
+    URL("/images/bg-pattern-bottom.svg") no-repeat #1e7eb5;
   background-position: 120% 150%, -20% -60%;
 }
-input {
+label {
+  color: rgba(0, 0, 0, 0);
+}
+input[type="text"],
+input[type="password"] {
   display: block;
   width: 15rem;
-  height: 1.7rem;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 20px;
+  height: 2rem;
+  border: none;
+  border-bottom: 1px solid #999;
+  font-size: 1.5rem;
   margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  outline: none;
 }
+input {
+  font-family: "Nunito", sans-serif;
+}
+input:-webkit-input-placeholder,
+input:-moz-placeholder {
+  font-size: 1.5rem;
+  color: red;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+input[type="submit"] {
+  width: 7rem;
+  border: none;
+  font-weight: 600;
+  color: #fff;
+
+  background-color: #1e7eb5;
+  height: 2rem;
+  border-radius: 5px;
+}
+
 select {
   display: block;
   width: 15rem;
@@ -44,10 +76,10 @@ main {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: url("./images/bg-pattern-card.svg") no-repeat #fff;
-  background-size: 100% 30%;
-  width: 70vw;
+  background-color: #fff;
+  width: 60vw;
   height: 65vh;
+  opacity: 0.9;
   color: var(--Very_dark);
   border-radius: 5%;
   box-sizing: border-box;
@@ -92,34 +124,39 @@ span.age {
   color: var(--Dark_grayish);
 }
 .profile {
-  border: 5px solid #fff;
   border-radius: 50%;
+  width: 30%;
   position: relative;
-  top: 0.2rem;
-  margin: 0 0 3rem 0;
+  margin-top: -50px;
 }
 
 .attribution {
   width: 100vw;
   position: fixed;
   bottom: 0;
-  background: #fff;
+  color: #fff;
+  background: rgba(255, 255, 255, 0);
   padding: 1rem;
+}
+.attribution a {
+  color: #fff;
+  font-weight: 600;
+}
+a:link,
+a:visited,
+a:active {
+  color: #fff;
 }
 @media (min-width: 720px) {
   body {
-    background: URL("./images/bg-pattern-top.svg") no-repeat,
-      URL("./images/bg-pattern-bottom.svg") no-repeat rgb(25, 161, 173);
+    background: URL("/images/bg-pattern-top.svg") no-repeat,
+      URL("/images/bg-pattern-bottom.svg") no-repeat #1e7eb5;
     background-position: -90% 100%, 170% -40%;
   }
-  * {
-    background-size: 100% 30%;
-  }
   .card-profile {
-    background-size: 100% 30%;
-    width: 25vw;
+    width: 22vw;
   }
   .profile {
-    top: 0.2rem;
+    top: 0rem;
   }
 }

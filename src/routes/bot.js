@@ -15,7 +15,7 @@ router.get('/', auth ,async (req,res) => {
   })
   .catch((error) => console.log("ERRO"));
 
-  return res.send(`Bem Vindo, ${selectedUser.name}`)
+  res.send("send do bot")
 
 })
 
