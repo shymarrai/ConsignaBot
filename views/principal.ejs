@@ -1,9 +1,105 @@
-
   <%- include('../views/parts/header.ejs', {user: user}) %> 
 	<main>
-    <input type="text" name='CPF' />
-    <input type="text" name='dt_nasc' />
-    <input type="text" name='operador' value='<%=user.name%>'/>
+    <form>
+      <label for='cpf'>CPF</label>
+      <input type="text" name='cpf'/>
+
+      <label for='cpf'>Data de Nascimento</label>
+      <input type="text" name='dt_nasc' />
+
+      <label for='cpf'>Operador</label>
+      <input type="text" name='operador' value='<%=user.name%>'/>
+
+      <label for='cpf'>Nome</label>
+      <input type="text" name='nome'/>
+
+      <label for='cpf'>Endereço</label>
+      <input type="text" name='end'/>
+
+      <label for='cpf'>Bairro</label>
+      <input type="text" name='bairro'/>
+
+      <label for='cpf'>CEP</label>
+      <input type="text" name='cep'/>
+
+      <label for='cpf'>Município</label>
+      <input type="text" name='municipio'/>
+
+      <label for='cpf'>UF</label>
+      <input type="text" name='uf'/>
+
+      <label for='cpf'>Telefone</label>
+      <input type="text" name='tel'/>
+
+      <label for='cpf'>Celular</label>
+      <input type="text" name='cel'/>
+
+      <label for='cpf'>Parcelas</label>
+      <input type="text" name='parcelas'/>
+
+      <label for='cpf'>Nº Benefício</label>
+      <input type="text" name='n_beneficio'/>
+
+      <label for='cpf'>Banco</label>
+      <input type="text" name='banco'/>
+
+      <label for='cpf'>AG</label>
+      <input type="text" name='ag'/>
+
+      <label for='cpf'>Nº Conta</label>
+      <input type="text" name='n_conta'/>
+
+      <label for='cpf'>Tipo de Conta</label>
+      <input type="text" name='tipo_conta'/>
+
+      <label for='cpf'>Banco Origem</label>
+      <input type="text" name='banco_origem'/>
+
+      <label for='cpf'>Parcela</label>
+      <input type="text" name='parcela'/>
+
+      <label for='cpf'>Saldo Devedor</label>
+      <input type="text" name='saldo_devedor'/>
+
+      <label for='cpf'>Qtd Pagas</label>
+      <input type="text" name='qtd_pagas'/>
+
+      <label for='cpf'>Valor Liquido</label>
+      <input type="text" name='valor_liquido'/>
+
+      <label for='cpf'>Data Inicio</label>
+      <input type="date" name='data_inicio'/>
+
+      <label for='cpf'>Prazo</label>
+      <input type="text" name='prazo'/>
+
+      <label for='cpf'>Restantes</label>
+      <input type="text" name='restantes'/>
+
+      <label for='cpf'>Quitação</label>
+      <input type="text" name='quitação'/>
+
+      <label for='cpf'>Tipo</label>
+      <input type="text" name='tipo'/>
+
+      <label for='cpf'>Taxa</label>
+      <input type="text" name='taxa'/>
+
+      <label for='cpf'>Contrato</label>
+      <input type="text" name='contrato'/>
+
+      <label for='cpf'>Status</label>
+      <input type="text" Sname='status'/>
+
+      <label for='cpf'>Observação</label>
+      <textarea name='obs'></textarea>
+
+      <label for='cpf'>Selecione uma foto</label>
+      <input type='file' name='picture'>
+
+      
+      <input type="submit" value='Salvar'>
+    </form>
   </main>
 
 </body>

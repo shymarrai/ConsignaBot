@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 	<link rel="stylesheet" href="/styles/header.css">
+	<link rel="stylesheet" href="/styles/formulario.css">
+	<link rel="stylesheet" href="/styles/principal.css">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.jpg">
   <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
@@ -11,9 +13,8 @@
 </head>
 <body>
 <header>
-
   <div class='findCpf'>
-    <input type="text" name="search" placeholder="CPF"/>
+    <input type="text" name="search" placeholder="CPF" style="border:none;" />
     <button type="button" ><image src='/images/icon-search.png' alt='Search' ></button>
   </div>
 
@@ -24,5 +25,4 @@
   <div class='congrats'>
     <p>Bem Vindo,<br/><span><%= user.name %></span></p>
   </div>
-
 </header>
