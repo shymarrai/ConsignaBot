@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+}
+span {
+  color: #fff;
+}
+header {
+  width: 100vw;
+  height: 10vh;
+  background-color: #1e7eb5;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  top: 0;
+}
+button {
+  border: none;
+  padding: 0.5rem;
+  height: 2rem;
+  background-color: #fff;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 1s;
+}
+.findCpf {
+  display: flex;
+}
+button:hover {
+  background-color: rgb(215, 224, 255);
+}
+input[type="text"] {
+  height: 4vh;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  padding: 0.2rem;
+  margin-right: 0.3rem;
+}
+img {
+  width: 1rem;
+  align-self: center;
+  transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+}
+p {
+  color: #fff;
+}

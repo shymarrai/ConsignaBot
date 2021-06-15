@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-	<link rel="stylesheet" href="/styles/principal.css">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.jpg">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-  <title>ConsignaBot</title>
-</head>
-<body>
+
+  <%- include('../views/parts/header.ejs', {user: user}) %> 
 	<main>
-    <p>Seja Bem Vindo,<span> <%= user.name   %> </span></p>
+    <input type="text" name='CPF' />
+    <input type="text" name='dt_nasc' />
+    <input type="text" name='operador' value='<%=user.name%>'/>
   </main>
 
 </body>
