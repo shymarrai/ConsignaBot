@@ -1,20 +1,18 @@
-
-// MASCARA DO TELEFONE FIXO
-
 function mask(o, f) {
   setTimeout(function() {
-    var v = mphone(o.value);
+    var v = f(o.value);
     if (v != o.value) {
       o.value = v;
     }
   }, 1);
 }
 
+// MASCARA DO TELEFONE FIXO
 function mphone(v) {
   var r = v.replace(/\D/g, "");
   r = r.replace(/^0/, "");
   if (r.length > 10) {
-    r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+    r = r.replace(/^(\d\d)(\d{4})(\d{5}).*/, "($1) $2-$3");
   } else if (r.length > 5) {
     r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
   } else if (r.length > 2) {
@@ -29,19 +27,7 @@ function mphone(v) {
 
 
 
-
 // MASCARA PARA O CELULAR
-
-
-function maskC(o, f) {
-  setTimeout(function() {
-    var v = mphoneC(o.value);
-    if (v != o.value) {
-      o.value = v;
-    }
-  }, 1);
-}
-
 function mphoneC(v) {
   var r = v.replace(/\D/g, "");
   r = r.replace(/^0/, "");
@@ -57,4 +43,13 @@ function mphoneC(v) {
   return r;
 }
 
+
+// MASCARA PARA O CPF
+function mCPF(cpf){
+  cpf=cpf.replace(/\D/g,"")
+  cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+  cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+  cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+  return cpf
+}
 

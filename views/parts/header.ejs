@@ -14,7 +14,7 @@
 <body>
 <header>
   <div class='findCpf'>
-    <input type="text" name="search" placeholder="CPF" style="border:none;" />
+    <input type="text" name="search" placeholder="CPF" style="border:none;" onkeypress="mask(this, mCPF);" onblur="mask(this, mCPF);"/>
     <button type="button" ><image src='/images/icon-search.png' alt='Search' ></button>
   </div>
 
