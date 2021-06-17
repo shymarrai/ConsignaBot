@@ -50,6 +50,11 @@ function mCPF(cpf){
   cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
   cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
   cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+
+  let cpf_oculto = document.getElementById('search').value
+  document.getElementById('cpf_oculto').value = cpf_oculto
+
+
   return cpf
 }
 

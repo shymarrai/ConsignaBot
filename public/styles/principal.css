@@ -4,7 +4,14 @@
   font-family: "Nunito", sans-serif;
 }
 body {
-  background-color: #eee;
+  background-color: aliceblue;
+}
+.logout {
+  width: 2rem;
+  margin: 1%;
+  position: absolute;
+  filter: invert(1);
+  top: 0;
 }
 label {
   display: block;
@@ -25,7 +32,7 @@ textarea {
   position: relative;
 }
 label[for="anexo"],
-input[type="submit"] {
+.enviar {
   padding: 5px 5px;
   width: 100px;
   background-color: #ddd;
@@ -46,7 +53,7 @@ label[for="anexo"]:hover {
 input[type="file"] {
   display: none;
 }
-input[type="submit"] {
+.enviar {
   margin: 0 auto;
   color: #fff;
   border-radius: 5px;
@@ -64,5 +71,5 @@ form {
   padding: 1.5rem 3rem;
   flex-wrap: wrap;
   gap: 0.5em;
-  background-color: aliceblue;
+  background-color: #fff;
 }

@@ -14,14 +14,21 @@
 <body>
 <header>
   <div class='findCpf'>
-    <input type="text" name="search" placeholder="CPF" style="border:none;" onkeypress="mask(this, mCPF);" onblur="mask(this, mCPF);"/>
-    <button type="button" ><image src='/images/icon-search.png' alt='Search' ></button>
+    <input type="text" name="search" id='search' placeholder="CPF" maxlength='14' style="border:none;" onkeypress="mask(this, mCPF);" onblur="mask(this, mCPF);"/>
+    <button type="button" >
+      <image src='/images/icon-search.png' class='invert' alt='Search' >
+    </button>
   </div>
 
-  <div class='botFunction'>
-    <button type="button" style='width: 8rem;' class="botButton">ConsignaBot</button>
-  </div>
 
+
+  <form method='post' action='/consigna_bot/<%= user.username%>/<%= token%>' id="form_active_bot" style='display:none;visibility:hidden;'>
+    <input type="text" name="cpf_oculto" id='cpf_oculto' >
+    <div class='botFunction'>
+      
+    </div>
+  </form>
+  <input type="submit" style='width: 8rem;' class="botButton" id='callBot' value='ConsgnaBot' form='form_active_bot'>
   <div class='congrats'>
     <p>Bem Vindo,<br/><span><%= user.name %></span></p>
   </div>

@@ -10,7 +10,8 @@ header {
   justify-content: space-around;
   top: 0;
 }
-button {
+button,
+#callBot {
   border: none;
   padding: 0.5rem;
 
@@ -23,6 +24,7 @@ button {
 .findCpf {
   display: flex;
 }
+#callBot:hover,
 button:hover {
   background-color: #eee;
 }
@@ -34,13 +36,17 @@ input[type="text"] {
   padding: 0.2rem;
   margin-right: 0.3rem;
 }
-img {
-  width: 1rem;
-  align-self: center;
+
+.invert {
   transform: scaleX(-1);
   -webkit-transform: scaleX(-1);
   -o-transform: scaleX(-1);
   -moz-transform: scaleX(-1);
+}
+
+img {
+  width: 1rem;
+  align-self: center;
 }
 p {
   color: #fff;
