@@ -40,8 +40,8 @@ let bot = async (cpf) => {
   let listValues = await page.evaluate(() => {
     let el = document.querySelectorAll('input:not([ignorar="true"]')
     let test = [...el]
-    const result = test.map((a) => (`${a.value}`));
-    // const result = test.map((a) => (`${[a.getAttribute('name')]}: ${a.value}`));
+    // const result = test.map((a) => (`${a.value}`));
+    const result = test.map((a) => (String([a.getAttribute('name')])+':'+String(a.value)));
 
     return result
   });

@@ -3,6 +3,8 @@ const User = require('../model/Users')
 const jwt = require('jsonwebtoken')
 const fs = require('fs');
 
+
+
 const BotRoutes = {
   getParams: async function(req, res){
     //pegando o cpf procurado no PARAMS 
@@ -39,11 +41,33 @@ const BotRoutes = {
 
         await bot(cpf).then((result) => {
           //enviando os resultados da pesquisa
-          console.log(result)
-          return res.render("principal",{user: selectedUser, token, values: result})
+          
+          fs.writeFile(`${__dirname}/../model/json/${cpf}.json`,JSON.stringify(result, null, 2), err => {
+            if(err) throw new Error("Erro na criação do objeto JSON")
+            
+          })
+          fs.readFile(`${__dirname}/../model/json/${cpf}.json`, 'utf8', (error, data) => {
+
+            //caso haja erro mostra no terminal
+            if(error){
+              console.log(error)
+            }
+            
+            //se está tudo ok... converte o json 
+            let fileConvert = JSON.parse(data)
+
+
+            const result = fileConvert.reduce((curr, item) => {
+              const [key, ...values] = item?.split(':')
+              return { ...curr, [key]:values?.join(':')}
+
+              
+          },{})
+            return res.render("principal",{user: selectedUser, token, values: result})
+          })
+
+          
         }).catch((error) => res.send(error));
-
-
       }
 
     }catch(error){

@@ -1,6 +1,12 @@
 
 <form> 
+
+
+
+
   <div>
+    <%= value.loja2%>
+    <%= value['loja2']%>
     <label for='cpf'>CPF</label>
       <input value="<%= value.length < 20 ? "": value[6] %>" type="text" id='cpf' name='cpf' maxlength="14" onkeypress="mask(this, mCPF);" onblur="mask(this, mCPF);"/>
   </div>
