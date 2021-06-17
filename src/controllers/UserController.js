@@ -51,30 +51,11 @@ const UserController = {
     const token = req.params.token
     var values = req.params.values
     const username = req.params.user
-    const cpf = req.params.cpf
-
-
     const selectedUser = await User.findOne({username})
 
     if(!token) return res.status(401).send("Acesso Negado")
     if(!selectedUser) return res.status(401).send("Acesso Negado")
-    if(values === 1){
-      const URL_TO_FETCH = `/get_bot/${cpf}/${username}/${token}`;
-
-      fetch(URL_TO_FETCH, {
-        method: 'get' // opcional
-      })
-      .then(function(response) {
-        // use a resposta
-        console.log(response)
-      })
-      .catch(function(err) { 
-        console.error(err);
-      });
-      //redirect()
-    }
-
-
+    
     try{
       const userVerified = jwt.verify(token, process.env.TOKEN_SECRET)
       if(userVerified){

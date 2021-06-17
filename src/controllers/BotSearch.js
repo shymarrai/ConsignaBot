@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 require('dotenv').config()
 
 let bot = async (cpf) => {
@@ -39,15 +40,17 @@ let bot = async (cpf) => {
   let listValues = await page.evaluate(() => {
     let el = document.querySelectorAll('input:not([ignorar="true"]')
     let test = [...el]
-    const result = test.map((a) => (`${[a.getAttribute('name')]}: ${a.value}`));
+    const result = test.map((a) => (`${a.value}`));
+    // const result = test.map((a) => (`${[a.getAttribute('name')]}: ${a.value}`));
 
     return result
   });
-  
+
   //SAINDO DO SISTEMA
-  await page.goto('http://www.sigplay.net/admin/ope_contato.php?logout');
   await navigationPromise;
+  await page.goto('http://www.sigplay.net/admin/ope_contato.php?logout');
   await browser.close();
+  
   return listValues
 }
 

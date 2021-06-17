@@ -1,7 +1,7 @@
 const bot = require('../controllers/BotSearch');
 const User = require('../model/Users')
 const jwt = require('jsonwebtoken')
-
+const fs = require('fs');
 
 const BotRoutes = {
   getParams: async function(req, res){
@@ -31,21 +31,17 @@ const BotRoutes = {
     let cpf = req.params.cpf
     let username = req.params.user
     let token = req.params.token
-    let valueUndefined = 0
+    const selectedUser = await User.findOne({username})
+
     try{
       const userVerified = jwt.verify(token, process.env.TOKEN_SECRET)
       if(userVerified){
 
         await bot(cpf).then((result) => {
           //enviando os resultados da pesquisa
-         // result = JSON.stringify(result).then(e => console.log(e)).catch(err => console.log(err))
-          
-          res.json(result)
-          // let values = result.slice(1,result.length - 1)
-          values = 1
-          
-          //return res.redirect(`/principal/${username}/${token}/${values}`)
-        }).catch((error) => res.redirect(`/principal/${username}/${token}/${valueUndefined}`));
+          console.log(result)
+          return res.render("principal",{user: selectedUser, token, values: result})
+        }).catch((error) => res.send(error));
 
 
       }
