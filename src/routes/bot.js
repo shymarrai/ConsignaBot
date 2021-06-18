@@ -63,6 +63,7 @@ const BotRoutes = {
 
               
           },{})
+            console.log(result)
             return res.render("principal",{user: selectedUser, token, values: result})
           })
 

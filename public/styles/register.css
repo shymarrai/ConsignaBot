@@ -14,7 +14,7 @@ label {
 input[type="text"],
 input[type="password"] {
   display: block;
-  width: 15rem;
+  width: 90%;
   height: 2rem;
   border: none;
   border-bottom: 1px solid #999;

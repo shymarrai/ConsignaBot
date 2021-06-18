@@ -1,19 +1,13 @@
 
 <form> 
-
-
-
-
   <div>
-    <%= value.loja2%>
-    <%= value['loja2']%>
     <label for='cpf'>CPF</label>
-      <input value="<%= value.length < 20 ? "": value[6] %>" type="text" id='cpf' name='cpf' maxlength="14" onkeypress="mask(this, mCPF);" onblur="mask(this, mCPF);"/>
+      <input value="<%= value.length < 20 ? "": value.cli_cpf %>" type="text" id='cpf' name='cpf' maxlength="14" onkeypress="mask(this, mCPF);" onblur="mask(this, mCPF);"/>
   </div>
 
   <div>
     <label for='dt_nasc'>Data de Nascimento</label>
-    <input value="<%= value.length < 20 ? "": value[7] %>"  type="text" id='dt_nasc' name='dt_nasc' />
+    <input value="<%= value.length < 20 ? "": value.cli_data_nasc %>"  type="text" id='dt_nasc' name='dt_nasc' />
   </div>
 
   <div>
@@ -23,42 +17,42 @@
 
   <div class='large'> 
     <label for='nome'>Nome</label>
-    <input value="<%= value.length < 20 ? "": value[5] %>" type="text" name='nome' id='nome' style='width:89%;'/>
+    <input value="<%= value.length < 20 ? "": value.cli_nome %>" type="text" name='nome' id='nome' style='width:89%;'/>
   </div>
 
-  <div>
+  <div class='large'>
     <label for='end'>Endereço</label>
-    <input value="<%= value.length < 20 ? "": value[29] %>" type="text" id='end' name='end'/>
+    <input value="<%= value.length < 20 ? "": value.ENDERECO %>" type="text" id='end' name='end' style='width:89%;'/>
   </div>
 
   <div>
     <label for='bairro'>Bairro</label>
-    <input value="<%= value.length < 20 ? "": value[30] %>" type="text" id='bairro' name='bairro'/>
+    <input value="<%= value.length < 20 ? "": value.BAIRRO %>" type="text" id='bairro' name='bairro'/>
   </div>
 
   <div>
     <label for='cep'>CEP</label>
-    <input value="<%= value.length < 20 ? "": value[33] %>" type="text" id='cep' name='cep'/>
+    <input value="<%= value.length < 20 ? "": value.CEP %>" type="text" id='cep' name='cep'/>
   </div>
 
   <div>
     <label for='municipio'>Município</label>
-    <input value="<%= value.length < 20 ? "": value[31] %>" type="text" id='municipio' name='municipio'/>
+    <input value="<%= value.length < 20 ? "": value.CIDADE %>" type="text" id='municipio' name='municipio'/>
   </div>
 
   <div>
     <label for='uf'>UF</label>
-    <input value="<%= value.length < 20 ? "": value[32] %>" type="text" id='uf' name='uf'/>
+    <input value="<%= value.length < 20 ? "": value.UF_ENDERECO %>" type="text" id='uf' name='uf'/>
   </div>
 
   <div>
     <label for='tel'>Telefone</label>
-    <input value="<%= value.length < 20 ? "": value[18] %>" type="text" id='tel' onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" name='tel' maxlength="14"/>
+    <input value="<%= value.length < 20 ? "": value.par_fone1 %>" type="text" id='tel' onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" name='tel' maxlength="14"/>
   </div>
 
   <div>
     <label for='cel'>Celular</label>
-    <input value="<%= value.length < 20 ? "": value[19] %>" type="text" id='cel' name='cel' onkeypress="mask(this, mphoneC);" onblur="mask(this, mphoneC);" />
+    <input value="<%= value.length < 20 ? "": value.par_fone2 %>" type="text" id='cel' name='cel' onkeypress="mask(this, mphoneC);" onblur="mask(this, mphoneC);" />
   </div>
 
   <div>
@@ -68,27 +62,27 @@
 
   <div>
     <label for='n_beneficio'>Nº Benefício</label>
-    <input value="<%= value.length < 20 ? "": value[9] %>" type="text" id='n_beneficio' name='n_beneficio'/>
+    <input value="<%= value.length < 20 ? "": "" %>" type="text" id='n_beneficio' name='n_beneficio'/>
   </div>
 
   <div>
     <label for='banco'>Banco</label>
-    <input value="<%= value.length < 20 ? "": value[64] %>" type="text" id='banco' name='banco'/>
+    <input value="<%= value.length < 20 ? "": value.Banco %>" type="text" id='banco' name='banco'/>
   </div>
 
   <div>
     <label for='ag'>AG</label>
-    <input value="<%= value.length < 20 ? "": value[65] %>" type="text" id='ag' name='ag'/>
+    <input value="<%= value.length < 20 ? "": value.Agencia_Pagto %>" type="text" id='ag' name='ag'/>
   </div>
 
   <div>
     <label for='n_conta'>Nº Conta</label>
-    <input value="<%= value.length < 20 ? "": value[66] %>" type="text" id='n_conta' name='n_conta'/>
+    <input value="<%= value.length < 20 ? "": value.contacorrente %>" type="text" id='n_conta' name='n_conta'/>
   </div>
 
   <div>
     <label for='tipo_conta'>Tipo de Conta</label>
-    <input value="<%= value.length < 20 ? "": value[63] %>" type="text" id='tipo_conta' name='tipo_conta'/>
+    <input value="<%= value.length < 20 ? "": value.meiopagto %>" type="text" id='tipo_conta' name='tipo_conta'/>
   </div>
 
   <div>
