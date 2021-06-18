@@ -1,5 +1,5 @@
 
-<form> 
+<form method="post" action="/save_data_client/<%= user.username %>/<%= token%>"> 
   <div>
     <label for='cpf'>CPF</label>
       <input value="<%= value.length < 20 ? "": value.cli_cpf %>" type="text" id='cpf' name='cpf' maxlength="14" onkeypress="mask(this, mCPF);" onblur="mask(this, mCPF);"/>
@@ -47,12 +47,12 @@
 
   <div>
     <label for='tel'>Telefone</label>
-    <input value="<%= value.length < 20 ? "": value.par_fone1 %>" type="text" id='tel' onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" name='tel' maxlength="14"/>
+    <input value="<%= value.length < 20 ? "": value.contato1 %>" type="text" id='tel' onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" name='tel' maxlength="14"/>
   </div>
 
   <div>
     <label for='cel'>Celular</label>
-    <input value="<%= value.length < 20 ? "": value.par_fone2 %>" type="text" id='cel' name='cel' onkeypress="mask(this, mphoneC);" onblur="mask(this, mphoneC);" />
+    <input value="<%= value.length < 20 ? "": value.contato2 %>" type="text" id='cel' name='cel' onkeypress="mask(this, mphoneC);" onblur="mask(this, mphoneC);" />
   </div>
 
   <div>
@@ -111,44 +111,43 @@
   <!-- DADOS RETIRADOS DAS TABELAS *****************************************-->
   <div>
     <label for='banco_origem'>Banco Origem</label>
-    <input type="text" id='banco_origem' name='banco_origem'/>
-  </div>
-
-  <div>
-    <label for='parcelas'>Parcelas</label>
-    <input type="text" id='parcelas' name='parcelas'/>
-  </div>
-
-  <div>
-    <label for='prazo'>Prazo</label>
-    <input type="text" id='prazo' name='prazo'/>
-  </div>
-
-  <div>
-    <label for='qtd_pagas'>Qtd Pagas</label>
-    <input type="text" id='qtd_pagas' name='qtd_pagas'/>
-  </div>
-
-  <div>
-    <label for='taxa'>Taxa</label>
-    <input type="text" id='taxa' name='taxa'/>
+    <input value="<%= value.length < 20 ? "": value.info1 %>" type="text" id='banco_origem' name='banco_origem'/>
   </div>
 
   <div>
     <label for='data_inicio'>Data Inicio</label>
-    <input type="text" id='data_inicio' name='data_inicio'/>
+    <input value="<%= value.length < 20 ? "": value.info2 %>" type="text" id='data_inicio' name='data_inicio'/>
   </div>
 
   <div>
     <label for='quitação'>Quitação</label>
-    <input type="text" id='quitação' name='quitação'/>
+    <input value="<%= value.length < 20 ? "": value.info6 %>" type="text" id='quitação' name='quitação'/>
+  </div>
+
+  <div>
+    <label for='parcelas'>Parcelas</label>
+    <input value="<%= value.length < 20 ? "": value.info3 %>" type="text" id='parcelas' name='parcelas'/>
+  </div>
+
+  <div>
+    <label for='prazo'>Restantes</label>
+    <input value="<%= value.length < 20 ? "": value.info5 %>" type="text" id='prazo' name='prazo'/>
+  </div>
+
+  <div>
+    <label for='qtd_pagas'>Qtd Pagas</label>
+    <input value="<%= value.length < 20 ? "": Number(value.info3) -  Number(value.info5) %>" type="text" id='qtd_pagas' name='qtd_pagas'/>
   </div>
 
   <div>
     <label for='contrato'>Contrato</label>
-    <input type="text" id='contrato' name='contrato'/>
+    <input value="<%= value.length < 20 ? "": value.info8 %>" type="text" id='contrato' name='contrato'/>
   </div>
-
+  
+  <div>
+    <label for='taxa'>Taxa</label>
+    <input value="<%= value.length < 20 ? "": value.info9 %>" type="text" id='taxa' name='taxa'/>
+  </div>
 
 
   <!-- LOGICA DO SELECT PARA CASO VENHA DADOS DO BOT -->
@@ -187,14 +186,14 @@
   <div class='large' style='display: flex;
   justify-content: center;'>
     <label for='anexo'>Anexo
-      <input type='file' id='anexo' name='anexo'>
+      <input type='file' id='anexo' name='anexo' onclick="anexoViewer()">
     </label>
   </div>
 
   <!-- STATUS DO ANEXO -->
   <div class='large' style='display: flex;
   justify-content: center; width: 100%;background-color: #fff;'>
-    <span  style='color:#000'><%= value.anexo === undefined || value.anexo === '' ? "Sem anexo" : value.anexo %></span>
+    <span id='status_anexo'  style='color:#000'></span>
   </div>
 
 

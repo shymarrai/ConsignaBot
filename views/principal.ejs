@@ -1,8 +1,8 @@
 
-  <%- include('../views/parts/header.ejs', {value: values ,user: user}) %> 
+  <%- include('../views/parts/header.ejs', {value: values ,user: user, token}) %> 
 
 	<main>
-  <%- include('../views/parts/formulario.ejs', {value: values, user: user}) %> 
+  <%- include('../views/parts/formulario.ejs', {value: values, user: user, token}) %> 
   </main>
 
   <a href="/"><img src="/images/logout.png" class='logout' alt="Logout" /></a>

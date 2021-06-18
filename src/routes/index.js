@@ -1,7 +1,8 @@
 const express = require('express');
-const auth = require('../controllers/AuthController')
+
 const UserController = require('../controllers/UserController')
-const bot = require('../controllers/BotSearch');
+const ClientController = require('../controllers/ClientController')
+
 const botRouter = require('./bot')
 
 require('dotenv').config()
@@ -15,10 +16,14 @@ app.post('/register',UserController.save)
 
 app.use('/principal/:user/:token/:values',UserController.principal)
 
+
 // app.post('/consigna_bot', botRoutes.getParams)
 app.use('/consigna_bot/:user/:token',botRouter.getParams)
-
 app.get('/get_bot/:cpf/:user/:token', botRouter.getBot)
+
+
+
+app.post('/save_data_client/:user/:token', ClientController.save)
 
 
 // app.get('/consigna_bot/:cpf', botRoutes.getBot)
