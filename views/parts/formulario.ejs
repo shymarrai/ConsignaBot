@@ -31,11 +31,6 @@
   </div>
 
   <div>
-    <label for='cep'>CEP</label>
-    <input value="<%= value.length < 20 ? "": value.CEP %>" type="text" id='cep' name='cep'/>
-  </div>
-
-  <div>
     <label for='municipio'>Município</label>
     <input value="<%= value.length < 20 ? "": value.CIDADE %>" type="text" id='municipio' name='municipio'/>
   </div>
@@ -43,6 +38,11 @@
   <div>
     <label for='uf'>UF</label>
     <input value="<%= value.length < 20 ? "": value.UF_ENDERECO %>" type="text" id='uf' name='uf'/>
+  </div>
+
+  <div>
+    <label for='cep'>CEP</label>
+    <input value="<%= value.length < 20 ? "": value.CEP %>" type="text" id='cep' name='cep'/>
   </div>
 
   <div>
@@ -56,13 +56,8 @@
   </div>
 
   <div>
-    <label for='parcelas'>Parcelas</label>
-    <input type="text" id='parcelas' name='parcelas'/>
-  </div>
-
-  <div>
     <label for='n_beneficio'>Nº Benefício</label>
-    <input value="<%= value.length < 20 ? "": "" %>" type="text" id='n_beneficio' name='n_beneficio'/>
+    <input value="<%= value.length < 20 ? "": value.cli_matricula %>" type="text" id='n_beneficio' name='n_beneficio'/>
   </div>
 
   <div>
@@ -76,43 +71,52 @@
   </div>
 
   <div>
+    <label for='tipo'>Tipo</label>
+    <input value="<%= value.length < 20 ? "": value.cli_matricula %>" type="text" id='tipo' name='tipo'/>
+  </div>
+
+  <div>
     <label for='n_conta'>Nº Conta</label>
     <input value="<%= value.length < 20 ? "": value.contacorrente %>" type="text" id='n_conta' name='n_conta'/>
   </div>
 
+
+
+  <!-- LOGICA DO TIPO DE CONTA CASO VENHA DADOS DO BOT -->
   <div>
     <label for='tipo_conta'>Tipo de Conta</label>
-    <input value="<%= value.length < 20 ? "": value.meiopagto %>" type="text" id='tipo_conta' name='tipo_conta'/>
+    <% if(value.meiopagto === undefined){ %>
+      <select name='tipo_conta' id='tipo_conta'>
+        <option value="0"></option>
+        <option value="1">CONTA CORRENTE</option>
+        <option value="2">POUPANÇA</option>
+        <option value="3">CARTÃO MAGNÉTICO</option>
+    <% }else{ %>
+      <select name='tipo_conta' id='tipo_conta'>
+        <% let arrayTiposConta = ['','CONTA CORRENTE','POUPANÇA','CARTÃO MAGNÉTICO'] %>
+        <option value="<%= arrayTiposConta.findIndex(element => element == value.meiopagto.toUpperCase()) %>">
+          <%= arrayTiposConta.find(element => element == value.meiopagto.toUpperCase()) %>
+        </option>
+        
+        <% arrayTiposConta.forEach(function(tipo, i){%>
+          <% if( i !== (arrayTiposConta.findIndex(element => element == value.meiopagto.toUpperCase() )) ){%>
+            <option value="<%= i %>"><%= tipo %></option>
+          <%}%>
+        <% }) %>
+    <% } %>
+      </select>
   </div>
 
+
+  <!-- DADOS RETIRADOS DAS TABELAS *****************************************-->
   <div>
     <label for='banco_origem'>Banco Origem</label>
     <input type="text" id='banco_origem' name='banco_origem'/>
   </div>
 
   <div>
-    <label for='parcela'>Parcela</label>
-    <input type="text" id='parcela' name='parcela'/>
-  </div>
-
-  <div>
-    <label for='saldo_devedor'>Saldo Devedor</label>
-    <input type="text" id='saldo_devedor' name='saldo_devedor'/>
-  </div>
-
-  <div>
-    <label for='qtd_pagas'>Qtd Pagas</label>
-    <input type="text" id='qtd_pagas' name='qtd_pagas'/>
-  </div>
-
-  <div>
-    <label for='valor_liquido'>Valor Liquido</label>
-    <input type="text" id='valor_liquido' name='valor_liquido'/>
-  </div>
-
-  <div>
-    <label for='data_inicio'>Data Inicio</label>
-    <input type="text" id='data_inicio' name='data_inicio'/>
+    <label for='parcelas'>Parcelas</label>
+    <input type="text" id='parcelas' name='parcelas'/>
   </div>
 
   <div>
@@ -121,18 +125,8 @@
   </div>
 
   <div>
-    <label for='restantes'>Restantes</label>
-    <input type="text" id='restantes' name='restantes'/>
-  </div>
-
-  <div>
-    <label for='quitação'>Quitação</label>
-    <input type="text" id='quitação' name='quitação'/>
-  </div>
-
-  <div>
-    <label for='tipo'>Tipo</label>
-    <input type="text" id='tipo' name='tipo'/>
+    <label for='qtd_pagas'>Qtd Pagas</label>
+    <input type="text" id='qtd_pagas' name='qtd_pagas'/>
   </div>
 
   <div>
@@ -141,19 +135,54 @@
   </div>
 
   <div>
+    <label for='data_inicio'>Data Inicio</label>
+    <input type="text" id='data_inicio' name='data_inicio'/>
+  </div>
+
+  <div>
+    <label for='quitação'>Quitação</label>
+    <input type="text" id='quitação' name='quitação'/>
+  </div>
+
+  <div>
     <label for='contrato'>Contrato</label>
     <input type="text" id='contrato' name='contrato'/>
   </div>
 
+
+
+  <!-- LOGICA DO SELECT PARA CASO VENHA DADOS DO BOT -->
   <div>
     <label for='status'>Status</label>
-    <input type="text" id='status' name='status'/>
+    <% if(value.status === undefined){ %>
+      <select name='status' id='status'>
+        <option value="0"></option>
+        <option value="1">AVERBADO</option>
+        <option value="2">CANCELADO</option>
+        <option value="3">AGUARDANDO CLIENTE</option>
+    <% }else{ %>
+      <select name='status' id='status'>
+        <% let arrayStatus = ['','AVERBADO','CANCELADO','AGUARDANDO CLIENTE'] %>
+        <option value="<%= arrayStatus.findIndex(element => element == value.status.toUpperCase()) %>">
+          <%= arrayStatus.find(element => element == value.status.toUpperCase()) %>
+        </option>
+        
+        <% arrayStatus.forEach(function(status, i){%>
+          <% if( i !== (arrayStatus.findIndex(element => element == value.status.toUpperCase() )) ){%>
+            <option value="<%= i %>"><%= status %></option>
+          <%}%>
+        <% }) %>
+    <% } %>
+      </select>
   </div>
+
+
 
   <div class='large'>
     <label for='obs'>Observação</label>
-    <textarea id='obs' name='obs'></textarea>
+    <textarea id='obs' name='obs'><%= value.obs%></textarea>
   </div>
+
 
   <div class='large' style='display: flex;
   justify-content: center;'>
@@ -161,6 +190,14 @@
       <input type='file' id='anexo' name='anexo'>
     </label>
   </div>
+
+  <!-- STATUS DO ANEXO -->
+  <div class='large' style='display: flex;
+  justify-content: center; width: 100%;background-color: #fff;'>
+    <span  style='color:#000'><%= value.anexo === undefined || value.anexo === '' ? "Sem anexo" : value.anexo %></span>
+  </div>
+
+
 
   <div class='large' style='display: flex;
   justify-content: center;'>
