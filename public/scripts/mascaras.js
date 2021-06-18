@@ -51,8 +51,14 @@ function mCPF(cpf){
   cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
   cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
 
-  let cpf_oculto = document.getElementById('search').value
+
+//INPUTS OCULTOS PARA O FRONT COM A INTENÇÃO DE ENVIAR OS DADOS 
+// DO FORM POIS O FORM ESTÁ OCULTO E O BOTÃO ESTÁ DE FORA
+  let cpf_oculto = document.getElementById('search').value 
   document.getElementById('cpf_oculto').value = cpf_oculto
+
+  let cpf_search = document.getElementById('search').value
+  document.getElementById('cpf_search').value = cpf_search
 
 
   return cpf

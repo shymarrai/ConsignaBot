@@ -72,7 +72,7 @@
 
   <div>
     <label for='tipo'>Tipo</label>
-    <input value="<%= value.length < 20 ? "": value.cli_matricula %>" type="text" id='tipo' name='tipo'/>
+    <input value="<%= value.length < 20 ? "": value.especie %>" type="text" id='tipo' name='tipo'/>
   </div>
 
   <div>
@@ -87,14 +87,14 @@
     <label for='tipo_conta'>Tipo de Conta</label>
     <% if(value.meiopagto === undefined){ %>
       <select name='tipo_conta' id='tipo_conta'>
-        <option value="0"></option>
-        <option value="1">CONTA CORRENTE</option>
-        <option value="2">POUPANÇA</option>
-        <option value="3">CARTÃO MAGNÉTICO</option>
+        <option value=""></option>
+        <option value="CONTA CORRENTE">CONTA CORRENTE</option>
+        <option value="POUPANÇA">POUPANÇA</option>
+        <option value="CARTÃO MAGNÉTICO">CARTÃO MAGNÉTICO</option>
     <% }else{ %>
       <select name='tipo_conta' id='tipo_conta'>
         <% let arrayTiposConta = ['','CONTA CORRENTE','POUPANÇA','CARTÃO MAGNÉTICO'] %>
-        <option value="<%= arrayTiposConta.findIndex(element => element == value.meiopagto.toUpperCase()) %>">
+        <option value="<%= arrayTiposConta.find(element => element == value.meiopagto.toUpperCase()) %>">
           <%= arrayTiposConta.find(element => element == value.meiopagto.toUpperCase()) %>
         </option>
         
@@ -120,8 +120,8 @@
   </div>
 
   <div>
-    <label for='quitação'>Quitação</label>
-    <input value="<%= value.length < 20 ? "": value.info6 %>" type="text" id='quitação' name='quitação'/>
+    <label for='quitacao'>Quitação</label>
+    <input value="<%= value.length < 20 ? "": value.info6 %>" type="text" id='quitacao' name='quitacao'/>
   </div>
 
   <div>
@@ -155,14 +155,14 @@
     <label for='status'>Status</label>
     <% if(value.status === undefined){ %>
       <select name='status' id='status'>
-        <option value="0"></option>
-        <option value="1">AVERBADO</option>
-        <option value="2">CANCELADO</option>
-        <option value="3">AGUARDANDO CLIENTE</option>
+        <option value=""></option>
+        <option value="AVERBADO">AVERBADO</option>
+        <option value="CANCELADO">CANCELADO</option>
+        <option value="GUARDANDO CLIENTE">AGUARDANDO CLIENTE</option>
     <% }else{ %>
       <select name='status' id='status'>
         <% let arrayStatus = ['','AVERBADO','CANCELADO','AGUARDANDO CLIENTE'] %>
-        <option value="<%= arrayStatus.findIndex(element => element == value.status.toUpperCase()) %>">
+        <option value="<%= arrayStatus.find(element => element == value.status.toUpperCase()) %>">
           <%= arrayStatus.find(element => element == value.status.toUpperCase()) %>
         </option>
         
@@ -186,13 +186,13 @@
   <div class='large' style='display: flex;
   justify-content: center;'>
     <label for='anexo'>Anexo
-      <input type='file' id='anexo' name='anexo' onclick="anexoViewer()">
+      <input type='file' id='anexo' name='anexo' onchange="anexoViewer()">
     </label>
   </div>
 
   <!-- STATUS DO ANEXO -->
   <div class='large' style='display: flex;
-  justify-content: center; width: 100%;background-color: #fff;'>
+  justify-content: center; width: 100%;background-color: #fff; margin-bottom: 50px;'>
     <span id='status_anexo'  style='color:#000'></span>
   </div>
 

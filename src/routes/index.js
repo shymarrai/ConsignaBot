@@ -24,6 +24,7 @@ app.get('/get_bot/:cpf/:user/:token', botRouter.getBot)
 
 
 app.post('/save_data_client/:user/:token', ClientController.save)
+app.post('/search_client/:user/:token', ClientController.search)
 
 
 // app.get('/consigna_bot/:cpf', botRoutes.getBot)
