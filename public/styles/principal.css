@@ -46,7 +46,13 @@ label[for="anexo"],
   cursor: pointer;
   border: none;
 }
+.carregado {
+  color: #1e7eb5;
+}
 
+.not-carregado {
+  color: tomato;
+}
 label[for="anexo"]:hover {
   background-color: #ccc;
 }

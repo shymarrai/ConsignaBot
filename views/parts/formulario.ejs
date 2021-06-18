@@ -186,14 +186,22 @@
   <div class='large' style='display: flex;
   justify-content: center;'>
     <label for='anexo'>Anexo
-      <input type='file' id='anexo' name='anexo' onchange="anexoViewer()">
+      <input type='file' id='anexo' name='anexo' onchange="anexoViewer()" >
     </label>
   </div>
 
   <!-- STATUS DO ANEXO -->
   <div class='large' style='display: flex;
   justify-content: center; width: 100%;background-color: #fff; margin-bottom: 50px;'>
-    <span id='status_anexo'  style='color:#000'></span>
+
+    <% if(value.anexo === '' || value.anexo === undefined){ %>
+      <span id='status_anexo'  style='color:tomato' ></span>
+      <% }else{ %> 
+
+    <span style='color: #1e7eb5' >
+      <%= value.length < 20 ? "": "Anexo Salvo: "+value.anexo %>
+    </span>
+    <% } %> 
   </div>
 
 
