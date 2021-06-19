@@ -46,6 +46,19 @@ label[for="anexo"],
   cursor: pointer;
   border: none;
 }
+
+.reset {
+  border-radius: 10px;
+  padding: 5px 5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  width: 6rem;
+  background-color: #ddd;
+}
+
 .carregado {
   color: #1e7eb5;
 }
@@ -53,7 +66,8 @@ label[for="anexo"],
 .not-carregado {
   color: tomato;
 }
-label[for="anexo"]:hover {
+label[for="anexo"]:hover,
+.reset:hover {
   background-color: #ccc;
 }
 input[type="file"] {

@@ -41,8 +41,9 @@ const BotRoutes = {
 
         await bot(cpf).then((result) => {
           //enviando os resultados da pesquisa
+          const filePath = `${__dirname}/../model/json/${cpf}.json`
           
-          fs.writeFile(`${__dirname}/../model/json/${cpf}.json`,JSON.stringify(result, null, 2), err => {
+          fs.writeFile(filePath,JSON.stringify(result, null, 2), err => {
             if(err) throw new Error("Erro na criação do objeto JSON")
             
           })
@@ -63,7 +64,7 @@ const BotRoutes = {
 
               
           },{})
-            console.log(result)
+          fs.unlinkSync(filePath)
             return res.render("principal",{user: selectedUser, token, values: result})
           })
 

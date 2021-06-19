@@ -1,4 +1,4 @@
-const { encode, decode } = require('url-encode-decode')
+
 const jwt = require('jsonwebtoken')
 const User = require('../model/Users')
 const Client = require('../model/Clients')
@@ -14,11 +14,9 @@ const ClientController = {
     if(!token) return res.status(401).send("Acesso Negado Token de acesso - Relogue")
     if(!selectedUser) return res.status(401).send("Acesso Negado Usuário desconhecido")
     
-
     try{
       const userVerified = jwt.verify(token, process.env.TOKEN_SECRET)
       if(userVerified){
-
         const client = new Client({
           operador:  req.body.operador ,
           cli_nome:   req.body.nome ,
@@ -52,6 +50,7 @@ const ClientController = {
           
           await client.save()
           res.send(`CLIENTE SALVO<a href='/principal/${selectedUser.username}/${token}/0'>voltar</a>`)
+          
         }catch(error){
           res.send(error)
         }
@@ -67,6 +66,7 @@ const ClientController = {
     const token = req.params.token
     const username = req.params.user
     const cpfClient = req.body.cpf_search
+    
 
     const values = await Client.findOne({cli_cpf: cpfClient})
     const selectedUser = await User.findOne({username})
