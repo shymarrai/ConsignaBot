@@ -12,10 +12,12 @@ const BotRoutes = {
     const username = req.params.user
     let cpf = req.body.cpf_oculto
 
+    
     const selectedUser = await User.findOne({username})
     console.log('user1:',selectedUser)
     if(!token) return res.status(401).send("Acesso Negado1")
     if(!selectedUser) return res.status(401).send("Acesso Negado2")
+    if(!cpf) return res.redirect(`/principal/${selectedUser.username}/${token}`)
 
     try{
       const userVerified = jwt.verify(token, process.env.TOKEN_SECRET)

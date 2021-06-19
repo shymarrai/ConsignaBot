@@ -22,7 +22,7 @@ const UserController = {
       const savedUser = await user.save()
       res.send(savedUser)
     }catch(error){
-      res.send(error)
+      res.send('erro')
     }
     
   },
@@ -40,7 +40,7 @@ const UserController = {
     const token = jwt.sign({_id: selectedUser.id}, process.env.TOKEN_SECRET, {expiresIn:3600})
   
     res.header("Access-Control", token)
-    return res.redirect(`/principal/${selectedUser.username}/${token}/0`)
+    return res.redirect(`/principal/${selectedUser.username}/${token}`)
   },
   logout: function(req,res){
     return res.redirect('/') 
@@ -48,10 +48,10 @@ const UserController = {
   principal: async function(req,res){
 
     const token = req.params.token
-    var values = req.params.values
+    var values = {meiopagto : '', status : ''}
     const username = req.params.user
     const selectedUser = await User.findOne({username})
-
+    
     if(!token) return res.status(401).send("Acesso Negado")
     if(!selectedUser) return res.status(401).send("Acesso Negado")
     

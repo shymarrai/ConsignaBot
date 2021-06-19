@@ -15,7 +15,7 @@ app.post('/', UserController.login)
 app.get('/register', UserController.register)
 app.post('/register',UserController.save)
 
-app.use('/principal/:user/:token/:values',UserController.principal)
+app.use('/principal/:user/:token',UserController.principal)
 
 
 // app.post('/consigna_bot', botRoutes.getParams)

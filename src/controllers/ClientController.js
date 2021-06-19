@@ -13,10 +13,8 @@ const ClientController = {
 
     if(!token) return res.status(401).send("Acesso Negado Token de acesso - Relogue")
     if(!selectedUser) return res.status(401).send("Acesso Negado Usuário desconhecido")
-    
+    if(!req.body.cpf || !req.body.operador) return res.redirect(`/principal/${selectedUser.username}/${token}`)
     try{
-      const userVerified = jwt.verify(token, process.env.TOKEN_SECRET)
-      if(userVerified){
         const client = new Client({
           operador:  req.body.operador ,
           cli_nome:   req.body.nome ,
@@ -44,22 +42,13 @@ const ClientController = {
           info9:  req.body.taxa ,
           status:  req.body.status ,
           obs: req.body.obs,
-          anexo: req.body.anexo,
+          anexo: req.body.type
         })
-        try{
-          
-          await client.save()
-          res.send(`CLIENTE SALVO<a href='/principal/${selectedUser.username}/${token}/0'>voltar</a>`)
-          
-        }catch(error){
-          res.send(error)
-        }
-        
-      }
-
+        await client.save()
+        res.send(`CLIENTE SALVO <a href='/principal/${selectedUser.username}/${token}'>voltar</a>`)
     }catch(error){
-      console.log(error)
-      res.redirect("/")
+      
+      res.redirect(`/principal/${selectedUser.username}/${token}`)
     }
   },
   search: async function(req, res){
@@ -68,10 +57,12 @@ const ClientController = {
     const cpfClient = req.body.cpf_search
     
 
-    const values = await Client.findOne({cli_cpf: cpfClient})
+    const values = await Client.findOne({cli_cpf: cpfClient}).sort({ "_id":-1})
     const selectedUser = await User.findOne({username})
 
+    if(!req.body.cpf_search)return res.redirect(`/principal/${selectedUser.username}/${token}`)
 
+    
     return res.render('principal',{user: selectedUser, token,values})
 
   }

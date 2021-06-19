@@ -28,7 +28,6 @@ const clientSchema = new mongoose.Schema({
   status: String,
   obs: String,
   anexo: String,
-
   created_at: {type: Date, default: Date.now}
 
 

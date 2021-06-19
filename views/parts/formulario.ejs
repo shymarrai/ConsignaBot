@@ -2,12 +2,12 @@
 <form method="post" enctype="multipart/form-data" action="/save_data_client/<%= user.username %>/<%= token%>"> 
   <div>
     <label for='cpf'>CPF</label>
-      <input value="<%= value.length < 20 ? "": value.cli_cpf %>" type="text" id='cpf' name='cpf' maxlength="14" onkeypress="mask(this, mCPF);" onblur="mask(this, mCPF);"/>
+      <input value="<%= value == null || value == undefined || value.length < 20? "": value.cli_cpf %>" type="text" id='cpf' name='cpf' maxlength="14" onkeypress="mask(this, mCPF);" onblur="mask(this, mCPF);"/>
   </div>
 
   <div>
     <label for='dt_nasc'>Data de Nascimento</label>
-    <input value="<%= value.length < 20 ? "": value.cli_data_nasc %>"  type="text" id='dt_nasc' name='dt_nasc' />
+    <input value="<%= value == null || value == undefined || value.length < 20? "": value.cli_data_nasc %>"  type="text" id='dt_nasc' name='dt_nasc' />
   </div>
 
   <div>
@@ -17,67 +17,67 @@
 
   <div class='large'> 
     <label for='nome'>Nome</label>
-    <input value="<%= value.length < 20 ? "": value.cli_nome %>" type="text" name='nome' id='nome' style='width:89%;'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.cli_nome %>" type="text" name='nome' id='nome' style='width:89%;'/>
   </div>
 
   <div class='large'>
     <label for='end'>Endereço</label>
-    <input value="<%= value.length < 20 ? "": value.ENDERECO %>" type="text" id='end' name='end' style='width:89%;'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.ENDERECO %>" type="text" id='end' name='end' style='width:89%;'/>
   </div>
 
   <div>
     <label for='bairro'>Bairro</label>
-    <input value="<%= value.length < 20 ? "": value.BAIRRO %>" type="text" id='bairro' name='bairro'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.BAIRRO %>" type="text" id='bairro' name='bairro'/>
   </div>
 
   <div>
     <label for='municipio'>Município</label>
-    <input value="<%= value.length < 20 ? "": value.CIDADE %>" type="text" id='municipio' name='municipio'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.CIDADE %>" type="text" id='municipio' name='municipio'/>
   </div>
 
   <div>
     <label for='uf'>UF</label>
-    <input value="<%= value.length < 20 ? "": value.UF_ENDERECO %>" type="text" id='uf' name='uf'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.UF_ENDERECO %>" type="text" id='uf' name='uf'/>
   </div>
 
   <div>
     <label for='cep'>CEP</label>
-    <input value="<%= value.length < 20 ? "": value.CEP %>" type="text" id='cep' name='cep'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.CEP %>" type="text" id='cep' name='cep'/>
   </div>
 
   <div>
     <label for='tel'>Telefone</label>
-    <input value="<%= value.length < 20 ? "": value.contato1 %>" type="text" id='tel' onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" name='tel' maxlength="14"/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.contato1 %>" type="text" id='tel' onkeypress="mask(this, mphone);" onblur="mask(this, mphone);" name='tel' maxlength="14"/>
   </div>
 
   <div>
     <label for='cel'>Celular</label>
-    <input value="<%= value.length < 20 ? "": value.contato2 %>" type="text" id='cel' name='cel' onkeypress="mask(this, mphoneC);" onblur="mask(this, mphoneC);" />
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.contato2 %>" type="text" id='cel' name='cel' onkeypress="mask(this, mphoneC);" onblur="mask(this, mphoneC);" />
   </div>
 
   <div>
     <label for='n_beneficio'>Nº Benefício</label>
-    <input value="<%= value.length < 20 ? "": value.cli_matricula %>" type="text" id='n_beneficio' name='n_beneficio'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.cli_matricula %>" type="text" id='n_beneficio' name='n_beneficio'/>
   </div>
 
   <div>
     <label for='banco'>Banco</label>
-    <input value="<%= value.length < 20 ? "": value.Banco %>" type="text" id='banco' name='banco'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.Banco %>" type="text" id='banco' name='banco'/>
   </div>
 
   <div>
     <label for='ag'>AG</label>
-    <input value="<%= value.length < 20 ? "": value.Agencia_Pagto %>" type="text" id='ag' name='ag'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.Agencia_Pagto %>" type="text" id='ag' name='ag'/>
   </div>
 
   <div>
     <label for='tipo'>Tipo</label>
-    <input value="<%= value.length < 20 ? "": value.especie %>" type="text" id='tipo' name='tipo'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.especie %>" type="text" id='tipo' name='tipo'/>
   </div>
 
   <div>
     <label for='n_conta'>Nº Conta</label>
-    <input value="<%= value.length < 20 ? "": value.contacorrente %>" type="text" id='n_conta' name='n_conta'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.contacorrente %>" type="text" id='n_conta' name='n_conta'/>
   </div>
 
 
@@ -85,7 +85,7 @@
   <!-- LOGICA DO TIPO DE CONTA CASO VENHA DADOS DO BOT -->
   <div>
     <label for='tipo_conta'>Tipo de Conta</label>
-    <% if(value.meiopagto === undefined){ %>
+    <% if( value){ %>
       <select name='tipo_conta' id='tipo_conta'>
         <option value=""></option>
         <option value="CONTA CORRENTE">CONTA CORRENTE</option>
@@ -111,49 +111,49 @@
   <!-- DADOS RETIRADOS DAS TABELAS *****************************************-->
   <div>
     <label for='banco_origem'>Banco Origem</label>
-    <input value="<%= value.length < 20 ? "": value.info1 %>" type="text" id='banco_origem' name='banco_origem'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info1 %>" type="text" id='banco_origem' name='banco_origem'/>
   </div>
 
   <div>
     <label for='data_inicio'>Data Inicio</label>
-    <input value="<%= value.length < 20 ? "": value.info2 %>" type="text" id='data_inicio' name='data_inicio'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info2 %>" type="text" id='data_inicio' name='data_inicio'/>
   </div>
 
   <div>
     <label for='quitacao'>Quitação</label>
-    <input value="<%= value.length < 20 ? "": value.info6 %>" type="text" id='quitacao' name='quitacao'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info6 %>" type="text" id='quitacao' name='quitacao'/>
   </div>
 
   <div>
     <label for='parcelas'>Parcelas</label>
-    <input value="<%= value.length < 20 ? "": value.info3 %>" type="text" id='parcelas' name='parcelas'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info3 %>" type="text" id='parcelas' name='parcelas'/>
   </div>
 
   <div>
     <label for='prazo'>Restantes</label>
-    <input value="<%= value.length < 20 ? "": value.info5 %>" type="text" id='prazo' name='prazo'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info5 %>" type="text" id='prazo' name='prazo'/>
   </div>
 
   <div>
     <label for='qtd_pagas'>Qtd Pagas</label>
-    <input value="<%= value.length < 20 ? "": Number(value.info3) -  Number(value.info5) %>" type="text" id='qtd_pagas' name='qtd_pagas'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": Number(value.info3) -  Number(value.info5) %>" type="text" id='qtd_pagas' name='qtd_pagas'/>
   </div>
 
   <div>
     <label for='contrato'>Contrato</label>
-    <input value="<%= value.length < 20 ? "": value.info8 %>" type="text" id='contrato' name='contrato'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info8 %>" type="text" id='contrato' name='contrato'/>
   </div>
   
   <div>
     <label for='taxa'>Taxa</label>
-    <input value="<%= value.length < 20 ? "": value.info9 %>" type="text" id='taxa' name='taxa'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info9 %>" type="text" id='taxa' name='taxa'/>
   </div>
 
 
   <!-- LOGICA DO SELECT PARA CASO VENHA DADOS DO BOT -->
   <div>
     <label for='status'>Status</label>
-    <% if(value.status === undefined){ %>
+    <% if(value){ %>
       <select name='status' id='status'>
         <option value=""></option>
         <option value="AVERBADO">AVERBADO</option>
@@ -186,7 +186,8 @@
   <div class='large' style='display: flex;
   justify-content: center;'>
     <label for='anexo'>Anexo
-      
+      <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+      <input type='text' name='type' id='type' style="display: none; visibility: hidden;">
       <input type='file' id='anexo' name='anexo' onchange="anexoViewer()" >
     </label>
   </div>
@@ -200,7 +201,7 @@
       <% }else{ %> 
 
     <span style='color: #1e7eb5' >
-      <a href='/files/<%= value.cli_cpf%>.jpeg' target='_blank'>  
+      <a href='/files/<%= value.cli_cpf%>.<%= value.anexo%>' target='_blank'>  
         Anexo Salvo
       </a>
     </span>
@@ -213,5 +214,5 @@
     <input type="submit" value='Salvar' class='enviar'>
     
   </div>
-  <input type="reset" id='reset' value='Limpar' class='reset'>
+  <a href='/principal/<%= user.username %>/<%= token%>' class='reset'>Limpar</a>
 </form>
