@@ -1,7 +1,6 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 require('dotenv').config()
-const decodeUriComponent = require('decode-uri-component');
 const util = require('util')
 util.inspect.defaultOptions.maxArrayLength = null;
 
