@@ -27,6 +27,7 @@ const clientSchema = new mongoose.Schema({
   info9: String,
   status: String,
   obs: String,
+  url: String,
   anexo: String,
   created_at: {type: Date, default: Date.now}
 

@@ -196,12 +196,12 @@
   <div class='large' style='display: flex;
   justify-content: center; width: 100%;background-color: #fff; margin-bottom: 50px;'>
 
-    <% if(value.anexo === '' || value.anexo === undefined){ %>
+    <% if(value.url === '' || value.url === undefined){ %>
       <span id='status_anexo'  style='color:tomato'>Sem anexo</span>
       <% }else{ %> 
 
     <span style='color: #1e7eb5' >
-      <a href='/files/<%= value.cli_cpf%>.<%= value.anexo%>' target='_blank'>  
+      <a href='<%= value.url%>' target='_blank'>  
         Anexo Salvo
       </a>
     </span>

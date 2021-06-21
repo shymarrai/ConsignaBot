@@ -9,13 +9,13 @@ module.exports = {
       cb(null,path.resolve(__dirname, '..', '..','public', 'uploads') )
     },
     filename: (req, file, cb) => {
-      crypto.randomBytes(16, (err, hash) => {
-        if(err) cb(err)
-        let type = String(file.mimetype)
-        type = type.slice(6, type.length)
-        const fileName = `${req.body.cpf}.${type}`
+      // crypto.randomBytes(16, (err, hash) => {
+      //   if(err) cb(err)
+      //   let type = String(file.mimetype)
+      //   type = type.slice(6, type.length)
+        const fileName = `${req.body.cpf}.${req.body.type}`
         cb(null, fileName)
-      })
+      // })
     }
 
   }),
