@@ -48,7 +48,7 @@ const BotRoutes = {
           const filePath = `${__dirname}/../model/json/${cpf}.json`
 
           fs.writeFile(filePath, JSON.stringify(result, null, 2), err => {
-            if (err) res.send(`erro <a href='/'>Voltar</a>`)
+            if (err) res.send(`${filePath} e ${__dirname} erro <a href='/'>Voltar</a>`)
 
           })
           fs.readFile(`${__dirname}/../model/json/${cpf}.json`, 'utf8', (error, data) => {
