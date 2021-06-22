@@ -1,10 +1,5 @@
 const puppeteer = require('puppeteer');
-const fs = require('fs');
 require('dotenv').config()
-const util = require('util')
-util.inspect.defaultOptions.maxArrayLength = null;
-
-
 
 let bot = async (cpf, login, senha) => {
   //INICIANDO O NAVEGADOR
@@ -24,8 +19,7 @@ let bot = async (cpf, login, senha) => {
   }
 
 
-  const browser = await puppeteer.launch({ headless: false, slowMo: 0 });
-  return browser
+  const browser = await puppeteer.launch({ headless: false, slowMo: 200 });
   const page = await browser.newPage();
   const navigationPromise = page.waitForNavigation({ waitUntil: "domcontentloaded" });
   await page.goto('http://www.sigplay.net/admin/welcome.php');
