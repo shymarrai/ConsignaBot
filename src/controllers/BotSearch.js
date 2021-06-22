@@ -1,6 +1,17 @@
 const puppeteer = require('puppeteer');
 require('dotenv').config()
 
+const chromeOptions = {
+  headless: true,
+  defaultViewport: null,
+  args: [
+    "--incognito",
+    "--no-sandbox",
+    "--single-process",
+    "--no-zygote"
+  ],
+};
+
 let bot = async (cpf, login, senha) => {
   //INICIANDO O NAVEGADOR
   var sigLogin;
@@ -19,7 +30,7 @@ let bot = async (cpf, login, senha) => {
   }
 
 
-  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+  const browser = await puppeteer.launch(chromeOptions);
   const page = await browser.newPage();
   const navigationPromise = page.waitForNavigation({ waitUntil: "domcontentloaded" });
   await page.goto('http://www.sigplay.net/admin/welcome.php');
@@ -46,9 +57,8 @@ let bot = async (cpf, login, senha) => {
 
   //NAVEGANDO ATÉ A PAGINA COM OS DADOS
   await navigationPromise;
-  await page.waitForSelector('form').then((value) => console.log('consulta3')).catch((erro) => console.log('erro consulta3'));
+  await page.waitForSelector('div').then((value) => console.log('consulta4')).catch((erro) => console.log('erro consulta4'));
   await navigationPromise;
-
 
   await page.click('a.moreinfo')
   await navigationPromise;
