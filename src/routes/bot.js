@@ -44,6 +44,7 @@ const BotRoutes = {
 
         await bot(cpf, selectedUser.sigplay_user, selectedUser.sigplay_pass).then((result) => {
           //enviando os resultados da pesquisa
+          res.send(`${result}`)
           const filePath = `${__dirname}/../model/json/${cpf}.json`
           res.send(`${filePath}`)
           fs.writeFile(filePath, JSON.stringify(result, null, 2), err => {
