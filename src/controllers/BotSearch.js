@@ -49,9 +49,10 @@ let bot = async (cpf, login, senha) => {
   await page.waitForSelector('form').then((value) => console.log('consulta3')).catch((erro) => console.log('erro consulta3'));
   await navigationPromise;
   await page.waitForSelector('div').then((value) => console.log('consulta4')).catch((erro) => console.log('erro consulta4'));
-
+  await navigationPromise;
 
   await page.click('a.moreinfo')
+  await navigationPromise;
   await page.waitForSelector('div').then((value) => console.log('form aberto1')).catch((erro) => console.log('erro consulta4'));
   await navigationPromise;
   await page.waitForSelector('table').then((value) => console.log('form aberto2')).catch((erro) => console.log('erro consulta4'));
