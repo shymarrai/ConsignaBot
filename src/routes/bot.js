@@ -41,7 +41,7 @@ const BotRoutes = {
       const userVerified = jwt.verify(token, process.env.TOKEN_SECRET)
 
       if (userVerified) {
-        res.send(`aqui 3, ${userVerified} e ${selectedUser}`)
+
         await bot(cpf, selectedUser.sigplay_user, selectedUser.sigplay_pass).then((result) => {
           //enviando os resultados da pesquisa
           const filePath = `${__dirname}/../model/json/${cpf}.json`
@@ -60,7 +60,7 @@ const BotRoutes = {
             //se está tudo ok... converte o json 
             let fileConvert = JSON.parse(data)
 
-            res.send(`bom`)
+            res.send(`bom ${fileConvert} e ${data}`)
             const result = fileConvert.reduce((curr, item) => {
               const [key, ...values] = item?.split(':')
               return { ...curr, [key]: values?.join(':') }
