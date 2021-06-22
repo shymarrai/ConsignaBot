@@ -41,10 +41,10 @@ const BotRoutes = {
       const userVerified = jwt.verify(token, process.env.TOKEN_SECRET)
 
       if (userVerified) {
-
+        res.send(`${selectedUser.sigplay_user} e ${selectedUser.sigplay_pass}`)
         await bot(cpf, selectedUser.sigplay_user, selectedUser.sigplay_pass).then((result) => {
           //enviando os resultados da pesquisa
-          res.send(`${result}`)
+
           const filePath = `${__dirname}/../model/json/${cpf}.json`
           res.send(`${filePath}`)
           fs.writeFile(filePath, JSON.stringify(result, null, 2), err => {
