@@ -47,7 +47,10 @@ const BotRoutes = {
 
           const filePath = `${__dirname}/../model/json/${cpf}.json`
 
-          fs.writeFile(filePath, JSON.stringify(result, null, 2))
+          fs.writeFile(filePath, JSON.stringify(result, null, 2), err => {
+            if (err) res.send(`erro <a href='/'>Voltar</a>`)
+
+          })
           fs.readFile(`${__dirname}/../model/json/${cpf}.json`, 'utf8', (error, data) => {
             res.send(`aqui`)
             //caso haja erro mostra no terminal
