@@ -46,9 +46,9 @@ const BotRoutes = {
           //enviando os resultados da pesquisa
 
           const filePath = `${__dirname}/../model/json/${cpf}.json`
-          res.send(`${filePath}`)
+
           fs.writeFile(filePath, JSON.stringify(result, null, 2), err => {
-            if (err) throw new Error("Erro na criação do objeto JSON")
+            if (err) res.send(`erro JSON`)
 
           })
           fs.readFile(`${__dirname}/../model/json/${cpf}.json`, 'utf8', (error, data) => {
