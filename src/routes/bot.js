@@ -47,11 +47,11 @@ const BotRoutes = {
 
           const filePath = `${__dirname}/../model/json/${cpf}.json`
 
-          const myWriteFunction = async (filename) => {
-            await fs.writeFileSync(filename, JSON.stringify(result, null, 2))
+          async () => {
+            await fs.writeFileSync(filePath, JSON.stringify(result, null, 2))
           }
 
-          await myWriteFunction(filePath)
+
 
           fs.readFile(`${__dirname}/../model/json/${cpf}.json`, 'utf8', (error, data) => {
             res.send(`aqui`)
