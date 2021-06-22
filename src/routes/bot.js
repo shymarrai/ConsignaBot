@@ -6,78 +6,87 @@ const fs = require('fs');
 
 
 const BotRoutes = {
-  getParams: async function(req, res){
+  getParams: async function (req, res) {
     //pegando o cpf procurado no PARAMS 
     const token = req.params.token
     const username = req.params.user
     let cpf = req.body.cpf_oculto
 
-    
-    const selectedUser = await User.findOne({username})
-    console.log('user1:',selectedUser)
-    if(!token) return res.status(401).send("Acesso Negado1")
-    if(!selectedUser) return res.status(401).send("Acesso Negado2")
-    if(!cpf) return res.redirect(`/principal/${selectedUser.username}/${token}`)
 
-    try{
+    const selectedUser = await User.findOne({ username })
+    console.log('user1:', selectedUser)
+    if (!token) return res.status(401).send("Acesso Negado1")
+    if (!selectedUser) return res.status(401).send("Acesso Negado2")
+    if (!cpf) return res.redirect(`/principal/${selectedUser.username}/${token}`)
+
+    try {
       const userVerified = jwt.verify(token, process.env.TOKEN_SECRET)
-      
-      if(userVerified){
+
+      if (userVerified) {
         return res.redirect(`/get_bot/${cpf}/${selectedUser.username}/${token}`)
       }
-        
-    }catch(error){
+
+    } catch (error) {
       console.log(error)
       res.redirect("/")
-    }    
+    }
   },
-  getBot: async function(req, res){
+  getBot: async function (req, res) {
     let cpf = req.params.cpf
     let username = req.params.user
     let token = req.params.token
-    const selectedUser = await User.findOne({username})
+    const selectedUser = await User.findOne({ username })
 
-    try{
+    try {
       const userVerified = jwt.verify(token, process.env.TOKEN_SECRET)
-      if(userVerified){
+      var sigLogin;
+      var sigSenha;
+      if ((!selectedUser.sigplay_user && !selectedUser.sigplay_pass) || (selectedUser.sigplay_user !== '' && selectedUser.sigplay_pass !== '') || (selectedUser.sigplay_user !== undefined && selectedUser.sigplay_pass !== undefined)) {
+        sigLogin = selectedUser.sigplay_user
+        sigSenha = selectedUser.sigplay_pass
+      } else {
+        return res.send("Login e senha do Sigplay inválido! o Bot não consegue logar <a href='/'>Voltar</a>")
 
-        await bot(cpf).then((result) => {
+      }
+      if (userVerified) {
+        console.log()
+        await bot(cpf, sigLogin, sigSenha).then((result) => {
           //enviando os resultados da pesquisa
           const filePath = `${__dirname}/../model/json/${cpf}.json`
-          
-          fs.writeFile(filePath,JSON.stringify(result, null, 2), err => {
-            if(err) throw new Error("Erro na criação do objeto JSON")
-            
+
+          fs.writeFile(filePath, JSON.stringify(result, null, 2), err => {
+            if (err) throw new Error("Erro na criação do objeto JSON")
+
           })
           fs.readFile(`${__dirname}/../model/json/${cpf}.json`, 'utf8', (error, data) => {
 
             //caso haja erro mostra no terminal
-            if(error){
+            if (error) {
               console.log(error)
             }
-            
+
             //se está tudo ok... converte o json 
             let fileConvert = JSON.parse(data)
 
 
             const result = fileConvert.reduce((curr, item) => {
               const [key, ...values] = item?.split(':')
-              return { ...curr, [key]:values?.join(':')}
+              return { ...curr, [key]: values?.join(':') }
 
-              
-          },{})
-          fs.unlinkSync(filePath)
-            return res.render("principal",{user: selectedUser, token, values: result})
+
+            }, {})
+            fs.unlinkSync(filePath)
+            return res.render("principal", { user: selectedUser, token, values: result })
           })
 
-          
+
         }).catch((error) => res.send(error));
       }
 
-    }catch(error){
+    } catch (error) {
       console.log(error)
       res.redirect("/")
-    }    
+    }
   }
 }
 
