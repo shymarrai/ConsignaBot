@@ -39,7 +39,7 @@ const BotRoutes = {
 
     try {
       const userVerified = jwt.verify(token, process.env.TOKEN_SECRET)
-      res.send(`aqui2, ${userVerified}`)
+
       if (userVerified) {
         res.send(`aqui 3, ${userVerified} e ${selectedUser}`)
         await bot(cpf, selectedUser.sigplay_user, selectedUser.sigplay_pass).then((result) => {
