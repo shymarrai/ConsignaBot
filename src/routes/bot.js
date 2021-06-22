@@ -47,10 +47,12 @@ const BotRoutes = {
 
           const filePath = `${__dirname}/../model/json/${cpf}.json`
 
-          fs.writeFileSync(filePath, JSON.stringify(result, null, 2), err => {
-            if (err) res.send(`${filePath} erro <a href='/'>Voltar</a>`)
+          const myWriteFunction = async (filename) => {
+            await fs.writeFileSync(filename, JSON.stringify(result, null, 2))
+          }
 
-          })
+          await myWriteFunction(filePath)
+
           fs.readFile(`${__dirname}/../model/json/${cpf}.json`, 'utf8', (error, data) => {
             res.send(`aqui`)
             //caso haja erro mostra no terminal
