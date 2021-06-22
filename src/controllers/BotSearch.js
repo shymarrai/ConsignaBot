@@ -48,8 +48,7 @@ let bot = async (cpf, login, senha) => {
   await navigationPromise;
   await page.waitForSelector('form').then((value) => console.log('consulta3')).catch((erro) => console.log('erro consulta3'));
   await navigationPromise;
-  await page.waitForSelector('div').then((value) => console.log('consulta4')).catch((erro) => console.log('erro consulta4'));
-  await navigationPromise;
+
 
   await page.click('a.moreinfo')
   await navigationPromise;
