@@ -36,11 +36,12 @@ const BotRoutes = {
     let username = req.params.user
     let token = req.params.token
     const selectedUser = await User.findOne({ username })
-    res.send('aqui', cpf, username, token, username)
+    res.send(`aqui, ${cpf}, ${username}, ${token}, ${username}`)
     try {
       const userVerified = jwt.verify(token, process.env.TOKEN_SECRET)
+      res.send(`aqui2, ${userVerified}`)
       if (userVerified) {
-        console.log()
+        res.send(`aqui 3, ${userVerified}`)
         await bot(cpf, selectedUser.sigplay_user, selectedUser.sigplay_pass).then((result) => {
           //enviando os resultados da pesquisa
           const filePath = `${__dirname}/../model/json/${cpf}.json`
@@ -53,20 +54,20 @@ const BotRoutes = {
 
             //caso haja erro mostra no terminal
             if (error) {
-              console.log(error)
+              console.log('erro', error)
             }
 
             //se está tudo ok... converte o json 
             let fileConvert = JSON.parse(data)
 
-
+            res.send(`bom`)
             const result = fileConvert.reduce((curr, item) => {
               const [key, ...values] = item?.split(':')
               return { ...curr, [key]: values?.join(':') }
 
 
             }, {})
-
+            res.send(`quase`)
             return res.render("principal", { user: selectedUser, token, values: result })
           })
 
