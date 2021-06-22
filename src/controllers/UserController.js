@@ -30,16 +30,16 @@ const UserController = {
     return res.render('login')
   },
   login: async function (req, res) {
-    res.send('aqui')
+
     const selectedUser = await User.findOne({ username: req.body.username })
     if (!selectedUser) return res.send("Usuário ou senha inexistente")
-
+    res.send('login', selectedUser)
 
     const passwordAndUserMatch = bcrypt.compareSync(req.body.password, selectedUser.password)
     if (!passwordAndUserMatch) return res.send("Usuário ou senha inexistente")
-
+    res.send('senha', selectedUser)
     const token = jwt.sign({ _id: selectedUser.id }, process.env.TOKEN_SECRET, { expiresIn: 3600 })
-
+    res.send('token', selectedUser)
     res.header("Access-Control", token)
     return res.redirect(`/principal/${selectedUser.username}/${token}`)
   },
