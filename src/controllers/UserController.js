@@ -3,12 +3,12 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const UserController = {
-  register : async function (req, res){
+  register: async function (req, res) {
     return res.render('register')
   },
-  save : async function (req,res){
-    const createdUser = await User.findOne({username: req.body.username})
-    if(createdUser) return res.status(400).send("Usuário existente")
+  save: async function (req, res) {
+    const createdUser = await User.findOne({ username: req.body.username })
+    if (createdUser) return res.status(400).send("Usuário existente")
 
     const user = new User({
       name: req.body.name,
@@ -17,53 +17,54 @@ const UserController = {
       sigplay_user: req.body.sigplay_user,
       sigplay_pass: req.body.sigplay_pass,
     })
-    try{
-      
+    try {
+
       const savedUser = await user.save()
       res.send(savedUser)
-    }catch(error){
+    } catch (error) {
       res.send('erro')
     }
-    
+
   },
-  logar: function(req, res){
+  logar: function (req, res) {
     return res.render('login')
   },
-  login: async function(req, res){
-    const selectedUser = await User.findOne({username: req.body.username})
-    if(!selectedUser) return res.send("Usuário ou senha inexistente")
+  login: async function (req, res) {
+    res.send('aqui')
+    const selectedUser = await User.findOne({ username: req.body.username })
+    if (!selectedUser) return res.send("Usuário ou senha inexistente")
 
-    
+
     const passwordAndUserMatch = bcrypt.compareSync(req.body.password, selectedUser.password)
-    if(!passwordAndUserMatch) return res.send("Usuário ou senha inexistente")
-    
-    const token = jwt.sign({_id: selectedUser.id}, process.env.TOKEN_SECRET, {expiresIn:3600})
-  
+    if (!passwordAndUserMatch) return res.send("Usuário ou senha inexistente")
+
+    const token = jwt.sign({ _id: selectedUser.id }, process.env.TOKEN_SECRET, { expiresIn: 3600 })
+
     res.header("Access-Control", token)
     return res.redirect(`/principal/${selectedUser.username}/${token}`)
   },
-  logout: function(req,res){
-    return res.redirect('/') 
+  logout: function (req, res) {
+    return res.redirect('/')
   },
-  principal: async function(req,res){
+  principal: async function (req, res) {
 
     const token = req.params.token
-    var values = {meiopagto : '', status : ''}
+    var values = { meiopagto: '', status: '' }
     const username = req.params.user
-    const selectedUser = await User.findOne({username})
-    
-    if(!token) return res.status(401).send("Acesso Negado")
-    if(!selectedUser) return res.status(401).send("Acesso Negado")
-    
-    try{
-      const userVerified = jwt.verify(token, process.env.TOKEN_SECRET)
-      if(userVerified){
-        return res.render('principal',{user: selectedUser, token,values})
-      }
-      
+    const selectedUser = await User.findOne({ username })
 
-        
-    }catch(error){
+    if (!token) return res.status(401).send("Acesso Negado")
+    if (!selectedUser) return res.status(401).send("Acesso Negado")
+
+    try {
+      const userVerified = jwt.verify(token, process.env.TOKEN_SECRET)
+      if (userVerified) {
+        return res.render('principal', { user: selectedUser, token, values })
+      }
+
+
+
+    } catch (error) {
       console.log(error)
       res.redirect("/")
     }
