@@ -39,18 +39,9 @@ const BotRoutes = {
 
     try {
       const userVerified = jwt.verify(token, process.env.TOKEN_SECRET)
-      var sigLogin;
-      var sigSenha;
-      if ((!selectedUser.sigplay_user && !selectedUser.sigplay_pass) || (selectedUser.sigplay_user !== '' && selectedUser.sigplay_pass !== '') || (selectedUser.sigplay_user !== undefined && selectedUser.sigplay_pass !== undefined)) {
-        sigLogin = selectedUser.sigplay_user
-        sigSenha = selectedUser.sigplay_pass
-      } else {
-        return res.send("Login e senha do Sigplay inválido! o Bot não consegue logar <a href='/'>Voltar</a>")
-
-      }
       if (userVerified) {
         console.log()
-        await bot(cpf, sigLogin, sigSenha).then((result) => {
+        await bot(cpf, selectedUser.sigplay_user, selectedUser.sigplay_pass).then((result) => {
           //enviando os resultados da pesquisa
           const filePath = `${__dirname}/../model/json/${cpf}.json`
 
