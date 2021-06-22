@@ -66,7 +66,7 @@ const BotRoutes = {
 
 
             }, {})
-            fs.unlinkSync(filePath)
+
             return res.render("principal", { user: selectedUser, token, values: result })
           })
 

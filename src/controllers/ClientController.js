@@ -1,6 +1,6 @@
 const User = require('../model/Users')
 const Client = require('../model/Clients')
-const {google} = require('googleapis')
+const { google } = require('googleapis')
 const path = require('path')
 const fs = require('fs')
 require('dotenv').config()
@@ -19,36 +19,36 @@ const oauth2Client = new google.auth.OAuth2(
   REDIRECT_URI
 )
 
-oauth2Client.setCredentials({refresh_token: REFRESH_TOKEN})
+oauth2Client.setCredentials({ refresh_token: REFRESH_TOKEN })
 const drive = google.drive({
   version: 'v3',
   auth: oauth2Client,
 })
 
-async function uploadFile(name,type){
+async function uploadFile(name, type) {
 
-  const filePath = path.join(__dirname, '..', '..','public','uploads',`${name}.${type}`)
-  
-  try{
+  const filePath = path.join(__dirname, '..', '..', 'public', 'uploads', `${name}.${type}`)
+
+  try {
     const response = await drive.files.create({
       requestBody: {
         name: `${name}.${type}`,
-        mimeType: ['image/jpeg','image/jpg', 'image/png', `image/${type}`]
+        mimeType: ['image/jpeg', 'image/jpg', 'image/png', `image/${type}`]
       },
-      media:{
-      mimeType: ['image/jpeg','image/jpg', 'image/png', `image/${type}`],
-      body: fs.createReadStream(filePath)
-    }
+      media: {
+        mimeType: ['image/jpeg', 'image/jpg', 'image/png', `image/${type}`],
+        body: fs.createReadStream(filePath)
+      }
     })
     return response.data.id
-  }catch(e){
+  } catch (e) {
     console.log(e)
   }
 }
 
 
-async function generatePublicUrl(id){
-  try{
+async function generatePublicUrl(id) {
+  try {
     const fileId = `${id}`;
     await drive.permissions.create({
       fileId: fileId,
@@ -62,7 +62,7 @@ async function generatePublicUrl(id){
       fields: 'webViewLink'
     })
     return result.data
-  }catch(e){
+  } catch (e) {
     console.log(e)
   }
 }
@@ -73,75 +73,74 @@ async function generatePublicUrl(id){
 
 
 const ClientController = {
-  save: async function(req, res){
+  save: async function (req, res) {
     const token = req.params.token
     const username = req.params.user
 
     // AUTENTICAÇÃO
-    const selectedUser = await User.findOne({username})
+    const selectedUser = await User.findOne({ username })
 
-    if(!token) return res.status(401).send("Acesso Negado Token de acesso - Relogue")
-    if(!selectedUser) return res.status(401).send("Acesso Negado Usuário desconhecido")
-    if(!req.body.cpf || !req.body.operador) return res.redirect(`/principal/${selectedUser.username}/${token}`)
-    
-    if(req.body.type && req.body.cpf){
-      let id = await uploadFile(req.body.cpf,req.body.type)
+    if (!token) return res.status(401).send("Acesso Negado Token de acesso - Relogue")
+    if (!selectedUser) return res.status(401).send("Acesso Negado Usuário desconhecido")
+    if (!req.body.cpf || !req.body.operador) return res.redirect(`/principal/${selectedUser.username}/${token}`)
+
+    if (req.body.type && req.body.cpf) {
+      let id = await uploadFile(req.body.cpf, req.body.type)
       var urlImage = await generatePublicUrl(id)
     }
 
-    const filePath = path.join(__dirname, '..', '..','public','uploads',`${req.body.cpf}.${req.body.type}`)
-    fs.unlinkSync(filePath)
-    try{
-        const client = new Client({
-          operador:  req.body.operador ,
-          cli_nome:   req.body.nome ,
-          cli_cpf:  req.body.cpf ,
-          cli_data_nasc: req.body.dt_nasc,
-          ENDERECO:  req.body.end ,
-          BAIRRO: req.body.bairro ,
-          CIDADE:   req.body.municipio ,
-          UF_ENDERECO:  req.body.uf ,
-          CEP:  req.body.cep ,
-          contato1:  req.body.tel ,
-          contato2:  req.body.cel ,
-          cli_matricula:  req.body.n_beneficio ,
-          Banco:  req.body.banco ,
-          Agencia_Pagto:  req.body.ag ,
-          especie:  req.body.tipo ,
-          contacorrente:  req.body.n_conta ,
-          meiopagto:  req.body.tipo_conta ,
-          info1:  req.body.banco_origem ,
-          info2:  req.body.data_inicio ,
-          info6:  req.body.quitacao ,
-          info3:  req.body.parcelas ,
-          info5:  req.body.prazo ,
-          info8:  req.body.contrato ,
-          info9:  req.body.taxa ,
-          status:  req.body.status ,
-          obs: req.body.obs,
-          url: urlImage.webViewLink,
-          anexo: req.body.type
-        })
-        await client.save()
-        res.send(`CLIENTE SALVO <a href='/principal/${selectedUser.username}/${token}'>voltar</a>`)
-    }catch(error){
-      
+
+    try {
+      const client = new Client({
+        operador: req.body.operador,
+        cli_nome: req.body.nome,
+        cli_cpf: req.body.cpf,
+        cli_data_nasc: req.body.dt_nasc,
+        ENDERECO: req.body.end,
+        BAIRRO: req.body.bairro,
+        CIDADE: req.body.municipio,
+        UF_ENDERECO: req.body.uf,
+        CEP: req.body.cep,
+        contato1: req.body.tel,
+        contato2: req.body.cel,
+        cli_matricula: req.body.n_beneficio,
+        Banco: req.body.banco,
+        Agencia_Pagto: req.body.ag,
+        especie: req.body.tipo,
+        contacorrente: req.body.n_conta,
+        meiopagto: req.body.tipo_conta,
+        info1: req.body.banco_origem,
+        info2: req.body.data_inicio,
+        info6: req.body.quitacao,
+        info3: req.body.parcelas,
+        info5: req.body.prazo,
+        info8: req.body.contrato,
+        info9: req.body.taxa,
+        status: req.body.status,
+        obs: req.body.obs,
+        url: urlImage.webViewLink,
+        anexo: req.body.type
+      })
+      await client.save()
+      res.send(`CLIENTE SALVO <a href='/principal/${selectedUser.username}/${token}'>voltar</a>`)
+    } catch (error) {
+
       res.redirect(`/principal/${selectedUser.username}/${token}`)
     }
   },
-  search: async function(req, res){
+  search: async function (req, res) {
     const token = req.params.token
     const username = req.params.user
     const cpfClient = req.body.cpf_search
-    
 
-    const values = await Client.findOne({cli_cpf: cpfClient}).sort({ "_id":-1})
-    const selectedUser = await User.findOne({username})
 
-    if(!req.body.cpf_search)return res.redirect(`/principal/${selectedUser.username}/${token}`)
+    const values = await Client.findOne({ cli_cpf: cpfClient }).sort({ "_id": -1 })
+    const selectedUser = await User.findOne({ username })
 
-    
-    return res.render('principal',{user: selectedUser, token,values})
+    if (!req.body.cpf_search) return res.redirect(`/principal/${selectedUser.username}/${token}`)
+
+
+    return res.render('principal', { user: selectedUser, token, values })
 
   }
 
