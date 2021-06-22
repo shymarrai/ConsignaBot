@@ -44,35 +44,20 @@ const BotRoutes = {
 
         await bot(cpf, selectedUser.sigplay_user, selectedUser.sigplay_pass).then((result) => {
           //enviando os resultados da pesquisa
+          data = JSON.stringify(result, null, 2)
+          res.send(`${data}`)
+          //se está tudo ok... converte o json 
+          let fileConvert = JSON.parse(data)
 
-          const filePath = `${__dirname}/../model/json/${cpf}.json`
-
-          fs.writeFileSync(filePath, JSON.stringify(result, null, 2), err => {
-            if (err) res.send(`${filePath} erro <a href='/'>Voltar</a>`)
-
-          })
-          fs.readFile(`${__dirname}/../model/json/${cpf}.json`, 'utf8', (error, data) => {
-            res.send(`aqui`)
-            //caso haja erro mostra no terminal
-            if (error) {
-              res.send(`erro`)
-              console.log('erro', error)
-            }
-
-            //se está tudo ok... converte o json 
-            let fileConvert = JSON.parse(data)
-
-            res.send(`bom ${fileConvert} e ${data}`)
-            const result = fileConvert.reduce((curr, item) => {
-              const [key, ...values] = item?.split(':')
-              return { ...curr, [key]: values?.join(':') }
+          res.send(`bom ${fileConvert} e ${data}`)
+          const result = fileConvert.reduce((curr, item) => {
+            const [key, ...values] = item?.split(':')
+            return { ...curr, [key]: values?.join(':') }
 
 
-            }, {})
-            res.send(`quase`)
-            return res.render("principal", { user: selectedUser, token, values: result })
-          })
-
+          }, {})
+          res.send(`quase`)
+          return res.render("principal", { user: selectedUser, token, values: result })
 
         }).catch((error) => res.send(error));
       }
