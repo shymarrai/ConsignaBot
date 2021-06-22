@@ -23,8 +23,9 @@ let bot = async (cpf, login, senha) => {
     sigSenha = process.env.DB_PASS
   }
 
-  return { sigLogin, sigSenha }
-  const browser = await puppeteer.launch({ headless: false, slowMo: 60 });
+
+  const browser = await puppeteer.launch({ headless: false, slowMo: 0 });
+  return browser
   const page = await browser.newPage();
   const navigationPromise = page.waitForNavigation({ waitUntil: "domcontentloaded" });
   await page.goto('http://www.sigplay.net/admin/welcome.php');
