@@ -36,7 +36,7 @@ const BotRoutes = {
     let username = req.params.user
     let token = req.params.token
     const selectedUser = await User.findOne({ username })
-
+    res.send('aqui', cpf, username, token, username)
     try {
       const userVerified = jwt.verify(token, process.env.TOKEN_SECRET)
       if (userVerified) {
