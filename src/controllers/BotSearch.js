@@ -19,7 +19,7 @@ let bot = async (cpf, login, senha) => {
   }
 
 
-  const browser = await puppeteer.launch({ headless: false, slowMo: 60, args: ['--no-sandbox'] });
+  const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
   const page = await browser.newPage();
   const navigationPromise = page.waitForNavigation({ waitUntil: "domcontentloaded" });
   await page.goto('http://www.sigplay.net/admin/welcome.php');
