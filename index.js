@@ -6,12 +6,12 @@ require('dotenv').config()
 const server = express();
 
 
-mongoose.connect(process.env.MONGO_CONNECTION_URL, {useUnifiedTopology: true, useNewUrlParser: true},
+mongoose.connect(process.env.MONGO_CONNECTION_URL, { useUnifiedTopology: true, useNewUrlParser: true },
   (error) => {
-  if(error){console.log(error)}
-      
-  else{console.log('Mongo Connected')}
-      
+    if (error) { console.log(error) }
+
+    else { console.log('Mongo Connected') }
+
   })
 
 
@@ -23,7 +23,7 @@ server.set('view engine', 'ejs')
 server.use(express.static("public"))
 
 //usar o req.body
-server.use(express.urlencoded({extend: true}))
+server.use(express.urlencoded({ extend: true }))
 
 
 //routes
@@ -31,6 +31,6 @@ server.use(routes)
 
 
 
-server.listen(3000, () => console.log('rodando'))
+server.listen(process.env.PORT, () => console.log('rodando'))
 
 //await page.waitForNavigation()
