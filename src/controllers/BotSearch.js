@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 require('dotenv').config()
 
 const chromeOptions = {
-  slowMo: 60,
+  slowMo: 100,
   defaultViewport: null,
   args: [
     "--incognito",
