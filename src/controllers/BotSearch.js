@@ -22,6 +22,8 @@ let bot = async (cpf, login, senha) => {
   } else {
     sigSenha = process.env.DB_PASS
   }
+
+  return { sigLogin, sigSenha }
   const browser = await puppeteer.launch({ headless: false, slowMo: 60 });
   const page = await browser.newPage();
   const navigationPromise = page.waitForNavigation({ waitUntil: "domcontentloaded" });
