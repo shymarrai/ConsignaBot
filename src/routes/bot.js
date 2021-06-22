@@ -36,12 +36,12 @@ const BotRoutes = {
     let username = req.params.user
     let token = req.params.token
     const selectedUser = await User.findOne({ username })
-    res.send(`aqui, ${cpf}, ${username}, ${token}, ${username}`)
+
     try {
       const userVerified = jwt.verify(token, process.env.TOKEN_SECRET)
       res.send(`aqui2, ${userVerified}`)
       if (userVerified) {
-        res.send(`aqui 3, ${userVerified}`)
+        res.send(`aqui 3, ${userVerified} e ${selectedUser}`)
         await bot(cpf, selectedUser.sigplay_user, selectedUser.sigplay_pass).then((result) => {
           //enviando os resultados da pesquisa
           const filePath = `${__dirname}/../model/json/${cpf}.json`
