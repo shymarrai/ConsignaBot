@@ -1,37 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-	<link rel="stylesheet" href="/styles/header.css">
-	<link rel="stylesheet" href="/styles/formulario.css">
-	<link rel="stylesheet" href="/styles/principal.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="/styles/header.css">
+  <link rel="stylesheet" href="/styles/formulario.css">
+  <link rel="stylesheet" href="/styles/principal.css">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.jpg">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-  <title>ConsignaBot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+  <title>Aquilacred</title>
 </head>
+
 <body>
-<header>
-  <div class='findCpf'>
+  <header>
+    <div class='findCpf'>
 
-    <form method='post' action='/search_client/<%= user.username%>/<%= token%>' id="form_search_client" style='display:none;visibility:hidden;'>
-      <input type="text" name="cpf_search" id='cpf_search' >
+      <form method='post' action='/search_client/<%= user.username%>/<%= token%>' id="form_search_client"
+        style='display:none;visibility:hidden;'>
+        <input type="text" name="cpf_search" id='cpf_search'>
+      </form>
+
+      <input type="text" name="search" id='search' placeholder="CPF" maxlength='14' style="border:none;"
+        onkeypress="mask(this, mCPF);" onblur="mask(this, mCPF);" />
+      <button type="submit" form='form_search_client'>
+        <image src='/images/icon-search.png' class='invert' alt='Search'>
+      </button>
+    </div>
+
+
+
+    <form method='post' action='/consigna_bot/<%= user.username%>/<%= token%>' id="form_active_bot"
+      style='display:none;visibility:hidden;'>
+      <input type="text" name="cpf_oculto" id='cpf_oculto'>
     </form>
-
-    <input type="text" name="search" id='search' placeholder="CPF" maxlength='14' style="border:none;" onkeypress="mask(this, mCPF);" onblur="mask(this, mCPF);"/>
-    <button type="submit" form='form_search_client'>
-      <image src='/images/icon-search.png' class='invert' alt='Search' >
-    </button>
-  </div>
-
-
-
-  <form method='post' action='/consigna_bot/<%= user.username%>/<%= token%>' id="form_active_bot" style='display:none;visibility:hidden;'>
-    <input type="text" name="cpf_oculto" id='cpf_oculto' >
-  </form>
-  <input type="submit" style='width: 8rem;' class="botButton" id='callBot' value='ConsgnaBot' form='form_active_bot'>
-  <div class='congrats'>
-    <p>Bem Vindo,<br/><span><%= user.name %></span></p>
-  </div>
-</header>
+    <input type="submit" style='width: 8rem;' class="botButton" id='callBot' value='ConsgnaBot' form='form_active_bot'>
+    <div class='congrats'>
+      <p>Bem Vindo,<br /><span>
+          <%= user.name %>
+        </span></p>
+    </div>
+  </header>
