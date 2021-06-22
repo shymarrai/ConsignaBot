@@ -45,15 +45,16 @@ const BotRoutes = {
         await bot(cpf, selectedUser.sigplay_user, selectedUser.sigplay_pass).then((result) => {
           //enviando os resultados da pesquisa
           const filePath = `${__dirname}/../model/json/${cpf}.json`
-
+          res.send(`${filePath}`)
           fs.writeFile(filePath, JSON.stringify(result, null, 2), err => {
             if (err) throw new Error("Erro na criação do objeto JSON")
 
           })
           fs.readFile(`${__dirname}/../model/json/${cpf}.json`, 'utf8', (error, data) => {
-
+            res.send(`aqui`)
             //caso haja erro mostra no terminal
             if (error) {
+              res.send(`erro`)
               console.log('erro', error)
             }
 
