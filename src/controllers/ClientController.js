@@ -80,7 +80,7 @@ const ClientController = {
     // AUTENTICAÇÃO
     const selectedUser = await User.findOne({ username })
 
-    if (!token) return res.status(401).send("Acesso Negado Token de acesso - Relogue")
+    if (!token) return res.status(401).send("Acesso Negado Token de acesso - Relogue b")
     if (!selectedUser) return res.status(401).send("Acesso Negado Usuário desconhecido")
     if (!req.body.cpf || !req.body.operador) return res.redirect(`/principal/${selectedUser.username}/${token}`)
 
