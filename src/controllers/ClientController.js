@@ -78,6 +78,7 @@ const ClientController = {
     const username = req.params.user
 
     // AUTENTICAÇÃO
+    console.log('salvando')
     const selectedUser = await User.findOne({ username })
 
     if (!token) return res.status(401).send("Acesso Negado Token de acesso - Relogue b")
@@ -125,7 +126,7 @@ const ClientController = {
       res.send(`CLIENTE SALVO <a href='/principal/${selectedUser.username}/${token}'>voltar</a>`)
     } catch (error) {
 
-      res.redirect(`/principal/${selectedUser.username}/${token}`)
+      res.redirect(`/`)
     }
   },
   search: async function (req, res) {
