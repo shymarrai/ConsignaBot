@@ -3,7 +3,6 @@ require('dotenv').config()
 
 const chromeOptions = {
   slowMo: 60,
-  headless: false,
   args: [
     '--no-sandbox',
     '--disable-setuid-sandbox',
