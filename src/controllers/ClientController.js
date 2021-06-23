@@ -144,7 +144,8 @@ const ClientController = {
     const selectedUser = await User.findOne({ username })
 
     if (!req.body.cpf_search) return res.redirect(`/principal/${selectedUser.username}/${token}`)
-
+    if(!selectedUser)return res.redirect(`/principal/${selectedUser.username}/${token}`)
+    if(!values)return res.redirect(`/principal/${selectedUser.username}/${token}`)
 
     return res.render('principal', { user: selectedUser, token, values })
 
