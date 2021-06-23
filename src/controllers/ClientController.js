@@ -78,13 +78,17 @@ const ClientController = {
     const username = req.params.user
 
     // AUTENTICAÇÃO
-    console.log('salvando')
+    
     const selectedUser = await User.findOne({ username })
 
     if (!token) return res.status(401).send("Acesso Negado Token de acesso - Relogue b")
     if (!selectedUser) return res.status(401).send("Acesso Negado Usuário desconhecido")
     if (!req.body.cpf || !req.body.operador) return res.redirect(`/principal/${selectedUser.username}/${token}`)
-
+    
+    console.log(`user: ${selectedUser} `)
+    console.log(`token: ${selectedUser} `)
+    console.log(`cpf: ${req.body.cpf}  e oper: ${req.body.operador}`)
+    
     if (req.body.type && req.body.cpf) {
       let id = await uploadFile(req.body.cpf, req.body.type)
       var urlImage = await generatePublicUrl(id)
