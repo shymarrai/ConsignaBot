@@ -136,7 +136,7 @@
 
   <div>
     <label for='qtd_pagas'>Qtd Pagas</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": Number(value.info3) -  Number(value.info5) %>" type="text" id='qtd_pagas' name='qtd_pagas'/>
+    <input value="<%= (isNaN(Number(value.info3) -  Number(value.info5)))  ? "": Number(value.info3) -  Number(value.info5) %>" type="text" id='qtd_pagas' name='qtd_pagas'/>
   </div>
 
   <div>
@@ -158,7 +158,7 @@
         <option value=""></option>
         <option value="AVERBADO">AVERBADO</option>
         <option value="CANCELADO">CANCELADO</option>
-        <option value="GUARDANDO CLIENTE">AGUARDANDO CLIENTE</option>
+        <option value="AGUARDANDO CLIENTE">AGUARDANDO CLIENTE</option>
     <% }else{ %>
       <select name='status' id='status'>
         <% let arrayStatus = ['','AVERBADO','CANCELADO','AGUARDANDO CLIENTE'] %>
