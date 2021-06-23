@@ -32,7 +32,7 @@ app.get('/get_bot/:cpf/:user/:token', botRouter.getBot)
 
 
 
-app.post('/save_data_client/:user/:token', ClientController.save)
+app.post('/save_data_client/:user/:token',multer(multerConfig).single('anexo'), ClientController.save)
 app.post('/search_client/:user/:token', ClientController.search)
 
 app.use("/files", express.static(path.resolve(__dirname, "..", "..", "public", "uploads")))
