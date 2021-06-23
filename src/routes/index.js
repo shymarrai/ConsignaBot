@@ -5,9 +5,17 @@ const ClientController = require('../controllers/ClientController')
 const botRouter = require('./bot')
 const multer = require('multer')
 const multerConfig = require('../config/multer')
+var bodyParser = require('body-parser')
 
 require('dotenv').config()
 const app = express();
+
+
+var jsonParser = bodyParser.json()
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 
 app.get('/', UserController.logar)
 app.post('/', UserController.login)
