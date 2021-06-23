@@ -1,10 +1,15 @@
 const express = require('express');
 const routes = require('./src/routes/index');
 const mongoose = require('mongoose');
+var bodyParser = require('body-parser')
 require('dotenv').config()
 
-const server = express();
 
+const server = express();
+var jsonParser = bodyParser.json()
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 mongoose.connect(process.env.MONGO_CONNECTION_URL, { useUnifiedTopology: true, useNewUrlParser: true },
   (error) => {

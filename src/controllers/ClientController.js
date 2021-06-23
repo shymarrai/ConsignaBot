@@ -78,7 +78,7 @@ const ClientController = {
     const username = req.params.user
 
     // AUTENTICAÇÃO
-    
+    console.log(`salvando `)
     const selectedUser = await User.findOne({ username })
 
     if (!token) return res.status(401).send("Acesso Negado Token de acesso - Relogue b")
