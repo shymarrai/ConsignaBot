@@ -117,8 +117,8 @@ const ClientController = {
     info9: ${req.body.taxa},
     status: ${req.body.status},
     obs: ${req.body.obs},
-    url: ${urlImage.webViewLink},
-    anexo: ${req.body.type}
+    url:
+    anexo:
     
     `)
     try {
@@ -158,7 +158,7 @@ const ClientController = {
       res.send(`CLIENTE SALVO <a href='/principal/${selectedUser.username}/${token}'>voltar</a>`)
     } catch (error) {
 
-      res.redirect(`/`)
+      res.redirect(`/principal/${selectedUser.username}/${token}`)
     }
   },
   search: async function (req, res) {
