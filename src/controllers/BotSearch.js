@@ -93,21 +93,21 @@ let bot = async (cpf, login, senha) => {
 
 
   // EVAL PARA PEGAR OS DADOS DO MODAL**********************************
-  let dataModal = await page.evaluate(() => {
-    let modals = document.querySelectorAll('.modal-body table tbody tr:nth-child(1) td')
+  // let dataModal = await page.evaluate(() => {
+  //   let modals = document.querySelectorAll('.modal-body table tbody tr:nth-child(1) td')
 
-    let responseModals = [...modals]
-    var c = 0;
+  //   let responseModals = [...modals]
+  //   var c = 0;
 
-    // const result = test.map((a) => (`${a.value}`));
-    const dataTable = responseModals.map((a) => {
-      c++
-      return (`info${c}: ${a.innerText}`)
-    });
+  //   const result = test.map((a) => (`${a.value}`));
+  //   const dataTable = responseModals.map((a) => {
+  //     c++
+  //     return (`info${c}: ${a.innerText}`)
+  //   });
 
-    return dataTable
-  });
-  console.log('segundo evaluate')
+  //   return dataTable
+  // });
+  // console.log('segundo evaluate')
 
 
   //SAINDO DO SISTEMA
@@ -115,7 +115,8 @@ let bot = async (cpf, login, senha) => {
   await page.goto('http://www.sigplay.net/admin/ope_contato.php?logout');
   await browser.close();
   console.log('fechei')
-  return listValues.concat(dataModal)
+  // return listValues.concat(dataModal)
+  return listValues
 }
 
 
