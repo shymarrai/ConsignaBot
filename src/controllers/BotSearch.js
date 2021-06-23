@@ -3,7 +3,11 @@ require('dotenv').config()
 
 const chromeOptions = {
   slowMo: 60,
-  headless: false
+  headless: false,
+  args: [
+    '--no-sandbox',
+    '--disable-setuid-sandbox',
+  ]
 };
 
 let bot = async (cpf, login, senha) => {
@@ -59,9 +63,6 @@ let bot = async (cpf, login, senha) => {
   await navigationPromise;
   await page.waitForSelector('table').then((value) => console.log('form aberto2')).catch((erro) => console.log('erro consulta4'));
   await navigationPromise;
-
-
-
 
 
   //PEGANDO TODOS OS VALORES DENTRO DOS INPUTS Q NÃO ESTEJAM SENDO IGNORADOS

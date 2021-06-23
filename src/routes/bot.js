@@ -49,8 +49,6 @@ const BotRoutes = {
             }, {})
             console.log(resultado)            
             return res.render("principal", { user: selectedUser, token, values: resultado })
-          
-
 
         }).catch((error) => res.send(error));
       }
