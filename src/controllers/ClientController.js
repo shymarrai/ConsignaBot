@@ -88,39 +88,11 @@ const ClientController = {
     if (req.body.type && req.body.cpf) {
       let id = await uploadFile(req.body.cpf, req.body.type)
       var urlImage = await generatePublicUrl(id)
+    }else{
+      var urlImage = ''
+
     }
 
-    console.log(`
-    operador: ${req.body.operador},
-    cli_nome: ${req.body.nome},
-    cli_cpf: ${req.body.cpf},
-    cli_data_nasc: ${req.body.dt_nasc},
-    ENDERECO: ${req.body.end},
-    BAIRRO: ${req.body.bairro},
-    CIDADE: ${req.body.municipio},
-    UF_ENDERECO: ${req.body.uf},
-    CEP: ${req.body.cep},
-    contato1: ${req.body.tel},
-    contato2:${ req.body.cel},
-    cli_matricula: ${req.body.n_beneficio},
-    Banco: ${req.body.banco},
-    Agencia_Pagto: ${req.body.ag},
-    especie: ${req.body.tipo},
-    contacorrente: ${req.body.n_conta},
-    meiopagto: ${req.body.tipo_conta},
-    info1: ${req.body.banco_origem},
-    info2: ${req.body.data_inicio},
-    info6: ${req.body.quitacao},
-    info3: ${req.body.parcelas},
-    info5: ${req.body.prazo},
-    info8: ${req.body.contrato},
-    info9: ${req.body.taxa},
-    status: ${req.body.status},
-    obs: ${req.body.obs},
-    url:
-    anexo:
-    
-    `)
     try {
       const client = new Client({
         operador: req.body.operador,
@@ -153,7 +125,15 @@ const ClientController = {
         anexo: req.body.type
       })
       console.log(`criou: ${client}`)
-      await client.save()
+      // Create User
+      Client.createUser(client, function(err, user){
+        if(err)throw err;
+        console.log(client);
+    });
+
+    //Success Message
+    req.flash('success', 'You are now registered and may log in');
+      //await client.save()
       console.log(`salvou: ${client}`)
       res.send(`CLIENTE SALVO <a href='/principal/${selectedUser.username}/${token}'>voltar</a>`)
     } catch (error) {
