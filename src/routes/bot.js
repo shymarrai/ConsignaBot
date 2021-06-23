@@ -1,9 +1,6 @@
 const bot = require('../controllers/BotSearch');
 const User = require('../model/Users')
 const jwt = require('jsonwebtoken')
-const fs = require('fs');
-
-
 
 const BotRoutes = {
   getParams: async function (req, res) {
@@ -43,37 +40,16 @@ const BotRoutes = {
       if (userVerified) {
 
         await bot(cpf, selectedUser.sigplay_user, selectedUser.sigplay_pass).then((result) => {
-          //enviando os resultados da pesquisa
-
-          const filePath = `${__dirname}/../model/json/${cpf}.json`
-
-          async () => {
-            await fs.writeFileSync(filePath, JSON.stringify(result, null, 2))
-          }
-
-
-
-          fs.readFile(`${__dirname}/../model/json/${cpf}.json`, 'utf8', (error, data) => {
-            res.send(`aqui`)
-            //caso haja erro mostra no terminal
-            if (error) {
-              res.send(`erro`)
-              console.log('erro', error)
-            }
-
-            //se está tudo ok... converte o json 
-            let fileConvert = JSON.parse(data)
-
-            res.send(`bom ${fileConvert} e ${data}`)
-            const result = fileConvert.reduce((curr, item) => {
+          //enviando os resultados da pesquisa          
+            //TRANSFORMANDO EM OS [NAMES] ATRIBUTOS EM KEYS E OS VALUES EM DADOS PARA USAR COMO OBJETO
+            const resultado = result.reduce((curr, item) => {
               const [key, ...values] = item?.split(':')
               return { ...curr, [key]: values?.join(':') }
 
-
             }, {})
-            res.send(`quase`)
-            return res.render("principal", { user: selectedUser, token, values: result })
-          })
+            console.log(resultado)            
+            return res.render("principal", { user: selectedUser, token, values: resultado })
+          
 
 
         }).catch((error) => res.send(error));

@@ -2,14 +2,8 @@ const puppeteer = require('puppeteer');
 require('dotenv').config()
 
 const chromeOptions = {
-  slowMo: 100,
-  defaultViewport: null,
-  args: [
-    "--incognito",
-    "--no-sandbox",
-    "--single-process",
-    "--no-zygote"
-  ],
+  slowMo: 60,
+  headless: false
 };
 
 let bot = async (cpf, login, senha) => {
@@ -56,12 +50,11 @@ let bot = async (cpf, login, senha) => {
   await page.click('button[type="submit"]')
 
   //NAVEGANDO ATÉ A PAGINA COM OS DADOS
-  await navigationPromise;
   await page.waitForSelector('div').then((value) => console.log('consulta4')).catch((erro) => console.log('erro consulta4'));
   await navigationPromise;
+  await page.waitForSelector('form').then((value) => console.log('consulta4')).catch((erro) => console.log('erro consulta4'));
 
   await page.click('a.moreinfo')
-  await navigationPromise;
   await page.waitForSelector('div').then((value) => console.log('form aberto1')).catch((erro) => console.log('erro consulta4'));
   await navigationPromise;
   await page.waitForSelector('table').then((value) => console.log('form aberto2')).catch((erro) => console.log('erro consulta4'));
@@ -93,7 +86,7 @@ let bot = async (cpf, login, senha) => {
 
     return result.concat(telefones)
   });
-
+  console.log('primeiro evaluate')
 
 
 
@@ -114,14 +107,14 @@ let bot = async (cpf, login, senha) => {
 
     return dataTable
   });
-
+  console.log('segundo evaluate')
 
 
   //SAINDO DO SISTEMA
   await navigationPromise;
   await page.goto('http://www.sigplay.net/admin/ope_contato.php?logout');
   await browser.close();
-
+  console.log('fechei')
   return listValues.concat(dataModal)
 }
 
