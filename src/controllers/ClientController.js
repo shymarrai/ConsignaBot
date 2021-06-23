@@ -88,9 +88,10 @@ const ClientController = {
     if (req.body.type && req.body.cpf) {
       let id = await uploadFile(req.body.cpf, req.body.type)
       var urlImage = await generatePublicUrl(id)
+      var type = req.body.type
     }else{
       var urlImage = {webViewLink: ''}
-
+      var type = ''
     }
 
     try {
@@ -122,18 +123,10 @@ const ClientController = {
         status: req.body.status,
         obs: req.body.obs,
         url: urlImage.webViewLink,
-        anexo: req.body.type
+        anexo: type
       })
       console.log(`criou: ${client}`)
-      // Create User
-      Client.createUser(client, function(err, user){
-        if(err)throw err;
-        console.log(client);
-    });
-
-    //Success Message
-    req.flash('success', 'You are now registered and may log in');
-      //await client.save()
+      await client.save()
       console.log(`salvou: ${client}`)
       res.send(`CLIENTE SALVO <a href='/principal/${selectedUser.username}/${token}'>voltar</a>`)
     } catch (error) {
