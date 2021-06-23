@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 require('dotenv').config()
 
 const chromeOptions = {
-  slowMo: 60,
+  slowMo: 90,
   args: [
     '--no-sandbox',
     '--disable-setuid-sandbox',
