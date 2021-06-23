@@ -23,7 +23,7 @@ app.post('/', UserController.login)
 app.get('/register', UserController.register)
 app.post('/register',UserController.save)
 
-app.use('/principal/:user/:token',urlencodedParser,UserController.principal)
+app.use('/principal/:user/:token',jsonParser,UserController.principal)
 
 
 // app.post('/consigna_bot', botRoutes.getParams)
@@ -32,7 +32,7 @@ app.get('/get_bot/:cpf/:user/:token', botRouter.getBot)
 
 
 
-app.post('/save_data_client/:user/:token',jsonParser, ClientController.save)
+app.post('/save_data_client/:user/:token',urlencodedParser, ClientController.save)
 app.post('/search_client/:user/:token', ClientController.search)
 
 app.use("/files", express.static(path.resolve(__dirname, "..", "..", "public", "uploads")))
