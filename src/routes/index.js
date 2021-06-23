@@ -14,8 +14,8 @@ const app = express();
 
 
 // create application/x-www-form-urlencoded parser
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(express.json());
+app.use(express.urlencoded());
 
 app.get('/', UserController.logar)
 app.post('/', UserController.login)
