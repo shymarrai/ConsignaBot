@@ -3,8 +3,15 @@ const Client = require('../model/Clients')
 const { google } = require('googleapis')
 const path = require('path')
 const fs = require('fs')
+var bodyParser = require('body-parser')
 require('dotenv').config()
 
+
+
+var jsonParser = bodyParser.json()
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const CLIENT_ID = process.env.CLIENT_ID_DRIVE
 const CLIENT_SECRET = process.env.CLIENT_SECRET_DRIVE
