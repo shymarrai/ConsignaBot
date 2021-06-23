@@ -89,7 +89,7 @@ const ClientController = {
       let id = await uploadFile(req.body.cpf, req.body.type)
       var urlImage = await generatePublicUrl(id)
     }else{
-      var urlImage = ''
+      var urlImage = {webViewLink: ''}
 
     }
 
