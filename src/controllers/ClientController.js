@@ -3,15 +3,8 @@ const Client = require('../model/Clients')
 const { google } = require('googleapis')
 const path = require('path')
 const fs = require('fs')
-var bodyParser = require('body-parser')
 require('dotenv').config()
 
-
-
-var jsonParser = bodyParser.json()
-
-// create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const CLIENT_ID = process.env.CLIENT_ID_DRIVE
 const CLIENT_SECRET = process.env.CLIENT_SECRET_DRIVE
@@ -90,18 +83,44 @@ const ClientController = {
 
     if (!token) return res.status(401).send("Acesso Negado Token de acesso - Relogue b")
     if (!selectedUser) return res.status(401).send("Acesso Negado Usuário desconhecido")
-    //if (!req.body.cpf || !req.body.operador) return res.redirect(`/principal/${selectedUser.username}/${token}`)
+    if (!req.body.cpf || !req.body.operador) return res.redirect(`/principal/${selectedUser.username}/${token}`)
     
-    console.log(`user: ${selectedUser} `)
-    console.log(`token: ${selectedUser} `)
-    console.log(`cpf: ${req.body.cpf}  e oper: ${req.body.operador}`)
-
     if (req.body.type && req.body.cpf) {
       let id = await uploadFile(req.body.cpf, req.body.type)
       var urlImage = await generatePublicUrl(id)
     }
 
-
+    console.log(`
+    operador: ${req.body.operador},
+    cli_nome: ${req.body.nome},
+    cli_cpf: ${req.body.cpf},
+    cli_data_nasc: ${req.body.dt_nasc},
+    ENDERECO: ${req.body.end},
+    BAIRRO: ${req.body.bairro},
+    CIDADE: ${req.body.municipio},
+    UF_ENDERECO: ${req.body.uf},
+    CEP: ${req.body.cep},
+    contato1: ${req.body.tel},
+    contato2:${ req.body.cel},
+    cli_matricula: ${req.body.n_beneficio},
+    Banco: ${req.body.banco},
+    Agencia_Pagto: ${req.body.ag},
+    especie: ${req.body.tipo},
+    contacorrente: ${req.body.n_conta},
+    meiopagto: ${req.body.tipo_conta},
+    info1: ${req.body.banco_origem},
+    info2: ${req.body.data_inicio},
+    info6: ${req.body.quitacao},
+    info3: ${req.body.parcelas},
+    info5: ${req.body.prazo},
+    info8: ${req.body.contrato},
+    info9: ${req.body.taxa},
+    status: ${req.body.status},
+    obs: ${req.body.obs},
+    url: ${urlImage.webViewLink},
+    anexo: ${req.body.type}
+    
+    `)
     try {
       const client = new Client({
         operador: req.body.operador,
@@ -133,7 +152,9 @@ const ClientController = {
         url: urlImage.webViewLink,
         anexo: req.body.type
       })
+      console.log(`criou: ${client}`)
       await client.save()
+      console.log(`salvou: ${client}`)
       res.send(`CLIENTE SALVO <a href='/principal/${selectedUser.username}/${token}'>voltar</a>`)
     } catch (error) {
 
