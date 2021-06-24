@@ -129,7 +129,13 @@
                 <td id='infocontrato'><%= result[i].info8 %></td>
                 <td id='infotaxa'><%= result[i].info9 %></td>
                 <td id='infostatus'><%= result[i].status %></td>
-                <td id='url'> <a href="<%= result[i].url %>" target="_blank">Anexo</a></td>
+                <td id='url'>
+                  <% if(result[i].url.length > 1 ){%> 
+                  <a href="<%= result[i].url %>" target="_blank">Anexo</a>
+                  <%}else{%>
+                    Sem anexo
+                    <%}%>
+                </td>
                 <td id='obs'><%= result[i].obs %></td>
               </tr>
             <% }%>
