@@ -12,14 +12,13 @@
   overflow: hidden;
 }
 #transaction {
-  display: flex;
-  justify-content: center;
   overflow-x: auto;
-  width: 100%;
+  width: 98%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   margin-top: -10rem;
 }
 #data-table {
-  align-self: center;
   border-spacing: 0 0.5rem;
   width: 100%;
   color: #666;
