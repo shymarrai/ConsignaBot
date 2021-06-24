@@ -97,6 +97,7 @@ const ClientController = {
     try {
       const client = new Client({
         operador: req.body.operador,
+        supervisor: req.body.supervisor,
         cli_nome: req.body.nome,
         cli_cpf: req.body.cpf,
         cli_data_nasc: req.body.dt_nasc,
