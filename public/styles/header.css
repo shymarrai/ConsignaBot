@@ -1,6 +1,9 @@
 span {
   color: #fff;
 }
+header.Headertotal {
+  width: 100vw;
+}
 header {
   width: 98.7vw;
   height: 10vh;
@@ -9,6 +12,7 @@ header {
   align-items: center;
   justify-content: space-around;
   top: 0;
+  margin: 0;
 }
 button,
 #callBot {

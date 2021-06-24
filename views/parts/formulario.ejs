@@ -1,5 +1,22 @@
 
-<form method="post" enctype="multipart/form-data" action="/save_data_client/<%= user.username %>/<%= token%>"> 
+<form method="post" enctype="multipart/form-data" class="principal" action="/save_data_client/<%= user.username %>/<%= token%>"> 
+
+<h2>Operador</h2>
+<div class='group'>
+  
+  <div>
+    <label for='operador'>Usuário</label>
+    <input type="text" name='operador' id='operador' value='<%=user.name%>'/>
+  </div>
+  <div>
+
+  <label for='supervisor'>Supervisor</label>
+    <input type="text" name='supervisor' id='supervisor' value='<%=user.supervisor%>'/>
+  </div>
+</div>
+
+<h2>Cliente</h2>
+<div class='group'>
   <div>
     <label for='cpf'>CPF</label>
       <input value="<%= value == null || value == undefined || value.length < 20? "": value.cli_cpf %>" type="text" id='cpf' name='cpf' maxlength="14" onkeypress="mask(this, mCPF);" onblur="mask(this, mCPF);"/>
@@ -10,16 +27,15 @@
     <input value="<%= value == null || value == undefined || value.length < 20? "": value.cli_data_nasc %>"  type="text" id='dt_nasc' name='dt_nasc' />
   </div>
 
-  <div>
-    <label for='operador'>Operador</label>
-    <input type="text" name='operador' id='operador' value='<%=user.name%>'/>
-  </div>
-
   <div class='large'> 
     <label for='nome'>Nome</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.cli_nome %>" type="text" name='nome' id='nome' style='width:89%;'/>
   </div>
+</div>
 
+
+<h2>Contato</h2>
+<div class='group'>
   <div class='large'>
     <label for='end'>Endereço</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.ENDERECO %>" type="text" id='end' name='end' style='width:89%;'/>
@@ -54,7 +70,11 @@
     <label for='cel'>Celular</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.contato2 %>" type="text" id='cel' name='cel' onkeypress="mask(this, mphoneC);" onblur="mask(this, mphoneC);" />
   </div>
+  </div>
 
+
+  <h2>Operação</h2>
+  <div class='group'> 
   <div>
     <label for='n_beneficio'>Nº Benefício</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.cli_matricula %>" type="text" id='n_beneficio' name='n_beneficio'/>
@@ -174,9 +194,11 @@
     <% } %>
       </select>
   </div>
+</div>
 
 
-
+  <h2>Dados adicionais</h2>
+  <div class="group">
   <div class='large'>
     <label for='obs'>Observação</label>
     <textarea id='obs' name='obs'><%= value.obs%></textarea>
@@ -208,11 +230,13 @@
     <% } %> 
   </div>
 
-
   <div class='large' style='display: flex;
   justify-content: center;'>
-    <input type="submit" value='Salvar' class='enviar'>
-    
+    <input type="submit" value='Salvar' class='enviar' style="margin-right: 31%;">
+    <a href='/relatorio/<%= user.username %>/<%= token%>' class='reset' id='relatorio' style='background-color:#1e7eb5; color: #fff; font-size: 0.8rem; border-radius: 5px;'>Relatório</a>
   </div>
   <a href='/principal/<%= user.username %>/<%= token%>' class='reset'>Limpar</a>
+  
+
+</div>
 </form>

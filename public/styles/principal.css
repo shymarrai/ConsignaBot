@@ -87,11 +87,21 @@ input[type="submit"]:hover {
 .large {
   grid-column: 1 / span 3;
 }
-form {
+form.principal {
+  background-color: #f0f8ff;
+}
+.group {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 1.5rem 3rem;
   flex-wrap: wrap;
   gap: 0.5em;
-  background-color: #fff;
+  background-color: #fefefe;
+  margin-bottom: 1.5rem;
+  border-bottom: 4px solid #ccc;
+}
+h2 {
+  color: #666;
+  padding: 1rem;
+  background-color: #fefefe;
 }

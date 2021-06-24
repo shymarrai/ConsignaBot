@@ -2,16 +2,15 @@ const express = require('express');
 const path = require('path')
 const UserController = require('../controllers/UserController')
 const ClientController = require('../controllers/ClientController')
+const Admin = require('../controllers/AdminController')
 const botRouter = require('./bot')
 const multer = require('multer')
 const multerConfig = require('../config/multer')
 var bodyParser = require('body-parser')
+const fs = require('fs')
 
 require('dotenv').config()
 const app = express();
-
-
-
 
 // create application/x-www-form-urlencoded parser
 app.use(express.json());
@@ -38,7 +37,20 @@ app.post('/search_client/:user/:token', ClientController.search)
 app.use("/files", express.static(path.resolve(__dirname, "..", "..", "public", "uploads")))
 // app.get('/consigna_bot/:cpf', botRoutes.getBot)
 
+app.get('/relatorio/:user/:token', Admin.dash)
+app.post('/generate/:user/:token', Admin.generate)
+
 app.use('/logout',UserController.logout)
+
+app.get('/download', async function(req, res){
+  const file = `${__dirname}/../../Export.xlsx`;
+  if(file){
+    res.download(file); 
+  }else{
+    res.send("Sem arquivo gerado!")
+  }
+});
+
 
 
 

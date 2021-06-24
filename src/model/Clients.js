@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 const clientSchema = new mongoose.Schema({
   operador: String,
+  supervisor: String,
   cli_nome:  String,
   cli_cpf: String,
   cli_data_nasc: String,

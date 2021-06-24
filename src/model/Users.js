@@ -6,6 +6,8 @@ const userSchema = new mongoose.Schema({
   password: {type: String, required: true, minlength:6},
   sigplay_user: String,
   sigplay_pass: String,
+  admin: {type: Boolean, default: false},
+  access: {type: Number, default: 0},
   created_at: {type: Date, default: Date.now}
 })
 
