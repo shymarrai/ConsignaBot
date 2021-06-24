@@ -48,14 +48,16 @@
       </form>
       <div>
         <input type="submit" value="Gerar" class="enviar" form='form-generate'/>
-        
+        <% if(isNaN(result)){%>
+        <a href="/download" class='reset' style=''>Baixar</a>
+        <% }%>
       </div>
       
     </div>
+    
     <% if(isNaN(result)){%>
-      <a href="/download" class='reset' >Baixar</a>
+    
     <section id="transaction">
-      
       <div>
         
         <table id="data-table">
