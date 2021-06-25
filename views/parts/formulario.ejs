@@ -6,12 +6,12 @@
   
   <div>
     <label for='operador'>Usuário</label>
-    <input type="text" name='operador' id='operador' value='<%=user.name%>'/>
+    <input type="text" name='operador' id='operador' value='<%=user.name%>' readonly/>
   </div>
   <div>
 
   <label for='supervisor'>Supervisor</label>
-    <input type="text" name='supervisor' id='supervisor' value='<%=user.supervisor%>'/>
+    <input type="text" name='supervisor' id='supervisor' value='<%=value.supervisor%>'/>
   </div>
 </div>
 
@@ -24,7 +24,7 @@
 
   <div>
     <label for='dt_nasc'>Data de Nascimento</label>
-    <input value="<%= value == null || value == undefined || value.length < 20? "": value.cli_data_nasc %>"  type="text" id='dt_nasc' name='dt_nasc' />
+    <input value="<%= value == null || value == undefined || value.length < 20? "": value.cli_data_nasc %>"  type="text" id='dt_nasc' name='dt_nasc' maxlength="10" onkeypress="mascaraData(this)"/>
   </div>
 
   <div class='large'> 
@@ -53,12 +53,12 @@
 
   <div>
     <label for='uf'>UF</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.UF_ENDERECO %>" type="text" id='uf' name='uf'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.UF_ENDERECO %>" type="text" id='uf' name='uf' maxlength="2"/>
   </div>
 
   <div>
     <label for='cep'>CEP</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.CEP %>" type="text" id='cep' name='cep'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.CEP %>" type="text" id='cep' name='cep' maxlength="8"/>
   </div>
 
   <div>
@@ -73,7 +73,7 @@
   </div>
 
 
-  <h2>Operação</h2>
+  <h2>Dados bancários</h2>
   <div class='group'> 
   <div>
     <label for='n_beneficio'>Nº Benefício</label>
@@ -105,7 +105,7 @@
   <!-- LOGICA DO TIPO DE CONTA CASO VENHA DADOS DO BOT -->
   <div>
     <label for='tipo_conta'>Tipo de Conta</label>
-    <% if( value){ %>
+    <% if( !value?.meiopagto && !Object(value).hasOwnProperty('meiopagto')){ %>
       <select name='tipo_conta' id='tipo_conta'>
         <option value=""></option>
         <option value="CONTA CORRENTE">CONTA CORRENTE</option>
@@ -120,14 +120,16 @@
         
         <% arrayTiposConta.forEach(function(tipo, i){%>
           <% if( i !== (arrayTiposConta.findIndex(element => element == value.meiopagto.toUpperCase() )) ){%>
-            <option value="<%= i %>"><%= tipo %></option>
+            <option value="<%= tipo %>"><%= tipo %></option>
           <%}%>
         <% }) %>
     <% } %>
       </select>
   </div>
+</div>
 
-
+<h2>Operação</h2>
+<div class="group">
   <!-- DADOS RETIRADOS DAS TABELAS *****************************************-->
   <div>
     <label for='banco_origem'>Banco Origem</label>
@@ -136,27 +138,31 @@
 
   <div>
     <label for='data_inicio'>Data Inicio</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info2 %>" type="text" id='data_inicio' name='data_inicio'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info2 %>" type="text" id='data_inicio' name='data_inicio' onkeypress="mascaraData(this)"/>
   </div>
 
   <div>
     <label for='quitacao'>Quitação</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info6 %>" type="text" id='quitacao' name='quitacao'/>
   </div>
-
   <div>
-    <label for='parcelas'>Parcelas</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info3 %>" type="text" id='parcelas' name='parcelas'/>
+    <label for='v_parcela'>Valor Parcela</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.v_parcela %>" type="text" id='v_parcela' name='v_parcela'/>
   </div>
 
   <div>
-    <label for='prazo'>Restantes</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info5 %>" type="text" id='prazo' name='prazo'/>
+    <label for='parcelas'>Total de Parcelas</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info3 %>" type="text" id='parcelas' name='parcelas' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
+  </div>
+
+  <div>
+    <label for='prazo'>Parcelas restantes</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info5 %>" type="text" id='prazo' name='prazo' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
   </div>
 
   <div>
     <label for='qtd_pagas'>Qtd Pagas</label>
-    <input value="<%= (isNaN(Number(value.info3) -  Number(value.info5)))  ? "": Number(value.info3) -  Number(value.info5) %>" type="text" id='qtd_pagas' name='qtd_pagas'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.qtd_pagas  %>" type="text" id='qtd_pagas' name='qtd_pagas' alt='O valor é calculado automaticamente quando inserido a quantidade de parcelas e as restantes' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
   </div>
 
   <div>
@@ -173,7 +179,7 @@
   <!-- LOGICA DO SELECT PARA CASO VENHA DADOS DO BOT -->
   <div>
     <label for='status'>Status</label>
-    <% if(value){ %>
+    <% if(!value?.status && !Object(value).hasOwnProperty('status')){ %>
       <select name='status' id='status'>
         <option value=""></option>
         <option value="AVERBADO">AVERBADO</option>
@@ -188,14 +194,14 @@
         
         <% arrayStatus.forEach(function(status, i){%>
           <% if( i !== (arrayStatus.findIndex(element => element == value.status.toUpperCase() )) ){%>
-            <option value="<%= i %>"><%= status %></option>
+            <option value="<%= status %>"><%= status %></option>
           <%}%>
         <% }) %>
     <% } %>
       </select>
   </div>
 </div>
-
+</div>
 
   <h2>Dados adicionais</h2>
   <div class="group">

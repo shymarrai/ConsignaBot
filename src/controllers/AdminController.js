@@ -10,7 +10,7 @@ var ano = data.getFullYear();
 dataAtual = dia + '/' + mes + '/' + ano;
 
 const ws = wb.addWorksheet(`${String(dataAtual)}`)
-const headingColumnsNames = ['Criado', 'Operador', 'Supervisor', "Nome","CPF"	,"Data Nasc.",	"Endereço", "Bairro"	,"Cidade",	"UF",	"CEP",	"Contato1",	"Contato2",	"Nº Benefício",	"Banco",	"Agência",	"Tipo",	"Nº Conta",	"Tipo Conta",	"Banco origem",	"Data Inicio",	"Quitação",	"Parcelas",	"Restantes",	"Contrato",	"Taxa",	"Status","Obs"]
+const headingColumnsNames = ['Criado', 'Operador', 'Supervisor', "Nome","CPF"	,"Data Nasc.",	"Endereço", "Bairro"	,"Cidade",	"UF",	"CEP",	"Contato1",	"Contato2",	"Nº Benefício",	"Banco",	"Agência",	"Tipo",	"Nº Conta",	"Tipo Conta",	"Banco origem",	"Data Inicio",	"Quitação",	"Valor Parcelas",	"Total Parcelas", "Parcelas restantes","Qtd Pagas", "Contrato", "Taxa",	"Status","Obs"]
 const Admin = {
   dash: async function (req, res) {
     const token = req.params.token
@@ -56,7 +56,13 @@ const Admin = {
       headingColumnsNames.forEach( heading => {
         ws.cell(1,headingColumnsIndex++).string(heading)
       })
-      
+      // ['Criado', 'Operador', 'Supervisor', "Nome","CPF"	,"Data Nasc.",
+      // "Endereço", "Bairro"	,"Cidade",	"UF",	"CEP",	"Contato1",	"Contato2",	
+      // "Nº Benefício",	"Banco",	"Agência",	"Tipo",	"Nº Conta",	"Tipo Conta",	
+
+      // "Banco origem",	"Data Inicio",	"Quitação",	"Valor Parcelas",	"Total Parcelas", 
+      // "Parcelas restantes","Contrato", "Qtd Pagas", "Contrato", "Taxa",	"Status","Obs"]
+
       let rowIndex = 2;
       result.forEach(record => {
         ws.cell(rowIndex, 1).string(String(record['created_at']))        
@@ -78,15 +84,17 @@ const Admin = {
         ws.cell(rowIndex, 17).string(String(record['especie']))        
         ws.cell(rowIndex, 18).string(String(record['contacorrente']))        
         ws.cell(rowIndex, 19).string(String(record['meiopagto']))        
-        ws.cell(rowIndex, 20).string(String(record['info1']))        
-        ws.cell(rowIndex, 21).string(String(record['info2']))        
-        ws.cell(rowIndex, 22).string(String(record['info6']))        
-        ws.cell(rowIndex, 23).string(String(record['info3']))        
-        ws.cell(rowIndex, 24).string(String(record['info5']))        
-        ws.cell(rowIndex, 25).string(String(record['info8']))        
-        ws.cell(rowIndex, 26).string(String(record['info9']))               
-        ws.cell(rowIndex, 27).string(String(record['status']))               
-        ws.cell(rowIndex, 28).string(String(record['obs']))        
+        ws.cell(rowIndex, 20).string(String(record['info1']))  /* banco origem  */     
+        ws.cell(rowIndex, 21).string(String(record['info2']))  /* data inicio */   
+        ws.cell(rowIndex, 22).string(String(record['info6']))  /* quitacao */
+        ws.cell(rowIndex, 23).string(String(record['v_parcela']))  /* valor parcelas */
+        ws.cell(rowIndex, 24).string(String(record['info3']))  /* total parcelas */
+        ws.cell(rowIndex, 25).string(String(record['info5']))   /* parcelas restantes */
+        ws.cell(rowIndex, 26).string(String(record['qtd_pagas']))     /* qtd pagas */  
+        ws.cell(rowIndex, 27).string(String(record['info8']))     /* contrato */  
+        ws.cell(rowIndex, 28).string(String(record['info9']))        /* taxa */       
+        ws.cell(rowIndex, 29).string(String(record['status']))         /* status */      
+        ws.cell(rowIndex, 30).string(String(record['obs']))        /* obs */
         rowIndex++
       })
 

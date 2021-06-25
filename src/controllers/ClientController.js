@@ -68,30 +68,33 @@ async function generatePublicUrl(id) {
 }
 
 
-
-
-
-
 const ClientController = {
   save: async function (req, res) {
     const token = req.params.token
     const username = req.params.user
 
     // AUTENTICAÇÃO
-    console.log(`salvando `)
+    
     const selectedUser = await User.findOne({ username })
-
-    if (!token) return res.status(401).send("Acesso Negado Token de acesso - Relogue b")
+    console.log(`${req.body.cpf} e ${req.body.operador} `)
+    if (!token) return res.status(401).send("Acesso Negado Token de acesso - Relogue")
     if (!selectedUser) return res.status(401).send("Acesso Negado Usuário desconhecido")
     if (!req.body.cpf || !req.body.operador) return res.redirect(`/principal/${selectedUser.username}/${token}`)
     
-    if (req.body.type && req.body.cpf) {
+    const values = await Client.findOne({ cli_cpf: req.body.cpf }).sort( {"_id" : -1})
+    const ClientOnUrl = await Client.findOne({"$and": [{cli_cpf  : req.body.cpf},{ url:  {$ne:''} }]}).sort( {"_id" : -1})
+  
+    console.log('req.body.type')
+    var urlImage = {webViewLink: ''}
+    var type = ''
+
+    if(req.body.type !== '') {
       let id = await uploadFile(req.body.cpf, req.body.type)
-      var urlImage = await generatePublicUrl(id)
-      var type = req.body.type
-    }else{
-      var urlImage = {webViewLink: ''}
-      var type = ''
+      urlImage = await generatePublicUrl(id)
+      type = req.body.type
+    }else if(req.body.type === '' && values && ClientOnUrl){
+      urlImage = {webViewLink: ClientOnUrl.url}
+      type = ClientOnUrl.type
     }
 
     try {
@@ -116,8 +119,10 @@ const ClientController = {
         meiopagto: req.body.tipo_conta,
         info1: req.body.banco_origem,
         info2: req.body.data_inicio,
+        v_parcela: req.body.v_parcela,
         info6: req.body.quitacao,
         info3: req.body.parcelas,
+        qtd_pagas: req.body.qtd_pagas,
         info5: req.body.prazo,
         info8: req.body.contrato,
         info9: req.body.taxa,
@@ -140,14 +145,23 @@ const ClientController = {
     const username = req.params.user
     const cpfClient = req.body.cpf_search
 
+    const values = await Client.findOne({ cli_cpf: cpfClient }).sort( {"_id" : -1})
+    const ClientOnUrl = await Client.findOne({"$and": [{cli_cpf  : cpfClient},{ url:  {$ne:''} }]}).sort( {"_id" : -1})
 
-    const values = await Client.findOne({ cli_cpf: cpfClient }).sort({ "_id": -1 })
     const selectedUser = await User.findOne({ username })
 
     if (!req.body.cpf_search) return res.redirect(`/principal/${selectedUser.username}/${token}`)
     if(!selectedUser)return res.redirect(`/principal/${selectedUser.username}/${token}`)
     if(!values)return res.redirect(`/principal/${selectedUser.username}/${token}`)
 
+    if(values.url === '' && ClientOnUrl?.url){
+      values.url = ClientOnUrl.url
+      
+    }else if(values.anexo === '' && ClientOnUrl?.anexo){
+      values.anexo = ClientOnUrl.anexo
+    }
+
+    
     return res.render('principal', { user: selectedUser, token, values })
 
   }

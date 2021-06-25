@@ -11,7 +11,16 @@ function anexoViewer(){
   }
 }
 
+function calculate(){
+  const totParcelas = document.getElementById('parcelas').value
+  const restParcelas = document.getElementById('prazo').value
+  
 
+  if(Number(totParcelas) && Number(restParcelas)){
+
+    document.getElementById('qtd_pagas').value = Number(totParcelas) - Number(restParcelas)
+  }
+}
 
 
 

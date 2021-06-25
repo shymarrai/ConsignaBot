@@ -39,7 +39,7 @@ const UserController = {
     const passwordAndUserMatch = bcrypt.compareSync(req.body.password, selectedUser.password)
     if (!passwordAndUserMatch) return res.send("Usuário ou senha inexistente")
 
-    const token = jwt.sign({ _id: selectedUser.id }, process.env.TOKEN_SECRET, { expiresIn: 3600 })
+    const token = jwt.sign({ _id: selectedUser.id }, process.env.TOKEN_SECRET, { expiresIn: 86400 })
 
     res.header("Access-Control", token)
     return res.redirect(`/principal/${selectedUser.username}/${token}`)
