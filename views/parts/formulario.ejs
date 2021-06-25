@@ -141,7 +141,8 @@
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info2 %>" type="text" id='data_inicio' name='data_inicio' onkeypress="mascaraData(this)"/>
   </div>
 
-  <div>
+  <div style="display:flex;justify-content:space-around; gap: 2rem;">
+    <div>
     <label for='quitacao'>Quitação</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info6 %>" type="text" id='quitacao' name='quitacao'/>
   </div>
@@ -149,10 +150,15 @@
     <label for='v_parcela'>Valor Parcela</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.v_parcela %>" type="text" id='v_parcela' name='v_parcela'/>
   </div>
-
+</div>  
   <div>
     <label for='parcelas'>Total de Parcelas</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info3 %>" type="text" id='parcelas' name='parcelas' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
+  </div>
+
+  <div>
+    <label for='qtd_pagas'>Parcelas Pagas</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.qtd_pagas  %>" type="text" id='qtd_pagas' name='qtd_pagas' alt='O valor é calculado automaticamente quando inserido a quantidade de parcelas e as restantes' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
   </div>
 
   <div>
@@ -160,10 +166,7 @@
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info5 %>" type="text" id='prazo' name='prazo' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
   </div>
 
-  <div>
-    <label for='qtd_pagas'>Qtd Pagas</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.qtd_pagas  %>" type="text" id='qtd_pagas' name='qtd_pagas' alt='O valor é calculado automaticamente quando inserido a quantidade de parcelas e as restantes' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
-  </div>
+
 
   <div>
     <label for='contrato'>Contrato</label>
