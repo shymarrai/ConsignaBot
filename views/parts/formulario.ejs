@@ -1,5 +1,5 @@
 
-<form method="post" enctype="multipart/form-data" class="principal" action="/save_data_client/<%= user.username %>/<%= token%>"> 
+<form method="post" enctype="multipart/form-data" class="principal" action="/save_data_client/<%= user.username %>/<%= token%>"  > 
 
 <h2>Operador</h2>
 <div class='group'>
@@ -200,9 +200,9 @@
 
 <% if(!value?.tipo_operacao && !Object(value).hasOwnProperty('tipo_operacao')){ %>
   <select name='tipo_operacao' id='tipo_operacao' onclick="changeOperation()">
-    <option value="REFIN">REFIN</option>
+    <option style='background-color: #000;' value="REFIN">REFIN</option>
     <option value="MARGEM">MARGEM</option>
-    <option value="REGIN UNIF">REGIN UNIF</option>
+    <option value="REFIN UNIF">REGIN UNIF</option>
     <option value="REFIN + MARGEM">REFIN + MARGEM</option>
     <option value="PORTABILIDADE">PORTABILIDADE</option>
     <option value="PORT + REFIN">PORT + REFIN</option>
@@ -235,67 +235,67 @@
 
 <div class="group">
   <!-- DADOS RETIRADOS DAS TABELAS *****************************************-->
-  <div id='div_banco_original'>
+  <div id='div_banco_original' class='hide'>
     <label for='banco_origem'>Banco Origem</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.banco_origem %>" type="text" id='banco_origem' name='banco_origem'/>
   </div>
 
   
-    <div id='div_quitacao'>
+    <div id='div_quitacao' class='hide'>
     <label for='quitacao'>Quitação</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.quitacao %>" type="text" id='quitacao' name='quitacao'/>
   </div>
   
-  <div id='div_v_parcela'>
+  <div id='div_v_parcela' class='hide'>
     <label for='v_parcela'>Valor Parcela</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.v_parcela %>" type="text" id='v_parcela' name='v_parcela'/>
   </div>
 
-  <div id='div_total_parcelas'>
+  <div id='div_total_parcelas' class='hide'>
     <label for='parcelas'>Total de Parcelas</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.total_parcelas %>" type="text" id='parcelas' name='parcelas' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
   </div>
 
-  <div id='div_qtd_parcelas'>
+  <div id='div_qtd_parcelas' class='hide'>
     <label for='qtd_pagas'>Parcelas Pagas</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.qtd_pagas  %>" type="text" id='qtd_pagas' name='qtd_pagas' alt='O valor é calculado automaticamente quando inserido a quantidade de parcelas e as restantes' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
   </div>
 
-  <div id='div_parcelas_restantes'>
+  <div id='div_parcelas_restantes' class='hide'>
     <label for='prazo'>Parcelas restantes</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.parcelas_restantes %>" type="text" id='prazo' name='prazo' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
   </div>
 
-  <div id='div_parcela_desejada'>
+  <div id='div_parcela_desejada' class='hide'>
     <label for='desejada'>Parcela desejada</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.desejada %>" type="text" id='desejada' name='desejada'/>
   </div>
 
 
 
-  <div id='div_n_contrato'>
+  <div id='div_n_contrato' class='hide'>
     <label for='contrato'>Nº Contrato</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.n_contrato %>" type="text" id='contrato' name='contrato'/>
   </div>
   
-  <div id='div_taxa'>
+  <div id='div_taxa' class='hide'>
     <label for='taxa'>Taxa</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.taxa %>" type="text" id='taxa' name='taxa'/>
   </div>
 
-  <div id='div_margem'>
+  <div id='div_margem' class='hide'>
     <label for='margem'>Margem</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.margem %>" type="text" id='margem' name='margem'/>
   </div>
 
 
-  <div id='div_parcela_nova'>
+  <div id='div_parcela_nova' class='hide'>
     <label for='parcela_nova'>Parcela Nova</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.parcela_nova %>" type="text" id='parcela_nova' name='parcela_nova'/>
   </div>
 
 
-  <div id='div_valor_saque'>
+  <div id='div_valor_saque' class='hide'>
     <label for='valor_saque'>Valor Saque</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.valor_saque %>" type="text" id='valor_saque' name='valor_saque'/>
   </div>
@@ -303,7 +303,7 @@
 
 
   <!-- LOGICA DO SELECT PARA CASO VENHA DADOS DO BOT -->
-  <div>
+  <div  class='hide'>
     <label for='status'>Status</label>
     <% if(!value?.status && !Object(value).hasOwnProperty('status')){ %>
       <select name='status' id='status'>
