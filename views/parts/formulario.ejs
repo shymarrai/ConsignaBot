@@ -8,14 +8,69 @@
     <label for='operador'>Usuário</label>
     <input type="text" name='operador' id='operador' value='<%=user.name%>' readonly/>
   </div>
-  <div>
 
+
+  <div>
   <label for='supervisor'>Supervisor</label>
-    <input type="text" name='supervisor' id='supervisor' value='<%=value.supervisor%>'/>
+  <% if(!value?.supervisor && !Object(value).hasOwnProperty('supervisor')){ %>
+    <select name='supervisor' id='supervisor' style='width:60%;' >
+      <option value=""></option>
+      <option value="EQUIPE 1">EQUIPE 1</option>
+      <option value="EQUIPE 2">EQUIPE 2</option>
+      <option value="EQUIPE 3">EQUIPE 3</option>
+      <option value="EQUIPE 4">EQUIPE 4</option>
+      <option value="EQUIPE 5">EQUIPE 5</option>
+      <option value="EQUIPE 6">EQUIPE 6</option>
+      <option value="EQUIPE 7">EQUIPE 7</option>
+      <option value="EQUIPE 8">EQUIPE 8</option>
+      <option value="EQUIPE 9">EQUIPE 9</option>
+      <option value="EQUIPE 10">EQUIPE 10</option>
+  <% }else{ %>
+    <select name='supervisor' id='supervisor' style='width:60%;'>
+      <% let arraySupervisor = ['', 'EQUIPE 1' , 'EQUIPE 2', 'EQUIPE 3', 'EQUIPE 4', 'EQUIPE 5', 'EQUIPE 6', 'EQUIPE 7', 'EQUIPE 8', 'EQUIPE 9', 'EQUIPE 10'] %>
+      <option value="<%= arraySupervisor.find(element => element == value.supervisor.toUpperCase()) %>">
+        <%= arraySupervisor.find(element => element == value.supervisor.toUpperCase()) %>
+      </option>
+      
+      <% arraySupervisor.forEach(function(supervisor, i){%>
+        <% if( i !== (arraySupervisor.findIndex(element => element == value.supervisor.toUpperCase() )) ){%>
+          <option value="<%= supervisor %>"><%= supervisor %></option>
+        <%}%>
+      <% }) %>
+  <% } %>
+    </select>
   </div>
 
+
+  <div>
   <label for='operacional'>Operacional</label>
-    <input type="text" name='operacional' id='operacional' value='<%=value.operacional%>'/>
+  <% if(!value?.operacional && !Object(value).hasOwnProperty('operacional')){ %>
+    <select name='operacional' id='operacional'>
+      <option value=""></option>
+      <option value="OPERACIONAL 1">OPERACIONAL 1</option>
+      <option value="OPERACIONAL 2">OPERACIONAL 2</option>
+      <option value="OPERACIONAL 3">OPERACIONAL 3</option>
+      <option value="OPERACIONAL 4">OPERACIONAL 4</option>
+      <option value="OPERACIONAL 5">OPERACIONAL 5</option>
+      <option value="OPERACIONAL 6">OPERACIONAL 6</option>
+      <option value="OPERACIONAL 7">OPERACIONAL 7</option>
+      <option value="OPERACIONAL 8">OPERACIONAL 8</option>
+      <option value="OPERACIONAL 9">OPERACIONAL 9</option>
+      <option value="OPERACIONAL 10">OPERACIONAL 10</option>
+  <% }else{ %>
+    <select name='operacional' id='operacional'>
+      <% let arrayOperacional = ['', 'OPERACIONAL 1' , 'OPERACIONAL 2', 'OPERACIONAL 3', 'OPERACIONAL 4', 'OPERACIONAL 5', 'OPERACIONAL 6', 'OPERACIONAL 7', 'OPERACIONAL 8', 'OPERACIONAL 9', 'OPERACIONAL 10'] %>
+      <option value="<%= arrayOperacional.find(element => element == value.operacional.toUpperCase()) %>">
+        <%= arrayOperacional.find(element => element == value.operacional.toUpperCase()) %>
+      </option>
+      
+      <% arrayOperacional.forEach(function(operacional, i){%>
+        <% if( i !== (arrayOperacional.findIndex(element => element == value.operacional.toUpperCase() )) ){%>
+          <option value="<%= operacional %>"><%= operacional %></option>
+        <%}%>
+      <% }) %>
+  <% } %>
+    </select>
   </div>
 </div>
 
@@ -137,60 +192,114 @@
   </div>
 </div>
 
-<h2>Operação</h2>
+
+
+
+<div>
+<h2>Tipo de Operação
+
+<% if(!value?.tipo_operacao && !Object(value).hasOwnProperty('tipo_operacao')){ %>
+  <select name='tipo_operacao' id='tipo_operacao' onclick="changeOperation()">
+    <option value="REFIN">REFIN</option>
+    <option value="MARGEM">MARGEM</option>
+    <option value="REGIN UNIF">REGIN UNIF</option>
+    <option value="REFIN + MARGEM">REFIN + MARGEM</option>
+    <option value="PORTABILIDADE">PORTABILIDADE</option>
+    <option value="PORT + REFIN">PORT + REFIN</option>
+    <option value="PORT + REDUÇÃO">PORT + REDUÇÃO</option>
+    <option value="SAQUE COMPLEMENTAR">SAQUE COMPLEMENTAR</option>
+    <option value="CARTÃO">CARTÃO</option>
+    <option value="CARTÃO + SAQUE">CARTÃO + SAQUE</option>
+    <option value="FGTS">FGTS</option>
+    <option value="CREDITO CONTA">CREDITO CONTA</option>
+<% }else{ %>
+  <select name='tipo_operacao' id='tipo_operacao' onclick="changeOperation()">
+    <% let arrayTiposDeOperacoes = ['REFIN' , 'MARGEM', 'REGIN UNIF', 'REFIN + MARGEM','PORTABILIDADE', 'PORT + REFIN', 'PORT + REDUÇÃO', 'SAQUE COMPLEMENTAR', 'CARTÃO', 'CARTÃO + SAQUE', 'FGTS', 'CREDITO CONTA'] %>
+    <option value="<%= arrayTiposDeOperacoes.find(element => element == value.tipo_operacao.toUpperCase()) %>">
+      <%= arrayTiposDeOperacoes.find(element => element == value.tipo_operacao.toUpperCase()) %>
+    </option>
+    
+    <% arrayTiposDeOperacoes.forEach(function(tipo_operacao, i){%>
+      <% if( i !== (arrayTiposDeOperacoes.findIndex(element => element == value.tipo_operacao.toUpperCase() )) ){%>
+        <option value="<%= tipo_operacao %>"><%= tipo_operacao %></option>
+      <%}%>
+    <% }) %>
+<% } %>
+  </select>
+</h2>
+</div>
+
+
+
+
+
 <div class="group">
   <!-- DADOS RETIRADOS DAS TABELAS *****************************************-->
-  <div>
+  <div id='div_banco_original'>
     <label for='banco_origem'>Banco Origem</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info1 %>" type="text" id='banco_origem' name='banco_origem'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.banco_origem %>" type="text" id='banco_origem' name='banco_origem'/>
   </div>
 
-  <div style="display:flex;justify-content:space-around; gap: 2rem;">
-    <div>
+  
+    <div id='div_quitacao'>
     <label for='quitacao'>Quitação</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info6 %>" type="text" id='quitacao' name='quitacao'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.quitacao %>" type="text" id='quitacao' name='quitacao'/>
   </div>
-  <div>
+  
+  <div id='div_v_parcela'>
     <label for='v_parcela'>Valor Parcela</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.v_parcela %>" type="text" id='v_parcela' name='v_parcela'/>
   </div>
-</div>  
-  <div>
+
+  <div id='div_total_parcelas'>
     <label for='parcelas'>Total de Parcelas</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info3 %>" type="text" id='parcelas' name='parcelas' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.total_parcelas %>" type="text" id='parcelas' name='parcelas' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
   </div>
 
-  <div>
+  <div id='div_qtd_parcelas'>
     <label for='qtd_pagas'>Parcelas Pagas</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.qtd_pagas  %>" type="text" id='qtd_pagas' name='qtd_pagas' alt='O valor é calculado automaticamente quando inserido a quantidade de parcelas e as restantes' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
   </div>
 
-  <div>
+  <div id='div_parcelas_restantes'>
     <label for='prazo'>Parcelas restantes</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info5 %>" type="text" id='prazo' name='prazo' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.parcelas_restantes %>" type="text" id='prazo' name='prazo' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
   </div>
 
-  <div>
+  <div id='div_parcela_desejada'>
     <label for='desejada'>Parcela desejada</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.desejada %>" type="text" id='desejada' name='desejada'/>
   </div>
 
 
 
-  <div>
-    <label for='contrato'>Nº tContrato</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info8 %>" type="text" id='contrato' name='contrato'/>
+  <div id='div_n_contrato'>
+    <label for='contrato'>Nº Contrato</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.n_contrato %>" type="text" id='contrato' name='contrato'/>
   </div>
   
-  <div>
+  <div id='div_taxa'>
     <label for='taxa'>Taxa</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info9 %>" type="text" id='taxa' name='taxa'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.taxa %>" type="text" id='taxa' name='taxa'/>
   </div>
 
-  <div>
-    <label for='v_liberado'>Valor liberado</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.v_liberado %>" type="text" id='v_liberado' name='v_liberado'/>
+  <div id='div_margem'>
+    <label for='margem'>Margem</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.margem %>" type="text" id='margem' name='margem'/>
   </div>
+
+
+  <div id='div_parcela_nova'>
+    <label for='parcela_nova'>Parcela Nova</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.parcela_nova %>" type="text" id='parcela_nova' name='parcela_nova'/>
+  </div>
+
+
+  <div id='div_valor_saque'>
+    <label for='valor_saque'>Valor Saque</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.valor_saque %>" type="text" id='valor_saque' name='valor_saque'/>
+  </div>
+
 
 
   <!-- LOGICA DO SELECT PARA CASO VENHA DADOS DO BOT -->
@@ -199,12 +308,21 @@
     <% if(!value?.status && !Object(value).hasOwnProperty('status')){ %>
       <select name='status' id='status'>
         <option value=""></option>
-        <option value="AVERBADO">AVERBADO</option>
         <option value="CANCELADO">CANCELADO</option>
-        <option value="AGUARDANDO CLIENTE">AGUARDANDO CLIENTE</option>
+        <option value="AGUARDANDO ACEITE">AGUARDANDO ACEITE</option>
+        <option value="AVERBADO">AVERBADO</option>
+        <option value="VENDA">VENDA</option>
+        <option value="AGUARDANDO SALDO DIG">AGUARDANDO SALDO DIG</option>
+        <option value="AGUARDANDO SALDO FIS">AGUARDANDO SALDO FIS</option>
+        <option value="AGUARDANDO AVERB INSS">AGUARDANDO AVERB INSS</option>
+        <option value="AGUARDANDO DOC">AGUARDANDO DOC</option>
+        <option value="DESISTENCIA CLIENTE">DESISTENCIA CLIENTE</option>
+        <option value="REDIGITAR">REDIGITAR</option>
+        <option value="PENDENTE">PENDENTE</option>
+        <option value="SEM CONTATO">SEM CONTATO</option>
     <% }else{ %>
       <select name='status' id='status'>
-        <% let arrayStatus = ['','AVERBADO','CANCELADO','AGUARDANDO CLIENTE'] %>
+        <% let arrayStatus = ['','CANCELADO','AGUARDANDO ACEITE','AVERBADO', 'VENDA',  'AGUARDANDO SALDO DIG', 'AGUARDANDO SALDO FIS', 'AGUARDANDO AVERB INSS', 'AGUARDANDO DOC', 'DESISTENCIA CLIENTE', 'REDIGITAR', 'PENDENTE', 'SEN CONTATO'] %>
         <option value="<%= arrayStatus.find(element => element == value.status.toUpperCase()) %>">
           <%= arrayStatus.find(element => element == value.status.toUpperCase()) %>
         </option>
@@ -217,29 +335,38 @@
     <% } %>
       </select>
   </div>
+
+
+
+
 </div>
-</div>
+
+
+
+
+
+
 
 <h2>Proposta Cliente</h2>
 <div class="group">
 
   <div>
     <label for='b_digitado'>Banco Digitado
-      <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.b_digitado %>"type="text" name='b_digitado' id='b_digitado'/>
+      <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.b_digitado %>" type="text" name='b_digitado' id='b_digitado'/>
     </label>
   </div>
 
   <div>
-    <label for='n_proposta'>Nº Proposta
-      <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.n_proposta %>"type="text" name='n_proposta' id='n_proposta'/>
-    </label>
+    <label for='n_proposta'>Nº Proposta</label>
+      <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.n_proposta %>" type="text" name='n_proposta' id='n_proposta'/>
   </div>
 
   <div>
     <label for='v_liberado'>Valor liberado
-      <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.v_liberado %>"type="text" name='v_liberado' id='v_liberado'/>
+      <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.v_liberado %>" type="text" name='v_liberado' id='v_liberado'/>
     </label>
   </div>
+
 </div>
 
 
@@ -290,3 +417,96 @@
 
 </div>
 </form>
+
+
+
+
+
+
+
+<!-- 
+
+<div class="group">
+  DADOS RETIRADOS DAS TABELAS 
+  <div>
+    <label for='banco_origem'>Banco Origem</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info1 %>" type="text" id='banco_origem' name='banco_origem'/>
+  </div>
+
+  
+    <div>
+    <label for='quitacao'>Quitação</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info6 %>" type="text" id='quitacao' name='quitacao'/>
+  </div>
+  
+  <div>
+    <label for='v_parcela'>Valor Parcela</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.v_parcela %>" type="text" id='v_parcela' name='v_parcela'/>
+  </div>
+
+  <div>
+    <label for='parcelas'>Total de Parcelas</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info3 %>" type="text" id='parcelas' name='parcelas' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
+  </div>
+
+  <div>
+    <label for='qtd_pagas'>Parcelas Pagas</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.qtd_pagas  %>" type="text" id='qtd_pagas' name='qtd_pagas' alt='O valor é calculado automaticamente quando inserido a quantidade de parcelas e as restantes' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
+  </div>
+
+  <div>
+    <label for='prazo'>Parcelas restantes</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info5 %>" type="text" id='prazo' name='prazo' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
+  </div>
+
+  <div>
+    <label for='desejada'>Parcela desejada</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.desejada %>" type="text" id='desejada' name='desejada'/>
+  </div>
+
+
+
+  <div>
+    <label for='contrato'>Nº Contrato</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info8 %>" type="text" id='contrato' name='contrato'/>
+  </div>
+  
+  <div>
+    <label for='taxa'>Taxa</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info9 %>" type="text" id='taxa' name='taxa'/>
+  </div>
+
+  <div>
+    <label for='v_liberado'>Valor liberado</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.v_liberado %>" type="text" id='v_liberado' name='v_liberado'/>
+  </div>
+
+
+LOGICA DO SELECT PARA CASO VENHA DADOS DO BOT
+
+  <div>
+    <label for='status'>Status</label>
+    <% if(!value?.status && !Object(value).hasOwnProperty('status')){ %>
+      <select name='status' id='status'>
+        <option value=""></option>
+        <option value="AVERBADO">AVERBADO</option>
+        <option value="CANCELADO">CANCELADO</option>
+        <option value="AGUARDANDO CLIENTE">AGUARDANDO CLIENTE</option>
+    <% }else{ %>
+      <select name='status' id='status'>
+        <% let arrayStatus = ['','AVERBADO','CANCELADO','AGUARDANDO CLIENTE'] %>
+        <option value="<%= arrayStatus.find(element => element == value.status.toUpperCase()) %>">
+          <%= arrayStatus.find(element => element == value.status.toUpperCase()) %>
+        </option>
+        
+        <% arrayStatus.forEach(function(status, i){%>
+          <% if( i !== (arrayStatus.findIndex(element => element == value.status.toUpperCase() )) ){%>
+            <option value="<%= status %>"><%= status %></option>
+          <%}%>
+        <% }) %>
+    <% } %>
+      </select>
+  </div>
+</div>
+
+-->

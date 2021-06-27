@@ -105,3 +105,13 @@ h2 {
   padding: 1rem;
   background-color: #fefefe;
 }
+
+.show {
+  visibility: visible;
+  display: block;
+}
+
+.hide {
+  display: none;
+  visibility: hidden;
+}

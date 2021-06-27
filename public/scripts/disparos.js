@@ -22,6 +22,15 @@ function calculate(){
   }
 }
 
+function changeOperation(){
+  let value = document.getElementById('tipo_operacao').value
+  if(value == 'PORTABILIDADE' || value == 'PORT + REFIN' || value == 'PORT + REDUÇÃO'){
+    
+  }
+}
+
+
+
 
 
 

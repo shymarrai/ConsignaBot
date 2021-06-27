@@ -76,7 +76,6 @@ const ClientController = {
     // AUTENTICAÇÃO
     
     const selectedUser = await User.findOne({ username })
-    console.log(`${req.body.cpf} e ${req.body.operador} `)
     if (!token) return res.status(401).send("Acesso Negado Token de acesso - Relogue")
     if (!selectedUser) return res.status(401).send("Acesso Negado Usuário desconhecido")
     if (!req.body.cpf || !req.body.operador) return res.redirect(`/principal/${selectedUser.username}/${token}`)
@@ -84,9 +83,11 @@ const ClientController = {
     const values = await Client.findOne({ cli_cpf: req.body.cpf }).sort( {"_id" : -1})
     const ClientOnUrl = await Client.findOne({"$and": [{cli_cpf  : req.body.cpf},{ url:  {$ne:''} }]}).sort( {"_id" : -1})
   
-    console.log('req.body.type')
     var urlImage = {webViewLink: ''}
     var type = ''
+    var margem = ''
+    var parcela_nova = ''
+    var valor_saque = ''
 
     if(req.body.type !== '') {
       let id = await uploadFile(req.body.cpf, req.body.type)
@@ -96,13 +97,28 @@ const ClientController = {
       urlImage = {webViewLink: ClientOnUrl.url}
       type = ClientOnUrl.type
     }
+
+
     Date.prototype.addHours = function (value) {
       this.setHours(this.getHours() + value);
     }
 
-    let data = new Date(values.created_at)
+    let data = new Date()
     data.addHours(-6);
 
+    
+    if(req.body.margem){
+      margem = req.body.margem
+
+    }
+    if(req.body.parcela_nova){
+      parcela_nova = req.body.parcela_nova
+
+    }
+    if(req.body.valor_saque){
+      valor_saque = req.body.valor_saque
+
+    }
     
 
     try {
@@ -127,17 +143,20 @@ const ClientController = {
         especie: req.body.tipo,
         contacorrente: req.body.n_conta,
         meiopagto: req.body.tipo_conta,
-        info1: req.body.banco_origem,
+        tipo_operacao: req.body.tipo_operacao,
+        banco_origem: req.body.banco_origem,
         v_parcela: req.body.v_parcela,
         desejada: req.body.desejada,
-        info6: req.body.quitacao,
-        info3: req.body.parcelas,
+        quitacao: req.body.quitacao,
+        total_parcelas: req.body.parcelas,
         qtd_pagas: req.body.qtd_pagas,
-        info5: req.body.prazo,
-        info8: req.body.contrato,
-        info9: req.body.taxa,
-        v_liberado: req.body.v_liberado,
+        parcelas_restantes: req.body.prazo,
+        n_contrato: req.body.contrato,
+        taxa: req.body.taxa,
         status: req.body.status,
+        margem: margem,
+        parcela_nova:parcela_nova,
+        valor_saque: valor_saque,
         b_digitado: req.body.b_digitado,
         n_proposta: req.body.n_proposta,
         v_liberado: req.body.v_liberado,
@@ -186,3 +205,49 @@ const ClientController = {
 
 
 module.exports = ClientController
+
+
+
+
+/* try {
+  const client = new Client({
+    operador: req.body.operador,
+    supervisor: req.body.supervisor,
+    operacional: req.body.operacional,
+    cli_nome: req.body.nome,
+    cli_cpf: req.body.cpf,
+    cli_data_nasc: req.body.dt_nasc,
+    ENDERECO: req.body.end,
+    BAIRRO: req.body.bairro,
+    CIDADE: req.body.municipio,
+    UF_ENDERECO: req.body.uf,
+    CEP: req.body.cep,
+    contato1: req.body.tel,
+    contato2: req.body.cel,
+    cli_matricula: req.body.n_beneficio,
+    Banco: req.body.banco,
+    rf_extra_base_margem: req.body.salario,
+    Agencia_Pagto: req.body.ag,
+    especie: req.body.tipo,
+    contacorrente: req.body.n_conta,
+    meiopagto: req.body.tipo_conta,
+    tipo_operacao: req.body.tipo_operacao,
+    info1: req.body.banco_origem,
+    v_parcela: req.body.v_parcela,
+    desejada: req.body.desejada,
+    info6: req.body.quitacao,
+    info3: req.body.parcelas,
+    qtd_pagas: req.body.qtd_pagas,
+    info5: req.body.prazo,
+    info8: req.body.contrato,
+    info9: req.body.taxa,
+    v_liberado: req.body.v_liberado,
+    status: req.body.status,
+    b_digitado: req.body.b_digitado,
+    n_proposta: req.body.n_proposta,
+    v_liberado: req.body.v_liberado,
+    obs: req.body.obs,
+    url: urlImage.webViewLink,
+    anexo: type,
+    created_at: data,
+  }) */
