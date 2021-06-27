@@ -13,6 +13,10 @@
   <label for='supervisor'>Supervisor</label>
     <input type="text" name='supervisor' id='supervisor' value='<%=value.supervisor%>'/>
   </div>
+
+  <label for='operacional'>Operacional</label>
+    <input type="text" name='operacional' id='operacional' value='<%=value.operacional%>'/>
+  </div>
 </div>
 
 <h2>Cliente</h2>
@@ -67,7 +71,7 @@
   </div>
 
   <div>
-    <label for='cel'>Celular</label>
+    <label for='cel'>Zap</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.contato2 %>" type="text" id='cel' name='cel' onkeypress="mask(this, mphoneC);" onblur="mask(this, mphoneC);" />
   </div>
   </div>
@@ -78,6 +82,11 @@
   <div>
     <label for='n_beneficio'>Nº Benefício</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.cli_matricula %>" type="text" id='n_beneficio' name='n_beneficio'/>
+  </div>
+
+  <div>
+    <label for='salario'>Salário</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.rf_extra_base_margem %>" type="text" id='salario' name='salario'/>
   </div>
 
   <div>
@@ -136,11 +145,6 @@
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info1 %>" type="text" id='banco_origem' name='banco_origem'/>
   </div>
 
-  <div>
-    <label for='data_inicio'>Data Inicio</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info2 %>" type="text" id='data_inicio' name='data_inicio' onkeypress="mascaraData(this)"/>
-  </div>
-
   <div style="display:flex;justify-content:space-around; gap: 2rem;">
     <div>
     <label for='quitacao'>Quitação</label>
@@ -166,16 +170,26 @@
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info5 %>" type="text" id='prazo' name='prazo' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
   </div>
 
+  <div>
+    <label for='desejada'>Parcela desejada</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.desejada %>" type="text" id='desejada' name='desejada'/>
+  </div>
+
 
 
   <div>
-    <label for='contrato'>Contrato</label>
+    <label for='contrato'>Nº tContrato</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info8 %>" type="text" id='contrato' name='contrato'/>
   </div>
   
   <div>
     <label for='taxa'>Taxa</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.info9 %>" type="text" id='taxa' name='taxa'/>
+  </div>
+
+  <div>
+    <label for='v_liberado'>Valor liberado</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.v_liberado %>" type="text" id='v_liberado' name='v_liberado'/>
   </div>
 
 
@@ -205,6 +219,33 @@
   </div>
 </div>
 </div>
+
+<h2>Proposta Cliente</h2>
+<div class="group">
+
+  <div>
+    <label for='b_digitado'>Banco Digitado
+      <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.b_digitado %>"type="text" name='b_digitado' id='b_digitado'/>
+    </label>
+  </div>
+
+  <div>
+    <label for='n_proposta'>Nº Proposta
+      <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.n_proposta %>"type="text" name='n_proposta' id='n_proposta'/>
+    </label>
+  </div>
+
+  <div>
+    <label for='v_liberado'>Valor liberado
+      <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.v_liberado %>"type="text" name='v_liberado' id='v_liberado'/>
+    </label>
+  </div>
+</div>
+
+
+
+<!-- DIV GROUP DADOS ADICIONAIS -->
+
 
   <h2>Dados adicionais</h2>
   <div class="group">

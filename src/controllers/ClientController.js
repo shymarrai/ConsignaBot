@@ -96,11 +96,20 @@ const ClientController = {
       urlImage = {webViewLink: ClientOnUrl.url}
       type = ClientOnUrl.type
     }
+    Date.prototype.addHours = function (value) {
+      this.setHours(this.getHours() + value);
+    }
+
+    let data = new Date(values.created_at)
+    data.addHours(-6);
+
+    
 
     try {
       const client = new Client({
         operador: req.body.operador,
         supervisor: req.body.supervisor,
+        operacional: req.body.operacional,
         cli_nome: req.body.nome,
         cli_cpf: req.body.cpf,
         cli_data_nasc: req.body.dt_nasc,
@@ -113,23 +122,29 @@ const ClientController = {
         contato2: req.body.cel,
         cli_matricula: req.body.n_beneficio,
         Banco: req.body.banco,
+        rf_extra_base_margem: req.body.salario,
         Agencia_Pagto: req.body.ag,
         especie: req.body.tipo,
         contacorrente: req.body.n_conta,
         meiopagto: req.body.tipo_conta,
         info1: req.body.banco_origem,
-        info2: req.body.data_inicio,
         v_parcela: req.body.v_parcela,
+        desejada: req.body.desejada,
         info6: req.body.quitacao,
         info3: req.body.parcelas,
         qtd_pagas: req.body.qtd_pagas,
         info5: req.body.prazo,
         info8: req.body.contrato,
         info9: req.body.taxa,
+        v_liberado: req.body.v_liberado,
         status: req.body.status,
+        b_digitado: req.body.b_digitado,
+        n_proposta: req.body.n_proposta,
+        v_liberado: req.body.v_liberado,
         obs: req.body.obs,
         url: urlImage.webViewLink,
-        anexo: type
+        anexo: type,
+        created_at: data,
       })
       console.log(`criou: ${client}`)
       await client.save()
