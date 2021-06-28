@@ -321,10 +321,11 @@
         <option value="DESISTENCIA CLIENTE">DESISTENCIA CLIENTE</option>
         <option value="REDIGITAR">REDIGITAR</option>
         <option value="PENDENTE">PENDENTE</option>
+        <option value="RETORNAR CLIENTE">RETORNAR CLIENTE</option>
         <option value="SEM CONTATO">SEM CONTATO</option>
     <% }else{ %>
       <select name='status' id='status'>
-        <% let arrayStatus = ['','CANCELADO','AGUARDANDO ACEITE','AVERBADO', 'VENDA',  'AGUARDANDO SALDO DIG', 'AGUARDANDO SALDO FIS', 'AGUARDANDO AVERB INSS', 'AGUARDANDO DOC', 'DESISTENCIA CLIENTE', 'REDIGITAR', 'PENDENTE', 'SEN CONTATO'] %>
+        <% let arrayStatus = ['','CANCELADO','AGUARDANDO ACEITE','AVERBADO', 'VENDA',  'AGUARDANDO SALDO DIG', 'AGUARDANDO SALDO FIS', 'AGUARDANDO AVERB INSS', 'AGUARDANDO DOC', 'DESISTENCIA CLIENTE', 'REDIGITAR', 'PENDENTE', 'RETORNAR CLIENTE' ,'SEN CONTATO'] %>
         <option value="<%= arrayStatus.find(element => element == value.status.toUpperCase()) %>">
           <%= arrayStatus.find(element => element == value.status.toUpperCase()) %>
         </option>
