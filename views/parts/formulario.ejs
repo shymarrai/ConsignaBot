@@ -251,22 +251,22 @@
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.v_parcela %>" type="text" id='v_parcela' name='v_parcela' onkeyup='formatarMoeda(this)'/>
   </div>
 
-  <div id='div_qtd_parcelas' class='hide'>
-    <label for='qtd_pagas'>Parcelas Pagas</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.qtd_pagas  %>" type="text" id='qtd_pagas' name='qtd_pagas' alt='O valor é calculado automaticamente quando inserido a quantidade de parcelas e as restantes' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
-  </div>
-
   <div id='div_total_parcelas' class='hide'>
     <label for='parcelas'>Total de Parcelas</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.total_parcelas %>" type="text" id='parcelas' name='parcelas' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
   </div>
 
-
-
   <div id='div_parcelas_restantes' class='hide'>
     <label for='prazo'>Parcelas restantes</label>
     <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.parcelas_restantes %>" type="text" id='prazo' name='prazo' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
   </div>
+
+  <div id='div_qtd_parcelas' class='hide'>
+    <label for='qtd_pagas'>Parcelas Pagas</label>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.qtd_pagas  %>" type="text" id='qtd_pagas' name='qtd_pagas' alt='O valor é calculado automaticamente quando inserido a quantidade de parcelas e as restantes' onChange="calculate()" onkeypress="calculate()" onblur="calculate()"/>
+  </div>
+
+
 
   <div id='div_parcela_desejada' class='hide'>
     <label for='desejada'>Parcela desejada</label>
