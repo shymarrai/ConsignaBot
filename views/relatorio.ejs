@@ -29,20 +29,24 @@
 
     
   </header>
-
+<% var data = new Date(); %>
+  <% var dia = String(data.getDate()).padStart(2, '0'); %>
+  <% var mes = String(data.getMonth() + 1).padStart(2, '0'); %>
+  <% var ano = data.getFullYear(); %>
+  
   <main>
     <div class="large" >
       <form id="form-generate" method='post' action="/generate/<%= user.username%>/<%= token %>">
         <div>
             <div>
               <label for="de">De:
-                <input type="date" name="de" id='de'>
+                <input type="date" name="de" id='de' value="<%= ano+"-"+mes+"-"+dia %>">
               </label>  
             </div>
             
             <div>
               <label for="ate">Até
-                <input type="date" name="ate" id='ate'>
+                <input type="date" name="ate" id='ate' value="<%= ano+"-"+mes+"-"+String(Number(dia)+1) %>">
               </label>
             </div>
         </div>

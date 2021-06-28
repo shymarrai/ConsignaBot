@@ -194,7 +194,6 @@ function changeOperation(){
 
 
 
-
-
 window.onload = changeOperation()
 window.onload = anexoViewer()
+
