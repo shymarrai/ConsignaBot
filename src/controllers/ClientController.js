@@ -104,7 +104,7 @@ const ClientController = {
     }
 
     let data = new Date()
-    data.addHours(-6);
+    data.addHours(-3);
 
     
     if(req.body.margem){
