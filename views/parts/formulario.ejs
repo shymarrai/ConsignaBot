@@ -141,7 +141,7 @@
 
   <div>
     <label for='salario'>Salário</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.rf_extra_base_margem %>" type="text" id='salario' name='salario'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.rf_extra_base_margem %>" type="text" id='salario' name='salario' onkeyup='formatarMoeda(this)' />
   </div>
 
   <div>
@@ -243,12 +243,12 @@
   
     <div id='div_quitacao' class='hide'>
     <label for='quitacao'>Quitação</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.quitacao %>" type="text" id='quitacao' name='quitacao'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.quitacao %>" type="text" id='quitacao' name='quitacao' onkeyup='formatarMoeda(this)'/>
   </div>
   
   <div id='div_v_parcela' class='hide'>
     <label for='v_parcela'>Valor Parcela</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.v_parcela %>" type="text" id='v_parcela' name='v_parcela'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.v_parcela %>" type="text" id='v_parcela' name='v_parcela' onkeyup='formatarMoeda(this)'/>
   </div>
 
   <div id='div_total_parcelas' class='hide'>
@@ -291,13 +291,13 @@
 
   <div id='div_parcela_nova' class='hide'>
     <label for='parcela_nova'>Parcela Nova</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.parcela_nova %>" type="text" id='parcela_nova' name='parcela_nova'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.parcela_nova %>" type="text" id='parcela_nova' name='parcela_nova' onkeyup='formatarMoeda(this)'/>
   </div>
 
 
   <div id='div_valor_saque' class='hide'>
     <label for='valor_saque'>Valor Saque</label>
-    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.valor_saque %>" type="text" id='valor_saque' name='valor_saque'/>
+    <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.valor_saque %>" type="text" id='valor_saque' name='valor_saque' onkeyup='formatarMoeda(this)'/>
   </div>
 
 
@@ -363,7 +363,7 @@
 
   <div>
     <label for='v_liberado'>Valor liberado
-      <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.v_liberado %>" type="text" name='v_liberado' id='v_liberado'/>
+      <input value="<%= value == null || value == undefined || value.length < 20 ? "": value.v_liberado %>" type="text" name='v_liberado' id='v_liberado' onkeyup='formatarMoeda(this)'/>
     </label>
   </div>
 

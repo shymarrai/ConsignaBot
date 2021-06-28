@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <header class='Headertotal'>
+  <header>
     
     <span></span>
 
@@ -34,15 +34,64 @@
     <div class="large" >
       <form id="form-generate" method='post' action="/generate/<%= user.username%>/<%= token %>">
         <div>
-          <label for="de">De:
-            <input type="date" name="de" id='de'>
-          </label>  
+            <div>
+              <label for="de">De:
+                <input type="date" name="de" id='de'>
+              </label>  
+            </div>
+            
+            <div>
+              <label for="ate">Até
+                <input type="date" name="ate" id='ate'>
+              </label>
+            </div>
         </div>
+
         
-        <div>
-          <label for="ate">Até
-            <input type="date" name="ate" id='ate'>
+        <div class='large_relatorio'>
+          <div class='title'>
+            <h3>Filtros</h3>
+          </div>
+
+          <div class='filters'>
+            <label for='filtro_supervisor'>Supervisor
+            <select name='supervisor' id='filtro_supervisor'>
+              <option value="1">EQUIPE 1</option>
+              <option value="2">EQUIPE 2</option>
+              <option value="3">EQUIPE 3</option>
+              <option value="4">EQUIPE 4</option>
+              <option value="5">EQUIPE 5</option>
+              <option value="6">EQUIPE 6</option>
+              <option value="7">EQUIPE 7</option>
+              <option value="8">EQUIPE 8</option>
+              <option value="9">EQUIPE 9</option>
+              <option value="10">EQUIPE 10</option>
+            </select>
           </label>
+
+            <label for='filtro_operacional'>Operacional
+            <select name='supervisor' id='filtro_operacional'>
+              <option value="1">1</option>
+              <option value="1">2</option>
+              <option value="1">3</option>
+              <option value="1">4</option>
+              <option value="1">5</option>
+            </select>
+          </label>
+
+            <label for='filtro_status'>Status
+            <select name='supervisor' id='filtro_status'>
+              <option value="1">1</option>
+              <option value="1">2</option>
+              <option value="1">3</option>
+              <option value="1">4</option>
+              <option value="1">5</option>
+            </select>
+          </label>
+          </div>
+
+
+
         </div>
         
       </form>
@@ -64,33 +113,23 @@
           <thead>
           <tr>
             <th>Criado</th>
+            <th>Status</th>
             <th>Operador</th>
             <th>Supervisor</th>
             <th >Nome</th>
             <th>CPF</th>
-            <th>Data Nasc.</th>
-            <th>Endereço</th>
-            <th>Cidade</th>
-            <th>UF</th>
-            <th>CEP</th>
-            <th>Contato1</th>
-            <th>Contato2</th>
-            <th>Nº Benefício</th>
-            <th>Banco</th>
-            <th>Agência</th>
-            <th>Tipo</th>
-            <th>Nº Conta</th>
-            <th>Tipo Conta</th>
-            <th>Banco origem</th>
-            <th>Data Inicio</th>
+            <th>Tipo de Operação</th>
+            <th>Salário</th>
+            <th>Banco Digitado</th>
+            <th>Nº Proposta</th>
+            <th>Valor liberado</th>
             <th>Quitação</th>
-            <th>Parcelas</th>
-            <th>Restantes</th>
-            
-            <th>Contrato</th>
+            <th>Salário</th>
+            <th>Banco Digitado</th>
+            <th>Total Parcelas</th>
+            <th>Parcelas Pagas</th>
+            <th>Parcelas Restantes</th>
             <th>Taxa</th>
-            <th>Status</th>
-            <th>Anexo</th>
             <th>Obs</th>
           </tr>
           </thead>
@@ -104,38 +143,22 @@
                   <%= String(result[i].created_at).slice(4, 25 ) %>
                 </td>
 
-                <td id='operador'><%= result[i].operador %></td>
+                <td id='operador'><%= result[i].status %></td>
+                <td id='operador'><%= result[i].operacional %></td>
                 <td id='supervisor'><%= result[i].supervisor %></td>
                 <td id='cli_nome' > <%= result[i].cli_nome %></td>
-                <td id='cli_cpf'><%= result[i].cli_cpf %></td>
-                <td id='cli_data_nasc'><%= result[i].cli_data_nasc %></td>
-                <td id='endereco'><%= result[i].ENDERECO %></td>
-                <td id='cidade'><%= result[i].CIDADE %></td>
-                <td id='uf'><%= result[i].UF_ENDERECO %></td>
-                <td id='cep'><%= result[i].CEP %></td>
-                <td id='contato1'><%= result[i].contato1 %></td>
-                <td id='contato2'><%= result[i].contato2 %></td>
-                <td id='cli_matricula'><%= result[i].cli_matricula %></td>
-                <td id='banco'><%= result[i].Banco %></td>
-                <td id='ag'><%= result[i].Agencia_Pagto %></td>
-                <td id='especie'><%= result[i].especie %></td>
-                <td id='contacorrente'><%= result[i].contacorrente %></td>
-                <td id='meiopagto'><%= result[i].meiopagto %></td>
-                <td id='infobanco'><%= result[i].info1 %></td>
-                <td id='infodata'><%= result[i].info2 %></td>
-                <td id='infototal'><%= result[i].info6 %></td>
-                <td id='infoparcelas'><%= result[i].info3 %></td>
-                <td id='inforestantes'><%= result[i].info5 %></td>
-                <td id='infocontrato'><%= result[i].info8 %></td>
-                <td id='infotaxa'><%= result[i].info9 %></td>
-                <td id='infostatus'><%= result[i].status %></td>
-                <td id='url'>
-                  <% if(result[i].url.length > 1 ){%> 
-                  <a href="<%= result[i].url %>" target="_blank">Anexo</a>
-                  <%}else{%>
-                    Sem anexo
-                    <%}%>
-                </td>
+                <td id='tipo_operacao'><%= result[i].tipo_operacao %></td>
+                <td id='rf_extra_base_margem'><%= result[i].rf_extra_base_margem %></td>
+                <td id='b_digitado'><%= result[i].b_digitado %></td>
+                <td id='n_proposta'><%= result[i].n_proposta %></td>
+                <td id='v_liberado'><%= result[i].v_liberado %></td>
+                <td id='quitacao'><%= result[i].quitacao %></td>
+                <td id='salario'><%= result[i].salario %></td>
+                <td id='b_digitado'><%= result[i].b_digitado %></td>
+                <td id='total_parcelas'><%= result[i].total_parcelas %></td>
+                <td id='qtd_pagas'><%= result[i].qtd_pagas %></td>
+                <td id='parcelas_restantes'><%= result[i].parcelas_restantes %></td>
+                <td id='taxa'><%= result[i].taxa %></td>
                 <td id='obs'><%= result[i].obs %></td>
               </tr>
             <% }%>
@@ -162,29 +185,3 @@
 </html>
 
 
-
-<!-- <td id='operador'><%= result[i].operador %></td>
-<td id='supervisor'><%= result[i].supervisor %></td>
-<td id='cli_nome' > <%= result[i].cli_nome %></td>
-<td id='cli_cpf'><%= result[i].cli_cpf %></td>
-<td id='cli_data_nasc'><%= result[i].cli_data_nasc %></td>
-<td id='endereco'><%= result[i].ENDERECO %></td>
-<td id='cidade'><%= result[i].CIDADE %></td>
-<td id='uf'><%= result[i].UF_ENDERECO %></td>
-<td id='cep'><%= result[i].CEP %></td>
-<td id='contato1'><%= result[i].contato1 %></td>
-<td id='contato2'><%= result[i].contato2 %></td>
-<td id='cli_matricula'><%= result[i].cli_matricula %></td>
-<td id='banco'><%= result[i].Banco %></td>
-<td id='ag'><%= result[i].Agencia_Pagto %></td>
-<td id='especie'><%= result[i].especie %></td>
-<td id='contacorrente'><%= result[i].contacorrente %></td>
-<td id='meiopagto'><%= result[i].meiopagto %></td>
-<td id='infobanco'><%= result[i].info1 %></td>
-<td id='infodata'><%= result[i].info2 %></td>
-<td id='infototal'><%= result[i].info6 %></td>
-<td id='infoparcelas'><%= result[i].info3 %></td>
-<td id='inforestantes'><%= result[i].info5 %></td>
-<td id='infocontrato'><%= result[i].info8 %></td>
-<td id='infotaxa'><%= result[i].info9 %></td>
-<td id='infostatus'><%= result[i].status %></td> -->
