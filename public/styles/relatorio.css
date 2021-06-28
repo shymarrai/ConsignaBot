@@ -5,8 +5,8 @@
   background-color: #e1814a;
   border-radius: 50%;
   filter: invert(1);
-  position: absolute;
-  margin-bottom: 1rem;
+
+  margin-bottom: 3rem;
 }
 h3 {
   margin-left: 1rem;
@@ -27,18 +27,18 @@ div.filters {
   width: 35%;
   height: 20vh;
 }
-#created_at {
-  overflow: hidden;
-}
+
 #transaction {
   overflow-x: auto;
+  overflow-y: auto;
   width: 98%;
+  height: 25rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   margin-top: -10rem;
 }
 #data-table {
-  border-spacing: 0 0.5rem;
+  border-spacing: 0 0.2rem;
   width: 100%;
   color: #666;
 }
@@ -46,22 +46,34 @@ div.filters {
 table tbody tr:hover {
   opacity: 1;
 }
-table tbody tr:nth-child(even) td {
+table tbody tr.vermelho td {
   color: #333;
-  background: #ade1ff;
+  background: rgb(255, 172, 157);
+  text-align: center;
+}
+table tbody tr.verde td {
+  color: #333;
+  background: rgb(205, 255, 226);
+  text-align: center;
+}
+table tbody tr.amarelo td,
+table tbody tr td {
+  color: #333;
+  background: rgb(255, 254, 200);
+  text-align: center;
 }
 
 table#data-table th {
   background: #1e7eb5;
   font-weight: normal;
-  padding: 1rem 1rem;
+  padding: 0.1rem 5rem;
   color: #fff;
   text-align: left;
 }
 
 table#data-table td {
   font-weight: normal;
-  padding: 1rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   overflow: auto;
 }
 
