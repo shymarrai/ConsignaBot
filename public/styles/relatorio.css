@@ -56,6 +56,12 @@ table tbody tr.verde td {
   background: rgb(205, 255, 226);
   text-align: center;
 }
+
+table tbody tr.roxo td {
+  color: #333;
+  background: rgb(186, 213, 255);
+  text-align: center;
+}
 table tbody tr.amarelo td,
 table tbody tr td {
   color: #333;

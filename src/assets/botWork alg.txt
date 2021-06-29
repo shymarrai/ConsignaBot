@@ -1,0 +1,98 @@
+  ;(async () => {
+    const browser = await puppeteer.launch({headless: false});
+    const page = await browser.newPage();
+    await page.goto('https://www.workana.com/login?ref=home_header');
+    
+    
+
+    await page.type('input[type="email"]', process.env.DB_USER)
+    await page.type('input[type="password"]', process.env.DB_PASS)
+
+    await page.click('button[type="submit"]');
+      
+    // await page.waitForNavigation()
+    // const Projects = await page.evaluate(() => {
+
+    //   var test = document.querySelector('a[href="/new"]').innerText;
+    //   // console.log(test)
+
+    //   // test = Array.prototype.slice.call(test)    
+    //   // test = test.map(e => {
+    //   //     console.log("1:",e.innerText)
+    //   // })
+
+      
+    //   return {
+    //     first: test
+    //   };
+
+
+    // });
+    
+    //await browser.close();
+    res.send({
+      "1 Video" : ''
+    })
+
+  })();
+
+
+
+
+
+
+
+let allDetails = document.querySelectorAll('[data-text-expand="Ver mais detalhes"]')
+
+let titles = document.querySelectorAll('span[title]')
+
+let values = document.querySelectorAll('span.values')
+
+let bids = document.querySelectorAll('span.bids')
+
+
+
+
+
+
+allDetails = Array.prototype.slice.call(allDetails)
+
+allDetails = allDetails.map(e => {
+    return e.innerText
+})
+
+
+titles = Array.prototype.slice.call(titles)
+
+titles = titles.map(e => {
+    return e.innerText
+})
+
+
+values = Array.prototype.slice.call(values)
+
+values = values.map(e => {
+    return e.innerText
+})
+
+
+
+bids = Array.prototype.slice.call(bids)
+
+bids = bids.map(e => {
+    return e.innerText
+})
+
+let result = {}
+
+for(let i = 0; i<= bids.length; i++){
+
+result += ["\n\n-----------------------------\n\n"]+[i+"\n" , titles[i]+"\n", values[i]+"\n", bids[i]+"\n", allDetails[i]+"\n"]
+}
+
+
+
+
+
+ console.log(result)
+

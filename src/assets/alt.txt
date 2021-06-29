@@ -1,0 +1,24 @@
+*zap
+
+*operacional
+*salario em bancarios
+*valor de parcela desejada em operação 
+*valor liberado entre taxa e status
+
+*outra div group "proposta cliente"
+*banco digitado
+*n de proposta e valor liberado
+
+*sueprvisor e operacional de 1 a 10
+*tipo de operação do lado do titulo operação- 
+
+
+
+
+*banco ag tipo nconta tipoconta dt inicio sai de tudo parcelas anexo
+*incluir banco digitado, n proposta e valor libe status e tipo de operação
+filtro status, operacional e supervisor
+relatorio
+*tirar de dt nasct até beneficio
+
+
