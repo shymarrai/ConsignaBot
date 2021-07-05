@@ -33,6 +33,7 @@
   <% var dia = String(data.getDate()).padStart(2, '0'); %>
   <% var mes = String(data.getMonth() + 1).padStart(2, '0'); %>
   <% var ano = data.getFullYear(); %>
+  <% var amanha = String(Number(dia + 1)) %>
   
   <main>
     <div class="large" >
@@ -46,7 +47,7 @@
             
             <div>
               <label for="ate">Até
-                <input type="date" name="ate" id='ate' value="<%= ano+"-"+mes+"-"+String(Number(dia)+1) %>">
+                <input type="date" name="ate" id='ate' value="<%= ano+"-"+mes+"-"+amanha%>">
               </label>
             </div>
         </div>
@@ -133,7 +134,8 @@
           <thead>
           <tr>
             <th>Criado</th>
-            <th>Operador</th>
+            <th>Usuário</th>
+            <th>Operacional</th>
             <th>Supervisor</th>
             <th >Nome</th>
             <th>CPF</th>
@@ -166,7 +168,8 @@
                     <%= String(result[i].created_at).slice(4, 25 ) %>
                   </td>
 
-                  <td id='operador'><%= result[i].operacional %></td>
+                  <td id='operador'><%= result[i].operador %></td>
+                  <td id='operacional'><%= result[i].operacional %></td>
                   <td id='supervisor'><%= result[i].supervisor %></td>
                   <td id='cli_nome' > <%= result[i].cli_nome %></td>
                   <td id='cli_cpf' > <%= result[i].cli_cpf %></td>

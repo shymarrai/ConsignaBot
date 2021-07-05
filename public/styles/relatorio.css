@@ -46,6 +46,11 @@ div.filters {
 table tbody tr:hover {
   opacity: 1;
 }
+#obs {
+  overflow-x: hidden;
+  text-align: left;
+  white-space: nowrap;
+}
 table tbody tr.vermelho td {
   color: #333;
   background: rgb(255, 172, 157);
