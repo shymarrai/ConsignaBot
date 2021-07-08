@@ -5,6 +5,7 @@ const chromeOptions = {
   slowMo: 90,
   headless: true,
   args: [
+    '--no-sandbox',
     '--disable-setuid-sandbox',
   ]
 };
