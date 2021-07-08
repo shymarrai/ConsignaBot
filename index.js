@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGO_CONNECTION_URL, { useUnifiedTopology: true, u
 
   })
 
-
+mongoose.set('useFindAndModify', false);
 
 //escolhendo template engine
 server.set('view engine', 'ejs')

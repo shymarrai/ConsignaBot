@@ -1,6 +1,10 @@
 span {
   color: #fff;
 }
+html,
+body {
+  overflow-x: hidden;
+}
 
 header {
   width: 98.7vw;

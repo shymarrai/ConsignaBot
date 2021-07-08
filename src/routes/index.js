@@ -6,8 +6,7 @@ const Admin = require('../controllers/AdminController')
 const botRouter = require('./bot')
 const multer = require('multer')
 const multerConfig = require('../config/multer')
-var bodyParser = require('body-parser')
-const fs = require('fs')
+
 
 require('dotenv').config()
 const app = express();
@@ -33,6 +32,7 @@ app.get('/get_bot/:cpf/:user/:token', botRouter.getBot)
 
 app.post('/save_data_client/:user/:token',multer(multerConfig).single('anexo'), ClientController.save)
 app.post('/search_client/:user/:token', ClientController.search)
+app.get('/search_client/:user/:token/:idItem', ClientController.searchForm)
 
 app.use("/files", express.static(path.resolve(__dirname, "..", "..", "public", "uploads")))
 // app.get('/consigna_bot/:cpf', botRoutes.getBot)

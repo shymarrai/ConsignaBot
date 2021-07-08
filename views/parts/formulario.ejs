@@ -3,7 +3,11 @@
 
 <h2>Operador</h2>
 <div class='group'>
-  
+  <% if(!value?.id && !Object(value).hasOwnProperty('id')){ %>
+    
+  <%}else{%>
+    <input type="hidden" name="id" value="<%= value?.id %>"/>
+  <%}%>
   <div>
     <label for='operador'>Usuário</label>
     <input type="text" name='operador' id='operador' value='<%=user.name%>' readonly/>
