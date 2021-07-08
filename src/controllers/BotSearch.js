@@ -43,7 +43,7 @@ let bot = async (cpf, login, senha) => {
   await page.waitForSelector('div').then((value) => console.log('consulta1')).catch((erro) => console.log('erro consulta1'));
   await navigationPromise;
   await page.waitForSelector('input').then((value) => console.log('consulta2')).catch((erro) => console.log('erro consulta2'));
-  await navigationPromise;
+  
   await page.click('[name="convenio"]');
   await page.keyboard.press('ArrowDown');
 
