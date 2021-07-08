@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 require('dotenv').config()
 
 const chromeOptions = {
-  slowMo: 90,
+  slowMo: 40,
   headless: true,
   args: [
     '--no-sandbox',
