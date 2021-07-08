@@ -2,10 +2,10 @@ const puppeteer = require('puppeteer');
 require('dotenv').config()
 
 const chromeOptions = {
-  slowMo: 10,
   // headless: true,
   args: [
-    '--no-sandbox'
+    '--no-sandbox',
+    '--disable-setuid-sandbox'
   ]
 };
 
