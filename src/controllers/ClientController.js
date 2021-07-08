@@ -6,23 +6,38 @@ const fs = require('fs')
 require('dotenv').config()
 
 
-const CLIENT_ID = process.env.CLIENT_ID_DRIVE
-const CLIENT_SECRET = process.env.CLIENT_SECRET_DRIVE
-const REDIRECT_URI = process.env.REDIRECT_URI_DRIVE
-const REFRESH_TOKEN = process.env.REFRESH_TOKEN_DRIVE
+// const CLIENT_ID = process.env.CLIENT_ID_DRIVE
+// const CLIENT_SECRET = process.env.CLIENT_SECRET_DRIVE
+// const REDIRECT_URI = process.env.REDIRECT_URI_DRIVE
+// const REFRESH_TOKEN = process.env.REFRESH_TOKEN_DRIVE
 
 
-const oauth2Client = new google.auth.OAuth2(
-  CLIENT_ID,
-  CLIENT_SECRET,
-  REDIRECT_URI
-)
+// const oauth2Client = new google.auth.OAuth2(
+//   CLIENT_ID,
+//   CLIENT_SECRET,
+//   REDIRECT_URI
+// )
 
-oauth2Client.setCredentials({ refresh_token: REFRESH_TOKEN })
+// oauth2Client.setCredentials({ refresh_token: REFRESH_TOKEN })
+// const drive = google.drive({
+//   version: 'v3',
+//   auth: oauth2Client
+// })
+
+const KEYFILEPATH = path.join(__dirname, '..','..','consignabot-317613-649f96a58ab1.json')
+console.log(KEYFILEPATH)
+const SCOPE = ['https://www.googleapis.com/auth/drive']
+
+const auth = new google.auth.GoogleAuth({
+  keyFile: KEYFILEPATH,
+  scopes: SCOPE
+})
+
 const drive = google.drive({
   version: 'v3',
-  auth: oauth2Client
+  auth: auth
 })
+
 
 async function uploadFile(name, type) {
 
