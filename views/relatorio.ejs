@@ -134,20 +134,20 @@
           <thead>
           <tr>
             <th>Criado</th>
+            <th>Status</th>
+            <th>Nº Benefício</th>
+            <th>Tipo de Operação</th>
+            <th>Valor Parcela</th>
+            <th >Nome</th>
+            <th>CPF</th>
             <th>Usuário</th>
             <th>Operacional</th>
             <th>Supervisor</th>
-            <th >Nome</th>
-            <th>CPF</th>
-            <th>Nº Benefício</th>
-            <th>Tipo de Operação</th>
-            <th>Banco Origem</th>
-            <th>Valor Parcela</th>
+            <th style=" text-align:left;">Banco Origem</th>
             <th>Quitação</th>
             <th>Parcelas Restantes</th>
             <th>Contrato</th>
             <th>Taxa</th>
-            <th>Status</th>
             <th>Obs</th>
           </tr>
           </thead>
@@ -161,27 +161,30 @@
                     <tr class='verde'>
                       <%}else if(result[i].status == "RETORNAR CLIENTE"){%>
                         <tr class='roxo'>
-                    <%}else{%>
-                      <tr class='amarelo'>
-                      <%}%>
+
+                        <%}else if(result[i].status == "VENDA" || result[i].status == "DIGITAR"){%>
+                          <tr class='branco'>
+                        <%}else{%>
+                          <tr class='amarelo'>
+                          <%}%>
                   <td id='created_at'>
                     <%= String(result[i].created_at).slice(4, 25 ) %>
                   </td>
 
+                  <td id='status'><%= result[i].status %></td>
+                  <td id='cli_matricula'><%= result[i].cli_matricula %></td>
+                  <td id='tipo_operacao'><%= result[i].tipo_operacao %></td>
+                  <td id='v_parcela'><%= result[i].v_parcela %></td>
+                  <td id='cli_nome' > <%= result[i].cli_nome %></td>
+                  <td id='cli_cpf' > <%= result[i].cli_cpf %></td>
                   <td id='operador'><%= result[i].operador %></td>
                   <td id='operacional'><%= result[i].operacional %></td>
                   <td id='supervisor'><%= result[i].supervisor %></td>
-                  <td id='cli_nome' > <%= result[i].cli_nome %></td>
-                  <td id='cli_cpf' > <%= result[i].cli_cpf %></td>
-                  <td id='cli_matricula'><%= result[i].cli_matricula %></td>
-                  <td id='tipo_operacao'><%= result[i].tipo_operacao %></td>
                   <td id='banco_origem'><%= result[i].banco_origem %></td>
-                  <td id='v_parcela'><%= result[i].v_parcela %></td>
                   <td id='quitacao'><%= result[i].quitacao %></td>
                   <td id='parcelas_restantes'><%= result[i].parcelas_restantes %></td>
                   <td id='n_contrato'><%= result[i].n_contrato %></td>
                   <td id='taxa'><%= result[i].taxa %></td>
-                  <td id='status'><%= result[i].status %></td>
                   <td id='obs'><%= result[i].obs %></td>
               </tr>
             <% }%>
