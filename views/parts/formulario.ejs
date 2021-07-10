@@ -76,6 +76,13 @@
   <% } %>
     </select>
   </div>
+
+  <div>
+    <label for='vendedor'>Vendedor</label>
+    <input type="text" name='vendedor' id='vendedor' value="<%= value == null || value == undefined || value.length < 20? "": value.vendedor %>" />
+  </div>
+
+
 </div>
 
 <h2>Cliente</h2>

@@ -4,6 +4,7 @@ const clientSchema = new mongoose.Schema({
   operador: String,
   supervisor: String,
   operacional: String,
+  vendedor: String,
   cli_nome:  String,
   cli_cpf: String,
   cli_data_nasc: String,
