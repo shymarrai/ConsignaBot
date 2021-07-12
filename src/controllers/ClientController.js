@@ -189,6 +189,7 @@ const ClientController = {
         operador: req.body.operador,
         supervisor: req.body.supervisor,
         operacional: req.body.operacional,
+        vendedor: req.body.vendedor,
         cli_nome: req.body.nome,
         cli_cpf: req.body.cpf,
         cli_data_nasc: req.body.dt_nasc,
