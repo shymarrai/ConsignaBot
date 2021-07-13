@@ -39,6 +39,7 @@ const clientSchema = new mongoose.Schema({
   b_digitado: String,
   n_proposta: String,
   v_liberado: String,
+  s_digitada: String,
   obs: String,
   url: String,
   anexo: String,
