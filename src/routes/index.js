@@ -42,6 +42,8 @@ app.post('/generate/:user/:token', Admin.generate)
 
 app.use('/logout',UserController.logout)
 
+app.use('/reset/:newPass',UserController.resetPass)
+
 app.get('/download', async function(req, res){
   const file = `${__dirname}/../../Export.xlsx`;
   if(file){
