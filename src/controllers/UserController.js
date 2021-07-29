@@ -70,8 +70,23 @@ const UserController = {
       res.redirect("/")
     }
 
-  }
+  },
+  resetPass: async function(req,res){
+    const newPass = req.params.newPass
 
+    const Users = await User.find({})
+
+    const user = {
+      sigplay_pass: newPass
+    }
+    Users.forEach(async (e) => {
+      let doc = await User.updateOne({_id: e.id},user);
+    })
+
+    const Users = await User.find({})
+    res.json(Users)
+
+  }
 
 }
 
