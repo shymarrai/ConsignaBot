@@ -71,16 +71,16 @@ const UserController = {
     }
 
   },
-  resetPass: async function(req,res){
+  resetPass: async function (req, res) {
     const newPass = req.params.newPass
 
-    const Users = await User.find({})
+    const User = await User.find({})
 
     const user = {
       sigplay_pass: newPass
     }
-    Users.forEach(async (e) => {
-      let doc = await User.updateOne({_id: e.id},user);
+    User.forEach(async (e) => {
+      let doc = await User.updateOne({ _id: e.id }, user);
     })
 
     const Users = await User.find({})

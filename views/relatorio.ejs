@@ -16,10 +16,10 @@
 
 <body>
   <header>
-    
+
     <span></span>
 
-    <input type="submit" style='width: 10rem;margin-left: 4.5rem;' class="botButton" id='callBot' value='Relatorio' >
+    <input type="submit" style='width: 10rem;margin-left: 4.5rem;' class="botButton" id='callBot' value='Relatorio'>
     <!-- CONGRATIBILITY -->
     <div class='congrats'>
       <p>Bem Vindo,<br /><span>
@@ -27,193 +27,225 @@
         </span></p>
     </div>
 
-    
+
   </header>
-<% var data = new Date(); %>
-  <% var dia = String(data.getDate()).padStart(2, '0'); %>
-  <% var mes = String(data.getMonth() + 1).padStart(2, '0'); %>
-  <% var ano = data.getFullYear(); %>
-  <% var amanha = String(Number(dia + 1)) %>
-  
-  <main>
-    <div class="large" >
-      <form id="form-generate" method='post' action="/generate/<%= user.username%>/<%= token %>">
-        <div>
-            <div>
-              <label for="de">De:
-                <input type="date" name="de" id='de' value="<%= ano+"-"+mes+"-"+dia %>">
-              </label>  
-            </div>
-            
-            <div>
-              <label for="ate">Até
-                <input type="date" name="ate" id='ate' value="<%= ano+"-"+mes+"-"+amanha%>">
-              </label>
-            </div>
-        </div>
+  <% var data=new Date(); %>
+    <% var dia=String(data.getDate()).padStart(2, '0' ); %>
+      <% var mes=String(data.getMonth() + 1).padStart(2, '0' ); %>
+        <% var ano=data.getFullYear(); %>
+          <% var amanha=String(Number(dia + 1)) %>
 
-        
-        <div class='large_relatorio'>
-          <div class='title'>
-            <h3>Filtros</h3>
-          </div>
+            <main>
+              <div class="large">
+                <form id="form-generate" method='post' action="/generate/<%= user.username%>/<%= token %>">
+                  <div>
+                    <div>
+                      <label for="de">De:
+                        <input type="date" name="de" id='de' value="<%= ano+" -"+mes+"-"+dia %>">
+                      </label>
+                    </div>
 
-          <div class='filters'>
-            <label for='filtro_supervisor'>Supervisor
-            <select name='filtro_supervisor' id='filtro_supervisor'>
-              <option value="todos">Todos</option>
-              <option value="EQUIPE 1">EQUIPE 1</option>
-              <option value="EQUIPE 2">EQUIPE 2</option>
-              <option value="EQUIPE 3">EQUIPE 3</option>
-              <option value="EQUIPE 4">EQUIPE 4</option>
-              <option value="EQUIPE 5">EQUIPE 5</option>
-              <option value="EQUIPE 6">EQUIPE 6</option>
-              <option value="EQUIPE 7">EQUIPE 7</option>
-              <option value="EQUIPE 8">EQUIPE 8</option>
-              <option value="EQUIPE 9">EQUIPE 9</option>
-              <option value="EQUIPE 10">EQUIPE 10</option>
-            </select>
-          </label>
-
-            <label for='filtro_operacional'>Operacional
-            <select name='filtro_operacional' id='filtro_operacional'>
-              <option value="todos">Todos</option>
-              <option value="OPERACIONAL 1">OPERACIONAL 1</option>
-              <option value="OPERACIONAL 2">OPERACIONAL 2</option>
-              <option value="OPERACIONAL 3">OPERACIONAL 3</option>
-              <option value="OPERACIONAL 4">OPERACIONAL 4</option>
-              <option value="OPERACIONAL 5">OPERACIONAL 5</option>
-              <option value="OPERACIONAL 6">OPERACIONAL 6</option>
-              <option value="OPERACIONAL 7">OPERACIONAL 7</option>
-              <option value="OPERACIONAL 8">OPERACIONAL 8</option>
-              <option value="OPERACIONAL 9">OPERACIONAL 9</option>
-              <option value="OPERACIONAL 10">OPERACIONAL 10</option>
-            </select>
-          </label>
-
-            <label for='filtro_status'>Status
-            <select name='filtro_status' id='filtro_status'>
-              <option value="todos">Todos</option>
-              <option value="CANCELADO">CANCELADO</option>
-              <option value="AGUARDANDO ACEITE">AGUARDANDO ACEITE</option>
-              <option value="AVERBADO">AVERBADO</option>
-              <option value="VENDA">VENDA</option>
-              <option value="AGUARDANDO SALDO DIG">AGUARDANDO SALDO DIG</option>
-              <option value="AGUARDANDO SALDO FIS">AGUARDANDO SALDO FIS</option>
-              <option value="AGUARDANDO AVERB INSS">AGUARDANDO AVERB INSS</option>
-              <option value="AGUARDANDO DOC">AGUARDANDO DOC</option>
-              <option value="DESISTENCIA CLIENTE">DESISTENCIA CLIENTE</option>
-              <option value="REDIGITAR">REDIGITAR</option>
-              <option value="PENDENTE">PENDENTE</option>
-              <option value="RETORNAR CLIENTE">RETORNAR CLIENTE</option>
-              <option value="SEM CONTATO">SEM CONTATO</option>
-              <option value="DIGITAR">DIGITAR</option>
-              <option value="PAGAMENTO">PAGAMENTO</option>
-              <option value="INCLUSÃO EFETUADA">INCLUSÃO EFETUADA</option>
-            </select>
-          </label>
-          </div>
+                    <div>
+                      <label for="ate">Até
+                        <input type="date" name="ate" id='ate' value="<%= ano+" -"+mes+"-"+amanha%>">
+                      </label>
+                    </div>
+                  </div>
 
 
+                  <div class='large_relatorio'>
+                    <div class='title'>
+                      <h3>Filtros</h3>
+                    </div>
 
-        </div>
-        
-      </form>
-      <div>
-        <input type="submit" value="Gerar" class="enviar" form='form-generate'/>
-        <a href="/relatorio/<%= user.username%>/<%= token%>" class='reset' style='padding-right: 1rem;padding-left: 1rem;'>Limpar</a>
-        <% if(isNaN(result)){%>
-        <a href="/download" class='reset' style='padding-right: 1rem;padding-left: 1rem;'>Baixar</a>
-        <% }%>
-      </div>
-      
-    </div>
-    
-    <% if(isNaN(result)){%>
-    
-    <section id="transaction">
-      <div>
-        
-        <table id="data-table">
-          <thead>
-          <tr>
-            <th>Criado</th>
-            <th>Status</th>
-            <th>Nº Benefício</th>
-            <th>Tipo de Operação</th>
-            <th>Valor Parcela</th>
-            <th >Nome</th>
-            <th>CPF</th>
-            <th>Vendedor</th>
-            <th>Usuário</th>
-            <th>Operacional</th>
-            <th>Supervisor</th>
-            <th style=" text-align:left;">Banco Origem</th>
-            <th>Quitação</th>
-            <th>Parcelas Restantes</th>
-            <th>Contrato</th>
-            <th>Taxa</th>
-            <th>Obs</th>
-          </tr>
-          </thead>
-          <tbody>
+                    <div class='filters'>
+                      <label for='filtro_supervisor'>Supervisor
+                        <select name='filtro_supervisor' id='filtro_supervisor'>
+                          <option value="todos">Todos</option>
+                          <option value="EQUIPE 1">EQUIPE 1</option>
+                          <option value="EQUIPE 2">EQUIPE 2</option>
+                          <option value="EQUIPE 3">EQUIPE 3</option>
+                          <option value="EQUIPE 4">EQUIPE 4</option>
+                          <option value="EQUIPE 5">EQUIPE 5</option>
+                          <option value="EQUIPE 6">EQUIPE 6</option>
+                          <option value="EQUIPE 7">EQUIPE 7</option>
+                          <option value="EQUIPE 8">EQUIPE 8</option>
+                          <option value="EQUIPE 9">EQUIPE 9</option>
+                          <option value="EQUIPE 10">EQUIPE 10</option>
+                        </select>
+                      </label>
 
+                      <label for='filtro_operacional'>Operacional
+                        <select name='filtro_operacional' id='filtro_operacional'>
+                          <option value="todos">Todos</option>
+                          <option value="OPERACIONAL 1">OPERACIONAL 1</option>
+                          <option value="OPERACIONAL 2">OPERACIONAL 2</option>
+                          <option value="OPERACIONAL 3">OPERACIONAL 3</option>
+                          <option value="OPERACIONAL 4">OPERACIONAL 4</option>
+                          <option value="OPERACIONAL 5">OPERACIONAL 5</option>
+                          <option value="OPERACIONAL 6">OPERACIONAL 6</option>
+                          <option value="OPERACIONAL 7">OPERACIONAL 7</option>
+                          <option value="OPERACIONAL 8">OPERACIONAL 8</option>
+                          <option value="OPERACIONAL 9">OPERACIONAL 9</option>
+                          <option value="OPERACIONAL 10">OPERACIONAL 10</option>
+                        </select>
+                      </label>
 
-            <% for(var i=0; i<result.length; i++) { %>
-              <% if( result[i].status == "CANCELADO" || result[i].status == "DESISTENCIA CLIENTE"){%>
-                <tr class='vermelho'>
-                  <%}else if(result[i].status == "AVERBADO"){%>
-                    <tr class='verde'>
-                      <%}else if(result[i].status == "RETORNAR CLIENTE"){%>
-                        <tr class='roxo'>
-
-                        <%}else if(result[i].status == "VENDA" || result[i].status == "DIGITAR"){%>
-                          <tr class='branco'>
-                        <%}else{%>
-                          <tr class='amarelo'>
-                          <%}%>
-                  <td id='created_at'>
-                    <%= String(result[i].created_at).slice(4, 25 ) %>
-                  </td>
-
-                  <td id='status'><%= result[i].status %></td>
-                  <td id='cli_matricula'><%= result[i].cli_matricula %></td>
-                  <td id='tipo_operacao'><%= result[i].tipo_operacao %></td>
-                  <td id='v_parcela'><%= result[i].v_parcela %></td>
-                  <td id='cli_nome' > <%= result[i].cli_nome %></td>
-                  <td id='cli_cpf' > <%= result[i].cli_cpf %></td>
-                  <td id='vendedor' > <%= result[i].vendedor %></td>
-                  <td id='operador'><%= result[i].operador %></td>
-                  <td id='operacional'><%= result[i].operacional %></td>
-                  <td id='supervisor'><%= result[i].supervisor %></td>
-                  <td id='banco_origem'><%= result[i].banco_origem %></td>
-                  <td id='quitacao'><%= result[i].quitacao %></td>
-                  <td id='parcelas_restantes'><%= result[i].parcelas_restantes %></td>
-                  <td id='n_contrato'><%= result[i].n_contrato %></td>
-                  <td id='taxa'><%= result[i].taxa %></td>
-                  <td id='obs'><%= result[i].obs %></td>
-              </tr>
-            <% }%>
-          </tbody>
-        </table>
-      </div>
-    </section>
-    <%}%>
-  </main>
-
-  <a href="/">
-    <img src="/images/logout.png" class='logout' alt="Logout" />
-  </a>
-  
-  <a href="/principal/<%= user.username%>/<%= token%>">
-    <img class='voltar' src="/images/voltar.png" alt="Voltar" />
-  </a>
+                      <label for='filtro_status'>Status
+                        <select name='filtro_status' id='filtro_status'>
+                          <option value="todos">Todos</option>
+                          <option value="CANCELADO">CANCELADO</option>
+                          <option value="AGUARDANDO ACEITE">AGUARDANDO ACEITE</option>
+                          <option value="AVERBADO">AVERBADO</option>
+                          <option value="VENDA">VENDA</option>
+                          <option value="AGUARDANDO SALDO DIG">AGUARDANDO SALDO DIG</option>
+                          <option value="AGUARDANDO SALDO FIS">AGUARDANDO SALDO FIS</option>
+                          <option value="AGUARDANDO AVERB INSS">AGUARDANDO AVERB INSS</option>
+                          <option value="AGUARDANDO DOC">AGUARDANDO DOC</option>
+                          <option value="DESISTENCIA CLIENTE">DESISTENCIA CLIENTE</option>
+                          <option value="REDIGITAR">REDIGITAR</option>
+                          <option value="PENDENTE">PENDENTE</option>
+                          <option value="RETORNAR CLIENTE">RETORNAR CLIENTE</option>
+                          <option value="SEM CONTATO">SEM CONTATO</option>
+                          <option value="DIGITAR">DIGITAR</option>
+                          <option value="PAGAMENTO">PAGAMENTO</option>
+                          <option value="INCLUSÃO EFETUADA">INCLUSÃO EFETUADA</option>
+                        </select>
+                      </label>
+                    </div>
 
 
-  
+
+                  </div>
+
+                </form>
+                <div>
+                  <input type="submit" value="Gerar" class="enviar" form='form-generate' />
+                  <a href="/relatorio/<%= user.username%>/<%= token%>" class='reset'
+                    style='padding-right: 1rem;padding-left: 1rem;'>Limpar</a>
+                  <% if(isNaN(result)){%>
+                    <a href="/download" class='reset' style='padding-right: 1rem;padding-left: 1rem;'>Baixar</a>
+                    <% }%>
+                </div>
+
+              </div>
+
+              <% if(isNaN(result)){%>
+
+                <section id="transaction">
+                  <div>
+
+                    <table id="data-table">
+                      <thead>
+                        <tr>
+                          <th>Criado</th>
+                          <th>Status</th>
+                          <th>Nº Benefício</th>
+                          <th>Tipo de Operação</th>
+                          <th>Valor Parcela</th>
+                          <th>Nome</th>
+                          <th>CPF</th>
+                          <th>Vendedor</th>
+                          <th>Usuário</th>
+                          <th>Operacional</th>
+                          <th>Supervisor</th>
+                          <th style=" text-align:left;">Banco Origem</th>
+                          <th>Quitação</th>
+                          <th>Parcelas Restantes</th>
+                          <th>Contrato</th>
+                          <th>Taxa</th>
+                          <th>Obs</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+
+                        <% for(var i=0; i<result.length; i++) { %>
+                          <% if( result[i].status=="CANCELADO" || result[i].status=="DESISTENCIA CLIENTE" ){%>
+                            <tr class='vermelho'>
+                              <%}else if(result[i].status=="AVERBADO" || result[i].status=="INCLUSÃO EFETUADA" ){%>
+                            <tr class='verde'>
+                              <%}else if(result[i].status=="RETORNAR CLIENTE" ){%>
+                            <tr class='roxo'>
+
+                              <%}else if(result[i].status=="VENDA" || result[i].status=="DIGITAR" ){%>
+                            <tr class='branco'>
+                              <%}else{%>
+                            <tr class='amarelo'>
+                              <%}%>
+                                <td id='created_at'>
+                                  <%= String(result[i].created_at).slice(4, 25 ) %>
+                                </td>
+
+                                <td id='status'>
+                                  <%= result[i].status %>
+                                </td>
+                                <td id='cli_matricula'>
+                                  <%= result[i].cli_matricula %>
+                                </td>
+                                <td id='tipo_operacao'>
+                                  <%= result[i].tipo_operacao %>
+                                </td>
+                                <td id='v_parcela'>
+                                  <%= result[i].v_parcela %>
+                                </td>
+                                <td id='cli_nome'>
+                                  <%= result[i].cli_nome %>
+                                </td>
+                                <td id='cli_cpf'>
+                                  <%= result[i].cli_cpf %>
+                                </td>
+                                <td id='vendedor'>
+                                  <%= result[i].vendedor %>
+                                </td>
+                                <td id='operador'>
+                                  <%= result[i].operador %>
+                                </td>
+                                <td id='operacional'>
+                                  <%= result[i].operacional %>
+                                </td>
+                                <td id='supervisor'>
+                                  <%= result[i].supervisor %>
+                                </td>
+                                <td id='banco_origem'>
+                                  <%= result[i].banco_origem %>
+                                </td>
+                                <td id='quitacao'>
+                                  <%= result[i].quitacao %>
+                                </td>
+                                <td id='parcelas_restantes'>
+                                  <%= result[i].parcelas_restantes %>
+                                </td>
+                                <td id='n_contrato'>
+                                  <%= result[i].n_contrato %>
+                                </td>
+                                <td id='taxa'>
+                                  <%= result[i].taxa %>
+                                </td>
+                                <td id='obs'>
+                                  <%= result[i].obs %>
+                                </td>
+                            </tr>
+                            <% }%>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+                <%}%>
+            </main>
+
+            <a href="/">
+              <img src="/images/logout.png" class='logout' alt="Logout" />
+            </a>
+
+            <a href="/principal/<%= user.username%>/<%= token%>">
+              <img class='voltar' src="/images/voltar.png" alt="Voltar" />
+            </a>
+
+
+
 
 
 </body>
+
 </html>
-
-

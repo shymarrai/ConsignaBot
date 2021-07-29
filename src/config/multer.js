@@ -3,18 +3,18 @@ const path = require('path')
 const crypto = require('crypto')
 
 module.exports = {
-  dest: path.resolve(__dirname, '..','..' ,'public', 'uploads'),
+  dest: path.resolve(__dirname, '..', '..', 'public', 'uploads'),
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null,path.resolve(__dirname, '..', '..','public', 'uploads') )
+      cb(null, path.resolve(__dirname, '..', '..', 'public', 'uploads'))
     },
     filename: (req, file, cb) => {
       // crypto.randomBytes(16, (err, hash) => {
       //   if(err) cb(err)
       //   let type = String(file.mimetype)
       //   type = type.slice(6, type.length)
-        const fileName = `${req.body.cpf}.${req.body.type}`
-        cb(null, fileName)
+      const fileName = `${req.body.cpf}.${req.body.type}`
+      cb(null, fileName)
       // })
     }
 
@@ -28,11 +28,12 @@ module.exports = {
       'image/pjpeg',
       'image/png',
       'image/jpg',
+      'application/pdf'
     ];
 
-    if(allowedMimes.includes(file.mimetype)){
+    if (allowedMimes.includes(file.mimetype)) {
       cb(null, true)
-    }else{
+    } else {
       cb(new Error('Arquivo de tipo invalido.'))
     }
   },
