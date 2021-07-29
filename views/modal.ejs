@@ -178,7 +178,7 @@
           <% for(var i=0; i<values.length; i++) { %>
             <% if( values[i].status=="CANCELADO" || values[i].status=="DESISTENCIA CLIENTE" ){%>
               <tr class='vermelho'>
-                <%}else if(result[i].status=="AVERBADO" || result[i].status=="INCLUSÃO EFETUADA" ){%>
+                <%}else if(values[i].status=="AVERBADO" || values[i].status=="INCLUSÃO EFETUADA" ){%>
               <tr class='verde'>
                 <%}else if(values[i].status=="RETORNAR CLIENTE" ){%>
               <tr class='roxo'>
