@@ -101,6 +101,7 @@ const Admin = {
         rowIndex++
       })
 
+      
       await wb.write('Export.xlsx')
 
       res.render("relatorio", { user: selectedUser, token, result })

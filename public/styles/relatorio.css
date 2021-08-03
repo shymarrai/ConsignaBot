@@ -98,10 +98,12 @@ table#data-table th {
 
 table#data-table td {
   font-weight: normal;
-  padding: 0rem 1.5rem;
+  padding: 0rem 0rem;
   overflow: auto;
 }
-
+table#data-table tr > td {
+  padding: 0rem 0rem;
+}
 input[type="date"] {
   border: 2px solid #666;
   border-radius: 4px;
