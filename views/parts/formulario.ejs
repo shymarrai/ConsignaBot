@@ -225,7 +225,7 @@
     <option value="CREDITO CONTA">CREDITO CONTA</option>
 <% }else{ %>
   <select name='tipo_operacao' id='tipo_operacao' onclick="changeOperation()">
-    <% let arrayTiposDeOperacoes = ['REFIN' , 'MARGEM', 'REGIN UNIF', 'REFIN + MARGEM','PORTABILIDADE', 'PORT + REFIN', 'PORT + REDUÇÃO', 'SAQUE COMPLEMENTAR', 'CARTÃO', 'CARTÃO + SAQUE', 'FGTS', 'CREDITO CONTA'] %>
+    <% let arrayTiposDeOperacoes = ['REFIN' , 'MARGEM', 'REFIN UNIF', 'REFIN + MARGEM','PORTABILIDADE', 'PORT + REFIN', 'PORT + REDUÇÃO', 'SAQUE COMPLEMENTAR', 'CARTÃO', 'CARTÃO + SAQUE', 'FGTS', 'CREDITO CONTA'] %>
     <option value="<%= arrayTiposDeOperacoes.find(element => element == value.tipo_operacao.toUpperCase()) %>">
       <%= arrayTiposDeOperacoes.find(element => element == value.tipo_operacao.toUpperCase()) %>
     </option>
