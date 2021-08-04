@@ -11,16 +11,32 @@ function anexoViewer(){
   }
 }
 
-function calculate(){
-  const totParcelas = document.getElementById('parcelas').value
-  const restParcelas = document.getElementById('prazo').value
-  
+function calculatePg(){
+  var totParcelas = document.getElementById('parcelas').value //total de parcelas
+  var restParcelas = document.getElementById('prazo').value //parcelas restantes
 
   if(Number(totParcelas) && Number(restParcelas)){
-
+    //parcelas pagas
     document.getElementById('qtd_pagas').value = Number(totParcelas) - Number(restParcelas)
   }
+
 }
+
+
+function calculateRest(){
+  var totParcelas = document.getElementById('parcelas').value //total de parcelas
+  var pagas =  document.getElementById('qtd_pagas').value // parcelas pagas
+
+
+  if(Number(totParcelas) && Number(pagas)){
+    //parcelas restantes
+    
+    document.getElementById('prazo').value = Number(totParcelas) - Number(pagas)
+  }
+
+}
+
+
 
 function changeOperation(){
   var margem = document.getElementById('div_margem')

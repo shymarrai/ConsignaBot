@@ -2,6 +2,8 @@ const User = require('../model/Users')
 const jwt = require('jsonwebtoken')
 const Client = require('../model/Clients')
 const xl = require('excel4node')
+const fs = require('fs')
+
 const wb = new xl.Workbook()
 var data = new Date();
 var dia = String(data.getDate()).padStart(2, '0');
@@ -75,6 +77,8 @@ const Admin = {
 
     // {"$and": [{cli_cpf  : cpfClient},{ url:  {$ne:''} }]}
     try {
+
+
       const filtroOperacional = (operacional !== 'todos') ? { "operacional": operacional } : {}
       const filtroSupervisor = (supervisor !== 'todos') ? { "supervisor": supervisor } : {}
       const filtroStatus = (status !== 'todos') ? { "status": status } : {}
@@ -89,8 +93,64 @@ const Admin = {
         ws.cell(1, headingColumnsIndex++).string(heading)
       })
 
-      let rowIndex = 2;
+      //ZERANDO A PLANILHA DE DOWNLOAD ATÉ 10K LINHAS
+      let arrayLinesBlank = [{
+        _id: '',
+        operador: '',
+        supervisor: '',
+        operacional: '',
+        cli_nome: '',
+        cli_cpf: '',
+        cli_data_nasc: '',
+        ENDERECO: '',
+        BAIRRO: '',
+        CIDADE: '',
+        UF_ENDERECO: '',
+        CEP: '',
+        contato1: '',
+        contato2: '',
+        cli_matricula: '',
+        Banco: '',
+        rf_extra_base_margem: '',
+        Agencia_Pagto: '',
+        especie: '',
+        contacorrente: '',
+        meiopagto: '',
+        tipo_operacao: '',
+        banco_origem: '',
+        v_parcela: '',
+        desejada: '',
+        quitacao: '',
+        total_parcelas: '',
+        qtd_pagas: '',
+        parcelas_restantes: '',
+        n_contrato: '',
+        taxa: '',
+        status: '',
+        margem: '',
+        parcela_nova: '',
+        valor_saque: '',
+        b_digitado: '',
+        n_proposta: '',
+        v_liberado: '',
+        obs: '',
+        url: '',
+        anexo: '',
+        created_at: '',
+        __v: '',
+        s_digitada: '',
+        vendedor: ''
+      }]
+      //APAGAR TODAS AS CELULAS DO ARQUIVO
+      arrayLinesBlank.forEach(record => {
+        for(let i = 2; i<= 10000; i++){
+          formulateSheetData(record, i)
+        }
+      })
 
+      await wb.write('Export.xlsx')
+
+      let rowIndex = 2;
       result.forEach(record => {
 
         if (Date.parse(record['created_at']) >= Date.parse(de) && Date.parse(record['created_at']) <= Date.parse(ate)) {
@@ -102,7 +162,7 @@ const Admin = {
       })
 
       
-      await wb.write('Export.xlsx')
+        await wb.write('Export.xlsx')
 
       res.render("relatorio", { user: selectedUser, token, result })
 
