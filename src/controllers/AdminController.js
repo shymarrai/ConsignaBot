@@ -143,7 +143,7 @@ const Admin = {
       }]
       //APAGAR TODAS AS CELULAS DO ARQUIVO
       arrayLinesBlank.forEach(record => {
-        for(let i = 2; i<= 10000; i++){
+        for(let i = 2; i<= 3000; i++){
           formulateSheetData(record, i)
         }
       })
