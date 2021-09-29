@@ -102,6 +102,7 @@
                           <option value="AGUARDANDO SALDO FIS">AGUARDANDO SALDO FIS</option>
                           <option value="AGUARDANDO AVERB INSS">AGUARDANDO AVERB INSS</option>
                           <option value="AGUARDANDO DOC">AGUARDANDO DOC</option>
+                          <option value="AGUARDANDO LIBERACAO">AGUARDANDO LIBERACAO</option>
                           <option value="DESISTENCIA CLIENTE">DESISTENCIA CLIENTE</option>
                           <option value="REDIGITAR">REDIGITAR</option>
                           <option value="PENDENTE">PENDENTE</option>
@@ -153,6 +154,7 @@
                           <th>Quitação</th>
                           <th>Parcelas Restantes</th>
                           <th>Contrato</th>
+                          <th>Repasse</th>
                           <th>Taxa</th>
                           <th>Obs</th>
                         </tr>
@@ -218,6 +220,9 @@
                                 </td>
                                 <td id='n_contrato'>
                                   <%= result[i].n_contrato %>
+                                </td>
+                                <td id='repasse'>
+                                  <%= result[i].repasse %>
                                 </td>
                                 <td id='taxa'>
                                   <%= result[i].taxa %>

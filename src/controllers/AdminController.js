@@ -12,7 +12,7 @@ var ano = data.getFullYear();
 dataAtual = dia + '/' + mes + '/' + ano;
 
 const ws = wb.addWorksheet(`Export`)
-const headingColumnsNames = ['Criado', 'Status', 'Beneficio', 'Operação', "Valor parcela", "Nome", "CPF", "Vendedor", "Operador", "Supervisor", "Operacional", "Banco Origem", "Quitação", "Parcelas Restantes", "Nº Contrato", "Taxa", "Obs"]
+const headingColumnsNames = ['Criado', 'Status', 'Beneficio', 'Operação', "Valor parcela", "Nome", "CPF", "Vendedor", "Operador", "Supervisor", "Operacional", "Banco Origem", "Quitação", "Parcelas Restantes", "Nº Contrato", "Repasse","Taxa", "Obs"]
 
 function formulateSheetData(record, rowIndex) {
   ws.cell(rowIndex, 1).string(String(record['created_at']))
@@ -30,8 +30,9 @@ function formulateSheetData(record, rowIndex) {
   ws.cell(rowIndex, 13).string(String(record['quitacao']))  /* quitacao */
   ws.cell(rowIndex, 14).string(String(record['parcelas_restantes']))   /* parcelas restantes */
   ws.cell(rowIndex, 15).string(String(record['n_contrato']))     /* contrato */
-  ws.cell(rowIndex, 16).string(String(record['taxa']))        /* taxa */
-  ws.cell(rowIndex, 17).string(String(record['obs']))        /* obs */
+  ws.cell(rowIndex, 16).string(String(record['repasse']))     /* contrato */
+  ws.cell(rowIndex, 17).string(String(record['taxa']))        /* taxa */
+  ws.cell(rowIndex, 18).string(String(record['obs']))        /* obs */
 }
 
 
@@ -125,6 +126,7 @@ const Admin = {
         qtd_pagas: '',
         parcelas_restantes: '',
         n_contrato: '',
+        repasse: '',
         taxa: '',
         status: '',
         margem: '',
