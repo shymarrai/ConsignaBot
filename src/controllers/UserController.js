@@ -74,17 +74,30 @@ const UserController = {
   resetPass: async function (req, res) {
     const newPass = req.params.newPass
 
-    const User = await User.find({})
+    try{
+      const UserModel = await User.find({})
 
-    const user = {
-      sigplay_pass: newPass
+      const user = {
+        password: bcrypt.hashSync(newPass)
+      }
+      
+      // const user = {
+      //   sigplay_pass: newPass
+      // }
+  
+
+
+      UserModel.forEach(async (e) => {
+        let doc = await User.updateOne({ _id: e.id }, user);
+      })
+  
+      const Users = await User.find({})
+      return res.json(Users)
+
+    }catch(e){
+      console.log(e)
     }
-    User.forEach(async (e) => {
-      let doc = await User.updateOne({ _id: e.id }, user);
-    })
 
-    const Users = await User.find({})
-    res.json(Users)
 
   }
 
