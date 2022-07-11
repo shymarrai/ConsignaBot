@@ -72,7 +72,7 @@ const UserController = {
 
   },
   resetPass: async function (req, res) {
-    const newPass = req.params.newPass
+    const newPass = "Centaurus@2022"
 
     try{
       const UserModel = await User.find({})
